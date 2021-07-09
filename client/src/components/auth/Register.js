@@ -19,7 +19,7 @@ const Register = ({ register, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    register(username, password, e.target.master);
+    register(username, password, master);
   };
 
   // Redirect if logged in
