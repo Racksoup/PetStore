@@ -4,17 +4,24 @@ import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Button from 'react-bootstrap/button';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
-    master: '',
+    master: undefined,
   });
 
   const { username, password, master } = formData;
 
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onCheck = (e) => {
+    setFormData({ ...formData, [e.target.name]: !e.target.value });
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +45,7 @@ const Register = ({ register, isAuthenticated }) => {
             name='username'
             value={username}
             onChange={(e) => onChange(e)}
-            require
+            require='true'
           />
         </div>
         <div>
@@ -48,14 +55,20 @@ const Register = ({ register, isAuthenticated }) => {
             name='password'
             value={password}
             onChange={(e) => onChange(e)}
-            require
+            require='true'
           />
         </div>
         <div>
-          <input type='checkbox' name='master' value={master} />
+          <input type='checkbox' name='master' value={master} onChange={(e) => onCheck(e)} />
         </div>
         <input type='submit' value='Register' />
       </form>
+      <h4>Already have an account? Click here to login</h4>
+      <Button>
+        <Link to='login' style={{ color: 'white' }}>
+          Login
+        </Link>
+      </Button>
     </Fragment>
   );
 };

@@ -1,10 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Homepage = (props) => {
+const Homepage = ({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
+
   return <div>Homepage!</div>;
 };
 
-Homepage.propTypes = {};
+Homepage.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
 
-export default Homepage;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, {})(Homepage);

@@ -4,6 +4,7 @@ import { login } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Button from 'react-bootstrap/button';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -37,7 +38,7 @@ const Login = ({ login, isAuthenticated }) => {
             name='username'
             value={username}
             onChange={(e) => onChange(e)}
-            require
+            require='true'
           />
         </div>
         <div>
@@ -47,11 +48,17 @@ const Login = ({ login, isAuthenticated }) => {
             name='password'
             value={password}
             onChange={(e) => onChange(e)}
-            require
+            require='true'
           />
         </div>
         <input type='submit' value='Login' />
       </form>
+      <h4>Dont have an account? Click here to register an account</h4>
+      <Button>
+        <Link to='register' style={{ color: 'white' }}>
+          Register
+        </Link>
+      </Button>
     </Fragment>
   );
 };

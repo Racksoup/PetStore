@@ -11,30 +11,32 @@ import Button from 'react-bootstrap/Button';
 
 const MyNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
-    <Navbar bg='dark'>
-      <Navbar.Text className='mr-auto'>
-        <Link to='/' style={{ color: 'white', fontSize: '20px' }}>
-          Home
-        </Link>
-      </Navbar.Text>
-      <Nav className='mr-sm-2'>
-        <Navbar.Text>
-          <Link to='/register' style={{ color: 'white', margin: '5px' }}>
-            Register
+    <Fragment>
+      <Navbar bg='dark'>
+        <Navbar.Text className='mr-auto'>
+          <Link to='/' style={{ color: 'white', fontSize: '20px' }}>
+            Home
           </Link>
         </Navbar.Text>
-        <Navbar.Text>
-          <Link to='/login' style={{ color: 'white', margin: '5px' }}>
-            Login
-          </Link>
-        </Navbar.Text>
-        <Navbar.Text>
-          <Button onClick={logout} href='#!'>
-            Logout
-          </Button>
-        </Navbar.Text>
-      </Nav>
-    </Navbar>
+        <Nav className='mr-sm-2'>
+          <Navbar.Text>
+            <Link to='/register' style={{ color: 'white', margin: '5px' }}>
+              Register
+            </Link>
+          </Navbar.Text>
+          <Navbar.Text>
+            <Link to='/login' style={{ color: 'white', margin: '5px' }}>
+              Login
+            </Link>
+          </Navbar.Text>
+          <Navbar.Text>
+            <Button onClick={logout} href='#!'>
+              Logout
+            </Button>
+          </Navbar.Text>
+        </Nav>
+      </Navbar>
+    </Fragment>
   );
 };
 

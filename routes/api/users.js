@@ -1,3 +1,6 @@
+const User = require('../../models/User');
+const auth = require('../../middleware/auth');
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -5,9 +8,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 
-const User = require('../../models/User');
-
-// @route   Post api/user
+// @route   Post api/users
 // @desc    Make User
 // @access  Public
 router.post('/', [
@@ -57,5 +58,19 @@ router.post('/', [
     }
   },
 ]);
+
+// @route   DELETE api/users
+// @desc    Delete user
+// @access  Private
+router.delete('/', auth, async (req, res) => {
+  try {
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    res.json({ msg: 'User deleted' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
