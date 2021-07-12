@@ -38,7 +38,6 @@ router.put('/item', auth, async (req, res) => {
 
   try {
     const item = await Inventory.findOneAndUpdate({ name: req.body.name }, postItem);
-    console.log(item);
     await item.save();
     res.json(item);
   } catch (err) {
@@ -46,6 +45,7 @@ router.put('/item', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 // @route   PUT api/inventory/:_id
 // @desc    Update Inventory Item by _id
 // @access  Private
@@ -55,7 +55,6 @@ router.put('/:_id', auth, async (req, res) => {
 
   try {
     const item = await Inventory.findOneAndUpdate({ _id: req.params._id }, postItem);
-    console.log(item);
     await item.save();
     res.json(item);
   } catch (err) {
@@ -68,9 +67,6 @@ router.put('/:_id', auth, async (req, res) => {
 // @desc    Delete Inventory Item
 // @access  Private
 router.delete('/:_id', auth, async (req, res) => {
-  console.log(req.body);
-  console.log(req.params);
-  console.log(req.user);
   try {
     await Inventory.findOneAndRemove({ _id: req.params._id });
     res.json({ msg: 'Item Deleted' });
@@ -85,7 +81,6 @@ router.delete('/:_id', auth, async (req, res) => {
 // @access  Public
 router.get('/category', async (req, res) => {
   try {
-    console.log(req.body.category);
     const items = await Inventory.find({ category: req.body.category });
     res.json(items);
   } catch (err) {
