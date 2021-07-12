@@ -89,6 +89,19 @@ router.get('/category', async (req, res) => {
   }
 });
 
+// @route   GET api/inventory/name
+// @desc    Get one by Name
+// @access  Public
+router.get('/name', async (req, res) => {
+  try {
+    const items = await Inventory.findOne({ name: req.body.name });
+    res.json(items);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   GET api/inventory/:_id
 // @desc    Get one by id
 // @access  Public
