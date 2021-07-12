@@ -45,9 +45,11 @@ const Dashboard = ({
       <Button sytle={{ color: 'white' }} variant='primary' onClick={() => deleteAccount()}>
         DELETE
       </Button>
+      {/* {profile.master === true && ( */}
       <Link sytle={{ color: 'white' }} to='inventory'>
         <Button variant='primary'>Update Inventory</Button>
       </Link>
+      {/* )} */}
       {profile === null ? (
         <div>
           <h2>Create a Profile</h2>

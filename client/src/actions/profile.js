@@ -23,7 +23,6 @@ export const createProfile = (profile) => async (dispatch) => {
 
     dispatch({
       type: CREATE_PROFILE,
-      payload: res.data,
     });
   } catch (err) {
     const errors = err.response.data.errors;

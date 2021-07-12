@@ -18,6 +18,11 @@ const MyNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             Home
           </Link>
         </Navbar.Text>
+        <Navbar.Text className='mr-auto'>
+          <Link to='/dashboard' style={{ color: 'white', fontSize: '20px' }}>
+            Dashboard
+          </Link>
+        </Navbar.Text>
         <Nav className='mr-sm-2'>
           <Navbar.Text>
             <Link to='/register' style={{ color: 'white', margin: '5px' }}>
