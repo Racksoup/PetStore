@@ -25,7 +25,6 @@ const Register = ({ register, isAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     register(username, password, master);
   };
 
