@@ -29,15 +29,33 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
+// @route   PUT api/inventory/item
+// @desc    Update Inventory Item by Name
+// @access  Private
+router.put('/item', auth, async (req, res) => {
+  const { category, price, name, stock } = req.body;
+  const postItem = { category, price, name, stock };
+
+  try {
+    const item = await Inventory.findOneAndUpdate({ name: req.body.name }, postItem);
+    console.log(item);
+    await item.save();
+    res.json(item);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 // @route   PUT api/inventory/:_id
-// @desc    Update Inventory Item
+// @desc    Update Inventory Item by _id
 // @access  Private
 router.put('/:_id', auth, async (req, res) => {
   const { category, price, name, stock } = req.body;
   const postItem = { category, price, name, stock };
 
   try {
-    const item = await Inventory.updateOne({ _id: req.params._id }, postItem);
+    const item = await Inventory.findOneAndUpdate({ _id: req.params._id }, postItem);
+    console.log(item);
     await item.save();
     res.json(item);
   } catch (err) {
