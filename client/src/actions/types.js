@@ -22,3 +22,4 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 export const GET_ONE_ITEM = 'GET_ONE_ITEM';
 export const GET_CATEGORY = 'GET_CATEGORY';
 export const INVENTORY_ERROR = 'INVENTORY_ERROR';
+export const GOT_CATEGORIES = 'GOT_CATEGORIES';
