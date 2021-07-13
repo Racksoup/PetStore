@@ -1,13 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import {
-  CREATE_PROFILE,
-  UPDATE_PROFILE,
-  DELETE_PROFILE,
-  GET_ONE_PROFILE,
-  GET_ALL_PROFILES,
-  PROFILE_ERROR,
-} from './types';
+import { CREATE_PROFILE, GET_ONE_PROFILE, PROFILE_ERROR } from './types';
 
 // Create Profile
 export const createProfile = (profile) => async (dispatch) => {

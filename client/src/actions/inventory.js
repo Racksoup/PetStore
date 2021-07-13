@@ -1,15 +1,5 @@
 import { setAlert } from './alert';
-import {
-  CREATE_ITEM,
-  UPDATE_ITEM,
-  DELETE_ITEM,
-  GET_ONE_ITEM,
-  GET_CATEGORY,
-  INVENTORY_ERROR,
-  GOT_CATEGORIES,
-  GOT_ITEMS,
-  GOT_ITEM,
-} from './types';
+import { CREATE_ITEM, INVENTORY_ERROR, GOT_CATEGORIES, GOT_ITEMS, GOT_ITEM } from './types';
 
 import axios from 'axios';
 
@@ -61,56 +51,37 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const getItem = (name) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  const body = JSON.stringify(name);
-
   try {
-    const res = await axios.get('api/inventory/name', body, config);
+    const res = await axios.get(`/api/inventory/name/${name}`);
     dispatch({
       type: GOT_ITEM,
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    }
-
-    dispatch({
-      type: INVENTORY_ERROR,
-    });
+    console.log(err);
   }
 };
 
 export const getItems = (item) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  const body = JSON.stringify(item);
-
   try {
-    const res = await axios.get('api/inventory/category', body, config);
-    console.log(res);
+    const res = await axios.get(`/api/inventory/category/${item}`);
     dispatch({
       type: GOT_ITEMS,
       payload: res.data,
     });
   } catch (err) {
-    const errors = err.response.data.errors;
+    console.log(err);
+  }
+};
 
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    }
-
+export const getItemById = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/inventory/${id}`);
     dispatch({
-      type: INVENTORY_ERROR,
+      type: GOT_ITEM,
+      payload: res.data,
     });
+  } catch (err) {
+    console.log(err);
   }
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getCategories, getItem, getItems } from '../../actions/inventory';
+import { getCategories, getItem, getItems, getItemById } from '../../actions/inventory';
 
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
@@ -14,6 +14,7 @@ const Inventory = ({
   items,
   getItem,
   getItems,
+  getItemById,
 }) => {
   useEffect(() => {
     getCategories();
@@ -23,17 +24,22 @@ const Inventory = ({
 
   const submit = async (e) => {
     e.preventDefault();
+    let isName = true;
     categories.map((category) => {
       if (category === searchItem) {
+        isName = false;
         setToggle(1);
-        getItem(searchItem);
-        console.log(item);
+        getItems(searchItem);
       }
     });
-    if (toggle != 1) {
+    if (searchItem.length === 24 && !/\s/.test(searchItem)) {
+      isName = false;
       setToggle(2);
-      getItems(searchItem);
-      console.log(items);
+      getItemById(searchItem);
+    }
+    if (isName) {
+      setToggle(2);
+      getItem(searchItem);
     }
   };
 
@@ -65,6 +71,7 @@ Inventory.propTypes = {
   getCategories: PropTypes.func.isRequired,
   getItem: PropTypes.func.isRequired,
   getItems: PropTypes.func.isRequired,
+  getItemById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -74,4 +81,6 @@ const mapStateToProps = (state) => ({
   items: state.inventory.items,
 });
 
-export default connect(mapStateToProps, { getCategories, getItem, getItems })(Inventory);
+export default connect(mapStateToProps, { getCategories, getItem, getItems, getItemById })(
+  Inventory
+);

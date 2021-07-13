@@ -79,9 +79,9 @@ router.delete('/:_id', auth, async (req, res) => {
 // @route   GET api/inventory/category
 // @desc    Get all by category
 // @access  Public
-router.get('/category', async (req, res) => {
+router.get('/category/:category', async (req, res) => {
   try {
-    const items = await Inventory.find({ category: req.body.category });
+    const items = await Inventory.find({ category: req.params.category });
     res.json(items);
   } catch (err) {
     console.error(err.message);
@@ -92,9 +92,9 @@ router.get('/category', async (req, res) => {
 // @route   GET api/inventory/name
 // @desc    Get one by Name
 // @access  Public
-router.get('/name', async (req, res) => {
+router.get('/name/:name', async (req, res) => {
   try {
-    const items = await Inventory.findOne({ name: req.body.name });
+    const items = await Inventory.findOne({ name: req.params.name });
     res.json(items);
   } catch (err) {
     console.error(err.message);
