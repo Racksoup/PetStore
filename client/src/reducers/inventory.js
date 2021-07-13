@@ -1,4 +1,10 @@
-import { CREATE_ITEM, INVENTORY_ERROR, GOT_CATEGORIES } from '../actions/types';
+import {
+  CREATE_ITEM,
+  INVENTORY_ERROR,
+  GOT_CATEGORIES,
+  GOT_ITEM,
+  GOT_ITEMS,
+} from '../actions/types';
 
 const initialState = {
   item: null,
@@ -22,6 +28,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         categories: payload,
+      };
+    case GOT_ITEMS:
+      return {
+        ...state,
+        items: payload,
+      };
+    case GOT_ITEM:
+      return {
+        ...state,
+        item: payload,
       };
     default:
       return state;

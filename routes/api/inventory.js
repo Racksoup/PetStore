@@ -113,7 +113,6 @@ router.get('/list', async (req, res) => {
       list.push(item.category);
     });
     list = [...new Set(list)];
-    console.log(list);
     res.json(list);
   } catch (err) {
     console.error(err.message);

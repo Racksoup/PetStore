@@ -7,6 +7,8 @@ import {
   GET_CATEGORY,
   INVENTORY_ERROR,
   GOT_CATEGORIES,
+  GOT_ITEMS,
+  GOT_ITEM,
 } from './types';
 
 import axios from 'axios';
@@ -43,6 +45,61 @@ export const getCategories = () => async (dispatch) => {
     const res = await axios.get('/api/inventory/list');
     dispatch({
       type: GOT_CATEGORIES,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: INVENTORY_ERROR,
+    });
+  }
+};
+
+export const getItem = (name) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const body = JSON.stringify(name);
+
+  try {
+    const res = await axios.get('api/inventory/name', body, config);
+    dispatch({
+      type: GOT_ITEM,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: INVENTORY_ERROR,
+    });
+  }
+};
+
+export const getItems = (item) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const body = JSON.stringify(item);
+
+  try {
+    const res = await axios.get('api/inventory/category', body, config);
+    console.log(res);
+    dispatch({
+      type: GOT_ITEMS,
       payload: res.data,
     });
   } catch (err) {
