@@ -1,5 +1,13 @@
 import { setAlert } from './alert';
-import { CREATE_ITEM, INVENTORY_ERROR, GOT_CATEGORIES, GOT_ITEMS, GOT_ITEM } from './types';
+import {
+  CREATE_ITEM,
+  INVENTORY_ERROR,
+  GOT_CATEGORIES,
+  GOT_ITEMS,
+  GOT_ITEM,
+  UPDATE_ITEM,
+  TOGGLE,
+} from './types';
 
 import axios from 'axios';
 
@@ -12,10 +20,36 @@ export const createItem = (item) => async (dispatch) => {
   const body = JSON.stringify(item);
   try {
     const res = await axios.post('/api/inventory', body, config);
-
     dispatch({
       type: CREATE_ITEM,
-      payload: res.payload,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: INVENTORY_ERROR,
+    });
+  }
+};
+
+export const updateItem = (item, id) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const body = JSON.stringify(item);
+  try {
+    await axios.put(`/api/inventory/${id}`, body, config);
+    item._id = id;
+    dispatch({
+      type: UPDATE_ITEM,
+      payload: item,
     });
   } catch (err) {
     const errors = err.response.data.errors;
@@ -84,4 +118,11 @@ export const getItemById = (id) => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const setToggle = (val) => (dispatch) => {
+  dispatch({
+    type: TOGGLE,
+    payload: val,
+  });
 };

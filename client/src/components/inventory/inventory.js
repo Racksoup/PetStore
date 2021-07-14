@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getCategories, getItem, getItems, getItemById } from '../../actions/inventory';
+import { getCategories, getItem, getItems, getItemById, setToggle } from '../../actions/inventory';
+import Categories from './Categories';
+import UpdateItem from './UpdateItem';
 
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
@@ -10,17 +12,26 @@ const Inventory = ({
   isAuthenticated,
   categories,
   getCategories,
-  item,
-  items,
   getItem,
   getItems,
   getItemById,
+  toggle,
+  setToggle,
 }) => {
   useEffect(() => {
     getCategories();
   }, [getCategories]);
   const [searchItem, setSearchItem] = useState('');
-  const [toggle, setToggle] = useState(0);
+
+  const View = () => {
+    if (toggle === 1) {
+      return <Categories props={(toggle, setToggle)} />;
+    }
+    if (toggle === 2) {
+      return <UpdateItem />;
+    }
+    return null;
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -56,11 +67,15 @@ const Inventory = ({
       <Link to='/dashboard'>
         <Button variant='primary'>Back To Dashboard</Button>
       </Link>
+      <Link to='/create-item'>
+        <Button variant='primary'>Create New Item</Button>
+      </Link>
       <h4>Search for item</h4>
       <form onSubmit={(e) => submit(e)}>
         <input type='text' onChange={(e) => onChange(e)} />
         <input type='submit' value='Submit' />
       </form>
+      {View()}
     </div>
   );
 };
@@ -72,15 +87,20 @@ Inventory.propTypes = {
   getItem: PropTypes.func.isRequired,
   getItems: PropTypes.func.isRequired,
   getItemById: PropTypes.func.isRequired,
+  toggle: PropTypes.number,
+  setToggle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   categories: state.inventory.categories,
-  item: state.inventory.item,
-  items: state.inventory.items,
+  toggle: state.inventory.toggle,
 });
 
-export default connect(mapStateToProps, { getCategories, getItem, getItems, getItemById })(
-  Inventory
-);
+export default connect(mapStateToProps, {
+  getCategories,
+  getItem,
+  getItems,
+  getItemById,
+  setToggle,
+})(Inventory);

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { createItem } from '../../actions/inventory';
+import { updateItem } from '../../actions/inventory';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Inventory = ({ isAuthenticated, createItem }) => {
+const UpdateItem = ({ updateItem, item }) => {
   const [newItem, setNewItem] = useState({
     name: '',
     category: '',
-    price: 0,
-    stock: 0,
+    price: '',
+    stock: '',
   });
 
   const { name, category, price, stock } = newItem;
@@ -18,20 +18,31 @@ const Inventory = ({ isAuthenticated, createItem }) => {
   };
 
   const onSubmit = async (e) => {
-    console.log(newItem);
     e.preventDefault();
-    createItem(newItem);
+    if (name === '' && item.name !== null) {
+      setNewItem({ ...newItem, name: item.name });
+    }
+    if (category === '' && item.category !== null) {
+      setNewItem({ ...newItem, category: item.category });
+    }
+    if (price === '' && item.price !== null) {
+      setNewItem({ ...newItem, price: item.price });
+    }
+    if (stock === '' && item.stock !== null) {
+      setNewItem({ ...newItem, stock: item.stock });
+    }
+    updateItem(newItem, item._id);
   };
 
   return (
     <div>
       <div>
-        <h2>Insert Item</h2>
+        <h2>Update Item</h2>
         <form onSubmit={(e) => onSubmit(e)}>
           <div>
             <input
               type='text'
-              placeholder='Name'
+              placeholder={item.name}
               name='name'
               value={name}
               onChange={(e) => onChange(e)}
@@ -40,7 +51,7 @@ const Inventory = ({ isAuthenticated, createItem }) => {
           <div>
             <input
               type='text'
-              placeholder='Category'
+              placeholder={item.category}
               name='category'
               value={category}
               onChange={(e) => onChange(e)}
@@ -48,8 +59,8 @@ const Inventory = ({ isAuthenticated, createItem }) => {
           </div>
           <div>
             <input
-              type='number'
-              placeholder='Price'
+              type='text'
+              placeholder={item.price}
               name='price'
               value={price}
               onChange={(e) => onChange(e)}
@@ -57,8 +68,8 @@ const Inventory = ({ isAuthenticated, createItem }) => {
           </div>
           <div>
             <input
-              type='number'
-              placeholder='Stock'
+              type='text'
+              placeholder={item.stock}
               name='stock'
               value={stock}
               onChange={(e) => onChange(e)}
@@ -72,13 +83,13 @@ const Inventory = ({ isAuthenticated, createItem }) => {
   );
 };
 
-Inventory.propTypes = {
-  isAuthenticated: PropTypes.bool,
-  createItem: PropTypes.func.isRequired,
+UpdateItem.propTypes = {
+  updateItem: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  item: state.inventory.item,
 });
 
-export default connect(mapStateToProps, { createItem })(Inventory);
+export default connect(mapStateToProps, { updateItem })(UpdateItem);

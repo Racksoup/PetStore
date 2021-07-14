@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  background-color: rgb(24, 24, 24);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
 }
 
 .text {
@@ -13,4 +17,5 @@
   padding: 0 2rem;
   margin-top: 6rem;
   margin-bottom: 3rem;
+  background-color: rgb(94, 94, 94);
 }
