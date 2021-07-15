@@ -14,6 +14,7 @@ import CreateItem from './components/inventory/CreateItem';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/container';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -30,7 +31,7 @@ const App = () => {
         <Fragment>
           <MyNavbar />
           <section className='App'>
-            <section className='container'>
+            <Container>
               <Switch>
                 <Route exact path='/' component={Shop} />
                 <Route exact path='/login' component={Login} />
@@ -39,7 +40,7 @@ const App = () => {
                 <Route exact path='/inventory' component={Inventory} />
                 <Route exact path='/create-item' component={CreateItem} />
               </Switch>
-            </section>
+            </Container>
           </section>
         </Fragment>
       </Router>
