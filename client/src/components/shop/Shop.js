@@ -4,11 +4,12 @@ import { getCategories, getItem, getItems, getItemById } from '../../actions/sho
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Form from 'react-bootstrap/form';
+import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/col';
 import Row from 'react-bootstrap/row';
 import Container from 'react-bootstrap/container';
 import Button from 'react-bootstrap/button';
+import Dropdown from 'react-bootstrap/dropdown';
 
 const Shop = ({ item, items, categories, getCategories, getItem, getItems, getItemById }) => {
   useEffect(() => {
@@ -29,18 +30,29 @@ const Shop = ({ item, items, categories, getCategories, getItem, getItems, getIt
   };
 
   return (
-    <Container fluid>
+    <Container>
       <Form>
         <Form.Group>
           <Row>
+            <Dropdown className=''>
+              <Dropdown.Toggle variant='success'>Categories</Dropdown.Toggle>
+              <Dropdown.Menu>
+                {categories.map((category, i) => {
+                  return (
+                    <Dropdown.Item key={i} value={i}>
+                      {category}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
             <Form.Control
-              className='col-sm-11 '
+              className='col-sm-9 '
               type='text'
               placeholder='Search'
               name='search'
               onChange={(e) => onSearchChange(e)}
             />
-
             <Button
               className='col-sm-1 '
               variant='primary'
