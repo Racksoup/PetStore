@@ -4,7 +4,7 @@ import { getItemById, setToggle } from '../../actions/inventory';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Categories = ({ items, getItemById, toggle, setToggle }) => {
+const Categories = ({ items, getItemById, setToggle }) => {
   const onClick = (e) => {
     const id = e.currentTarget.id;
     getItemById(id);
@@ -32,12 +32,10 @@ Categories.propTypes = {
   items: PropTypes.array,
   getItemById: PropTypes.func.isRequired,
   setToggle: PropTypes.func.isRequired,
-  toggle: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
   items: state.inventory.items,
-  toggle: state.inventory.toggle,
 });
 
 export default connect(mapStateToProps, { getItemById, setToggle })(Categories);
