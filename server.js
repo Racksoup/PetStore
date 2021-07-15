@@ -14,6 +14,7 @@ app.use('/api/cart', require('./routes/api/cart'));
 app.use('/api/inventory', require('./routes/api/inventory'));
 app.use('/api/wishlist', require('./routes/api/wishlist'));
 app.use('/api/profile', require('./routes/api/profile'));
+app.use('/api/headerimage', require('./routes/api/headerimage'));
 
 const PORT = process.env.PORT || 5000;
 
