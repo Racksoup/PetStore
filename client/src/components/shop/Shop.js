@@ -34,7 +34,7 @@ const Shop = ({ item, items, categories, getCategories, getItem, getItems, getIt
         <Form.Group>
           <Row>
             <Form.Control
-              className='col-md-11'
+              className='col-sm-11 '
               type='text'
               placeholder='Search'
               name='search'
@@ -42,13 +42,13 @@ const Shop = ({ item, items, categories, getCategories, getItem, getItems, getIt
             />
 
             <Button
-              className='col-md-1'
+              className='col-sm-1 '
               variant='primary'
               type='submit'
+              text='search'
               onClick={() => onSearchClick()}
             >
-              {' '}
-              Search{' '}
+              <div className='searchText'>Search</div>
             </Button>
           </Row>
         </Form.Group>
