@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import backgroundImg from '../../images/GreyBackground.png';
 import { getHeaderImages } from '../../actions/shop';
 
 import { connect } from 'react-redux';
@@ -19,7 +18,7 @@ const ShopHome = ({ headerImages, getHeaderImages }) => {
             <div style={{ height: '100%', width: '100%' }}>
               {headerImages.length > 0 ? (
                 <img
-                  style={{ height: '100%', width: '100%' }}
+                  style={{ height: '100%', width: '100%', objectFit: 'cover' }}
                   src={`api/headerimage/image/${image.filename}`}
                   alt='Second slide'
                 />
