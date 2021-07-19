@@ -6,6 +6,7 @@ import {
   SHOP_GOT_ITEM,
   SHOP_GOT_ITEMS,
   SHOP_UPDATE_ITEM,
+  GOT_HEADER_IMAGES,
 } from '../actions/types';
 
 import axios from 'axios';
@@ -119,6 +120,23 @@ export const getItemById = (id) => async (dispatch) => {
     dispatch({
       type: SHOP_GOT_ITEM,
       payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: SHOP_INVENTORY_ERROR,
+    });
+  }
+};
+
+export const getHeaderImages = () => async (dispatch) => {
+  try {
+    let res = [];
+    await axios.get(`/api/headerimage`).then((x) => res.push(...x.data));
+
+    dispatch({
+      type: GOT_HEADER_IMAGES,
+      payload: res,
     });
   } catch (err) {
     console.log(err);

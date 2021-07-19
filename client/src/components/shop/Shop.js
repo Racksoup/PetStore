@@ -40,8 +40,8 @@ const Shop = ({ item, items, categories, getCategories, getItem, getItems, getIt
   return (
     <Container>
       <Form className='mx-auto'>
-        <Form.Group Form className='mx-auto'>
-          <Row Form className='mx-auto'>
+        <Form.Group className='mx-auto'>
+          <Row className='mx-auto'>
             <Dropdown className='col-sm-2 px-0'>
               <Dropdown.Toggle style={{ width: '100%' }} variant='success'>
                 Categories

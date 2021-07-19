@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { deleteAccount } from '../../actions/auth';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
+import UpdateHeaderImages from './UpdateHeaderImages';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -136,6 +137,7 @@ const Dashboard = ({
           )}
         </div>
       )}
+      <UpdateHeaderImages />
     </div>
   );
 };
