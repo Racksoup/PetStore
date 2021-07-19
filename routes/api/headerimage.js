@@ -3,12 +3,30 @@ const HeaderImage = require('../../models/HeaderImage');
 const express = require('express');
 const router = express.Router();
 const { GridFsStorage } = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 const multer = require('multer');
 const crypto = require('crypto');
 const path = require('path');
+const mongoose = require('mongoose');
+
+// ========================
+// DATABASE STORAGE METHOD
+// ========================
 
 const config = require('config');
 const db = config.get('mongoURI');
+
+// Create mongo connection
+const conn = mongoose.createConnection(db);
+
+// Init gfs
+let gfs;
+
+conn.once('open', () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads');
+});
 
 // Create storage engine
 const storage = new GridFsStorage({
@@ -24,7 +42,6 @@ const storage = new GridFsStorage({
           filename: filename,
           bucketName: 'uploads',
           metadata: req.body,
-          category: req.body.category,
         };
         resolve(fileInfo);
       });
@@ -40,10 +57,29 @@ router.post('/upload', upload.single('file'), (req, res) => {
   //res.redirect('/');
 });
 
+// @route GET /
+// @desc  Get all HeaderImages
+router.get('/', (req, res) => {
+  gfs.files.find({ metadata: { category: 'headerImage' } }).toArray((err, files) => {
+    // Check if files
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist',
+      });
+    }
+
+    // Files exist
+    return res.json(files);
+  });
+});
+
 module.exports = router;
 
-// const multer = require('multer');
+// ========================
+// ON DISK STORAGE METHOD
+// ========================
 
+// const multer = require('multer');
 // const storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
 //     cb(null, './uploads');
