@@ -38,41 +38,37 @@ const Shop = ({ item, items, categories, getCategories, getItem, getItems, getIt
   return (
     <Fragment>
       <InputGroup className='mx-auto mb-1 mt-1'>
-        <Dropdown className='col-sm-2 px-0 mr-1'>
-          <Dropdown.Toggle style={{ width: '100%' }} variant='dark'>
-            Categories
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {categories.map((category, i) => {
-              return (
-                <Dropdown.Item
-                  key={i}
-                  value={category}
-                  name='search'
-                  onClick={(e) => onDropdownClick(e)}
-                >
-                  {category}
-                </Dropdown.Item>
-              );
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
-        <Form.Control
-          className='col-sm-9 '
+        <select className='SearchDropdown'>
+          <option className='SearchOption'>Categories</option>
+          {categories.map((category, i) => {
+            return (
+              <option
+                className='SearchOption'
+                key={i}
+                value={category}
+                name='search'
+                onClick={(e) => onDropdownClick(e)}
+              >
+                {category}
+              </option>
+            );
+          })}
+        </select>
+        <input
+          className='SearchInput'
           style={{ background: 'rgb(40,40,40)', border: 'none' }}
           type='text'
           name='search'
           onChange={(e) => onSearchChange(e)}
         />
-        <Button
-          className='col-sm-1 ml-1'
-          style={{ background: 'none', borderColor: '#2cc61b', color: '#2cc61b' }}
+        <button
+          className='SearchButton'
           type='submit'
           text='search'
           onClick={(e) => onSearchClick(e)}
         >
           <div className='searchText'>Search</div>
-        </Button>
+        </button>
       </InputGroup>
       <ShopHome />
     </Fragment>
