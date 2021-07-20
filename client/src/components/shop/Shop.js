@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { getCategories, getItem, getItems, getItemById } from '../../actions/shop';
 import ShopHome from './ShopHome';
 
@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/col';
-import Row from 'react-bootstrap/row';
-import Container from 'react-bootstrap/container';
+import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/button';
 import Dropdown from 'react-bootstrap/dropdown';
 
@@ -38,50 +36,46 @@ const Shop = ({ item, items, categories, getCategories, getItem, getItems, getIt
   };
 
   return (
-    <Container>
-      <Form className='mx-auto'>
-        <Form.Group className='mx-auto'>
-          <Row className='mx-auto'>
-            <Dropdown className='col-sm-2 px-0'>
-              <Dropdown.Toggle style={{ width: '100%' }} variant='success'>
-                Categories
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {categories.map((category, i) => {
-                  return (
-                    <Dropdown.Item
-                      key={i}
-                      value={category}
-                      name='search'
-                      onClick={(e) => onDropdownClick(e)}
-                    >
-                      {category}
-                    </Dropdown.Item>
-                  );
-                })}
-              </Dropdown.Menu>
-            </Dropdown>
-            <Form.Control
-              className='col-sm-9'
-              type='text'
-              placeholder='Search'
-              name='search'
-              onChange={(e) => onSearchChange(e)}
-            />
-            <Button
-              className='col-sm-1'
-              variant='primary'
-              type='submit'
-              text='search'
-              onClick={(e) => onSearchClick(e)}
-            >
-              <div className='searchText'>Search</div>
-            </Button>
-          </Row>
-        </Form.Group>
-      </Form>
+    <Fragment>
+      <InputGroup className='mx-auto mb-1 mt-1'>
+        <Dropdown className='col-sm-2 px-0 mr-1'>
+          <Dropdown.Toggle style={{ width: '100%' }} variant='dark'>
+            Categories
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {categories.map((category, i) => {
+              return (
+                <Dropdown.Item
+                  key={i}
+                  value={category}
+                  name='search'
+                  onClick={(e) => onDropdownClick(e)}
+                >
+                  {category}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </Dropdown>
+        <Form.Control
+          className='col-sm-9 '
+          style={{ background: 'rgb(40,40,40)', border: 'none' }}
+          type='text'
+          name='search'
+          onChange={(e) => onSearchChange(e)}
+        />
+        <Button
+          className='col-sm-1 ml-1'
+          style={{ background: 'none', borderColor: '#2cc61b', color: '#2cc61b' }}
+          type='submit'
+          text='search'
+          onClick={(e) => onSearchClick(e)}
+        >
+          <div className='searchText'>Search</div>
+        </Button>
+      </InputGroup>
       <ShopHome />
-    </Container>
+    </Fragment>
   );
 };
 

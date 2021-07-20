@@ -12,18 +12,18 @@ import Button from 'react-bootstrap/Button';
 const MyNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <Fragment>
-      <Navbar bg='dark'>
-        <Navbar.Text className='mr-auto'>
+      <Navbar className='d-flex justify-content-center' style={{ background: '#38281c' }}>
+        <Navbar.Text className='mr-auto pl-3'>
           <Link to='/' style={{ color: 'white', fontSize: '20px' }}>
-            Home
+            {'Pets&Paws'}
           </Link>
         </Navbar.Text>
-        <Navbar.Text className='mr-auto'>
+        <Navbar.Text className='ml-5 pl-5'>
           <Link to='/dashboard' style={{ color: 'white', fontSize: '20px' }}>
-            Dashboard
+            Profile
           </Link>
         </Navbar.Text>
-        <Nav className='mr-sm-2'>
+        <Nav className='ml-auto align-items-center'>
           <Navbar.Text>
             <Link to='/register' style={{ color: 'white', margin: '5px' }}>
               Register
@@ -35,7 +35,11 @@ const MyNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             </Link>
           </Navbar.Text>
           <Navbar.Text>
-            <Button onClick={logout} href='#!'>
+            <Button
+              onClick={logout}
+              href='#!'
+              style={{ color: 'white', margin: '5px', background: '#155e0d', border: 'none' }}
+            >
               Logout
             </Button>
           </Navbar.Text>

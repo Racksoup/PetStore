@@ -11,10 +11,10 @@ const ShopHome = ({ headerImages, getHeaderImages }) => {
   }, [getHeaderImages]);
 
   return (
-    <Carousel className='mx-auto' style={{ height: '400px', width: '1000px' }}>
+    <Carousel className='mx-auto' style={{ height: '420px' }}>
       {headerImages.map((image) => {
         return (
-          <Carousel.Item style={{ height: '400px', width: '1000px' }}>
+          <Carousel.Item style={{ height: '420px' }}>
             <div style={{ height: '100%', width: '100%' }}>
               {headerImages.length > 0 ? (
                 <img
