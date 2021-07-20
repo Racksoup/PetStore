@@ -18,6 +18,8 @@ const UpdateHeaderImages = ({ submitFile }) => {
 
   return (
     <div>
+      <br />
+      <h3>Update Header Images:</h3>
       <form onSubmit={(e) => onSubmit(e)}>
         <input id='file' type='file' onChange={(e) => onChange(e)} />
 
