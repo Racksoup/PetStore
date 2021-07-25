@@ -35,39 +35,42 @@ const Register = ({ register, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1 className='text'>Register</h1>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <input
-            type='text'
-            placeholder='Username'
-            name='username'
-            value={username}
-            onChange={(e) => onChange(e)}
-            require='true'
-          />
-        </div>
-        <div>
-          <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            value={password}
-            onChange={(e) => onChange(e)}
-            require='true'
-          />
-        </div>
-        <div>
-          <input type='checkbox' name='master' value={master} onChange={(e) => onCheck(e)} />
-        </div>
-        <input type='submit' value='Register' />
-      </form>
-      <h4>Already have an account? Click here to login</h4>
-      <Button>
-        <Link to='login' style={{ color: 'white' }}>
-          Login
-        </Link>
-      </Button>
+      <section className='LoginForm'>
+        <h1 className='text'>Register</h1>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <div>
+            <input
+              type='text'
+              placeholder='Username'
+              name='username'
+              value={username}
+              onChange={(e) => onChange(e)}
+              require='true'
+            />
+          </div>
+          <div>
+            <input
+              type='password'
+              placeholder='Password'
+              name='password'
+              value={password}
+              onChange={(e) => onChange(e)}
+              require='true'
+            />
+          </div>
+          <div>
+            <div style={{ display: 'inline-block' }}>Master</div>
+            <input type='checkbox' name='master' value={master} onChange={(e) => onCheck(e)} />
+          </div>
+          <button type='submit'>Register</button>
+        </form>
+        <h4>Already have an account? Click here to login</h4>
+        <Button>
+          <Link to='login' style={{ color: 'white' }}>
+            Login
+          </Link>
+        </Button>
+      </section>
     </Fragment>
   );
 };

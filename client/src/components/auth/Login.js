@@ -28,36 +28,38 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1 className='text'>Login</h1>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <input
-            type='text'
-            placeholder='Username'
-            name='username'
-            value={username}
-            onChange={(e) => onChange(e)}
-            require='true'
-          />
-        </div>
-        <div>
-          <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            value={password}
-            onChange={(e) => onChange(e)}
-            require='true'
-          />
-        </div>
-        <input type='submit' value='Login' />
-      </form>
-      <h4>Dont have an account? Click here to register an account</h4>
-      <Button>
-        <Link to='register' style={{ color: 'white' }}>
-          Register
-        </Link>
-      </Button>
+      <section className='LoginForm'>
+        <h1 className='text'>Login</h1>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <div>
+            <input
+              type='text'
+              placeholder='Username'
+              name='username'
+              value={username}
+              onChange={(e) => onChange(e)}
+              require='true'
+            />
+          </div>
+          <div>
+            <input
+              type='password'
+              placeholder='Password'
+              name='password'
+              value={password}
+              onChange={(e) => onChange(e)}
+              require='true'
+            />
+          </div>
+          <input type='submit' value='Login' />
+        </form>
+        <h4>Dont have an account? Click here to register an account</h4>
+        <Button>
+          <Link to='register' style={{ color: 'white' }}>
+            Register
+          </Link>
+        </Button>
+      </section>
     </Fragment>
   );
 };

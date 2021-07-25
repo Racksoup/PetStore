@@ -47,3 +47,11 @@
 .SearchOption {
   background-color: rgb(24, 24, 24);
 }
+
+.LoginForm {
+  width: 20%;
+  margin: auto;
+  border: solid;
+  border-radius: 6px;
+  border-color: #29b919;
+}
