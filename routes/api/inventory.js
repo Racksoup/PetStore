@@ -224,4 +224,14 @@ router.get('/image/:filename', async (req, res) => {
   });
 });
 
+// @route DELETE /files/:id
+// @desc  Delete file
+router.delete('/delete-image/:filename', async (req, res) => {
+  await gfs.remove({ filename: req.params.filename, root: 'merchandise' }, (err, gridStore) => {
+    if (err) {
+      return res.status(404).json({ err: err });
+    }
+  });
+});
+
 module.exports = router;
