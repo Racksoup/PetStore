@@ -224,14 +224,20 @@ router.get('/image/:filename', async (req, res) => {
   });
 });
 
-// @route DELETE /files/:id
-// @desc  Delete file
+// @route DELETE /delete-image/:id
+// @desc  Delete image
 router.delete('/delete-image/:filename', async (req, res) => {
   await gfs.remove({ filename: req.params.filename, root: 'merchandise' }, (err, gridStore) => {
     if (err) {
       return res.status(404).json({ err: err });
     }
   });
+});
+
+// @route POST /upload-image
+// @desc  Uploads file to DB
+app.post('/upload-image', upload.single('file'), (req, res) => {
+  res.json({ file: req.file });
 });
 
 module.exports = router;
