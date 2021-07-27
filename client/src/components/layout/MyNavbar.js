@@ -38,7 +38,6 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
   };
 
   const onHamburgerClick = () => {
-    getCategories();
     setHamburgerClick(!hamburgerClick);
   };
 
@@ -50,26 +49,18 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
             {'Pets&Paws'}
           </Link>
         </Navbar.Text>
-        <InputGroup className='mx-auto mb-1 mt-1'>
-          <div>
-            <button onClick={() => onHamburgerClick()}>
+
+        <div className='InputBar'>
+          <div className='Hamburger'>
+            <button onClick={() => onHamburgerClick()} style={{ borderRadius: '5px' }}>
               <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
             </button>
-            <div
-              style={{
-                display: 'flex',
-                width: '100px',
-                flexDirection: 'column',
-                position: 'absolute',
-                zIndex: '1',
-              }}
-            >
+            <div className='HamburgerItems'>
               {hamburgerClick &&
                 categories.map((category, i) => {
                   return (
                     <button
-                      style={{ height: '30px', background: 'orange' }}
-                      className='SearchOption'
+                      className='HamburgerItem'
                       key={i}
                       value={category}
                       name='search'
@@ -84,15 +75,17 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
 
           <input
             className='SearchInput'
-            style={{ background: 'rgb(40,40,40)', border: 'none' }}
+            style={{ color: 'white', background: 'rgb(40,40,40)', border: 'none' }}
             type='text'
             name='search'
+            autoComplete='off'
             onChange={(e) => onSearchChange(e)}
           />
           <button className='SearchButton' type='submit' onClick={() => onSearchClick()}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
-        </InputGroup>
+        </div>
+
         <Nav className='ml-auto align-items-center'>
           <Navbar.Text className=''>
             <Link to='/dashboard' style={{ color: 'white', fontSize: '20px' }}>

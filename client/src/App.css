@@ -28,24 +28,12 @@
 }
 
 .SearchButton {
-  width: 100px;
-  margin-left: 1%;
+  width: 50px;
+  margin-left: 5px;
   background: none;
   border-color: #29b919;
   color: #29b919;
   border-radius: 4px;
-}
-
-.SearchDropdown {
-  width: 100px;
-  margin-right: 1%;
-  background: none;
-  color: white;
-  border-radius: 4px;
-}
-
-.SearchOption {
-  background-color: rgb(24, 24, 24);
 }
 
 .LoginForm {
@@ -59,4 +47,26 @@
 .LoginContainer {
   width: 70%;
   margin: auto;
+}
+
+.InputBar {
+  display: flex;
+}
+
+.HamburgerItems {
+  display: flex;
+  width: 100px;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+}
+
+.Hamburger {
+  margin-right: 5px;
+}
+
+.HamburgerItem {
+  background-color: rgb(24, 24, 24);
+  height: 30px;
+  color: white;
 }
