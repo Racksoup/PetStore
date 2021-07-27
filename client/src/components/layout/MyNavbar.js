@@ -21,12 +21,10 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
   const [hamburgerClick, setHamburgerClick] = useState(false);
 
   const onSearchChange = (e) => {
-    console.log(e.target.value);
     setSearch(e.target.value);
   };
 
-  const onSearchClick = (e) => {
-    e.preventDefault();
+  const onSearchClick = () => {
     categories.map((category) => {
       if (category === search) {
         getItems(search);
@@ -53,9 +51,36 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
           </Link>
         </Navbar.Text>
         <InputGroup className='mx-auto mb-1 mt-1'>
-          <button onClick={() => onHamburgerClick()}>
-            <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-          </button>
+          <div>
+            <button onClick={() => onHamburgerClick()}>
+              <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+            </button>
+            <div
+              style={{
+                display: 'flex',
+                width: '100px',
+                flexDirection: 'column',
+                position: 'absolute',
+                zIndex: '1',
+              }}
+            >
+              {hamburgerClick &&
+                categories.map((category, i) => {
+                  return (
+                    <button
+                      style={{ height: '30px', background: 'orange' }}
+                      className='SearchOption'
+                      key={i}
+                      value={category}
+                      name='search'
+                      onClick={(e) => onDropdownClick(e)}
+                    >
+                      {category}
+                    </button>
+                  );
+                })}
+            </div>
+          </div>
 
           <input
             className='SearchInput'
@@ -64,7 +89,7 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
             name='search'
             onChange={(e) => onSearchChange(e)}
           />
-          <button className='SearchButton' type='submit' onClick={(e) => onSearchClick(e)}>
+          <button className='SearchButton' type='submit' onClick={() => onSearchClick()}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </InputGroup>
@@ -95,23 +120,6 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
           </Navbar.Text>
         </Nav>
       </Navbar>
-      <div style={{ display: 'flex', width: '100px', flexDirection: 'column' }}>
-        {hamburgerClick &&
-          categories.map((category, i) => {
-            return (
-              <option
-                style={{ height: '30px' }}
-                className='SearchOption'
-                key={i}
-                value={category}
-                name='search'
-                onClick={(e) => onDropdownClick(e)}
-              >
-                {category}
-              </option>
-            );
-          })}
-      </div>
     </Fragment>
   );
 };
