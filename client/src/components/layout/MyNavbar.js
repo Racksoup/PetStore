@@ -52,7 +52,11 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
 
         <div className='InputBar'>
           <div className='Hamburger'>
-            <button onClick={() => onHamburgerClick()} style={{ borderRadius: '5px' }}>
+            <button
+              className='SearchButton'
+              onClick={() => onHamburgerClick()}
+              style={{ width: '35px' }}
+            >
               <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
             </button>
             <div className='HamburgerItems'>
@@ -75,7 +79,6 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
 
           <input
             className='SearchInput'
-            style={{ color: 'white', background: 'rgb(40,40,40)', border: 'none' }}
             type='text'
             name='search'
             autoComplete='off'
