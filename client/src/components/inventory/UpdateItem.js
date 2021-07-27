@@ -36,9 +36,6 @@ const UpdateItem = ({ updateItem, item }) => {
     if (stock === '' && item.stock !== null) {
       setNewItem({ ...newItem, stock: item.stock });
     }
-    if (newFile === '' && item.image_filename !== null) {
-      setNewFile(item.image_filename);
-    }
     updateItem(newItem, newFile, item._id);
   };
 

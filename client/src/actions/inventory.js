@@ -52,26 +52,25 @@ export const updateItem = (item, file, id) => async (dispatch) => {
     },
   };
 
-  let data = new FormData();
-  data.append('file', file);
-  const fileConfig = {
-    headers: {
-      accept: 'application/json',
-      'Accept-Language': 'en-US,en;q=0.8',
-      'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-    },
-  };
   try {
     const oldItem = await axios.get(`/api/inventory/${id}`);
-    if (file !== '') {
+    if (file !== '' && file !== null && file !== undefined) {
+      console.log('bad');
+      let data = new FormData();
+      data.append('file', file);
+      const fileConfig = {
+        headers: {
+          accept: 'application/json',
+          'Accept-Language': 'en-US,en;q=0.8',
+          'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+        },
+      };
       await axios.delete(`/api/inventory/deleteimage/${oldItem.data.image_filename}`);
       const newImage = await axios.post('/api/inventory/uploadimage', data, fileConfig);
       item.image_filename = newImage.data.file.filename;
     }
     if (item) {
-      console.log(item.image_filename);
       const body = JSON.stringify(item);
-      console.log(body);
       await axios.put(`/api/inventory/${id}`, body, config);
       item._id = id;
       dispatch({

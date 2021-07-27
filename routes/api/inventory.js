@@ -241,7 +241,6 @@ router.delete('/deleteimage/:filename', async (req, res) => {
 // @route POST /upload-image
 // @desc  Uploads file to DB
 router.post('/uploadimage', upload.single('file'), (req, res) => {
-  console.log(req.file);
   res.json({ file: req.file });
 });
 
