@@ -55,7 +55,6 @@ export const updateItem = (item, file, id) => async (dispatch) => {
   try {
     const oldItem = await axios.get(`/api/inventory/${id}`);
     if (file !== '' && file !== null && file !== undefined) {
-      console.log('bad');
       let data = new FormData();
       data.append('file', file);
       const fileConfig = {
@@ -71,11 +70,10 @@ export const updateItem = (item, file, id) => async (dispatch) => {
     }
     if (item) {
       const body = JSON.stringify(item);
-      await axios.put(`/api/inventory/${id}`, body, config);
-      item._id = id;
+      const res = await axios.put(`/api/inventory/${id}`, body, config);
       dispatch({
         type: UPDATE_ITEM,
-        payload: item,
+        payload: res.data,
       });
     }
   } catch (err) {
