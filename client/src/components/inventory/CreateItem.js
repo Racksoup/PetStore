@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/button';
+import Alert from 'react-bootstrap/alert';
 
 const CreateItem = ({ createItem }) => {
   const [newItem, setNewItem] = useState({
@@ -14,9 +15,10 @@ const CreateItem = ({ createItem }) => {
     stock: '',
   });
   const [newFile, setNewFile] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
   const { name, category, price, stock } = newItem;
-  const { file } = newFile;
+
   const onChange = (e) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
   };
@@ -27,11 +29,28 @@ const CreateItem = ({ createItem }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    createItem(newItem, newFile);
+
+    if (
+      newItem.name !== '' &&
+      newItem.category !== '' &&
+      newItem.price !== '' &&
+      newItem.stock !== '' &&
+      newFile !== ''
+    ) {
+      console.log('sending data');
+      createItem(newItem, newFile);
+    } else {
+      setShowAlert(true);
+    }
   };
 
   return (
     <div>
+      {showAlert && (
+        <Alert variant='secondary' onClose={() => setShowAlert(false)} dismissible>
+          Please fill out all fields
+        </Alert>
+      )}
       <div>
         <h2>Create Item</h2>
         <form onSubmit={(e) => onSubmit(e)}>
@@ -72,7 +91,7 @@ const CreateItem = ({ createItem }) => {
             />
           </div>
           <div>
-            <input type='file' name='file' value={file} onChange={(e) => onFileChange(e)} />
+            <input type='file' name='file' onChange={(e) => onFileChange(e)} />
           </div>
 
           <input type='submit' value='Submit' />
