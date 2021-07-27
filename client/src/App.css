@@ -18,7 +18,7 @@
 }
 
 .SearchInput {
-  width: 80%;
+  width: 600px;
 }
 
 .SearchInput:focus {
@@ -28,7 +28,7 @@
 }
 
 .SearchButton {
-  width: 9%;
+  width: 100px;
   margin-left: 1%;
   background: none;
   border-color: #29b919;
@@ -37,7 +37,7 @@
 }
 
 .SearchDropdown {
-  width: 9%;
+  width: 100px;
   margin-right: 1%;
   background: none;
   color: white;

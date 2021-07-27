@@ -154,6 +154,24 @@ router.get('/name/:name', async (req, res) => {
   }
 });
 
+// @route   GET api/inventory/list
+// @desc    Get list of categories
+// @access  Public
+router.get('/list', async (req, res) => {
+  try {
+    const items = await Inventory.find();
+    let list = [];
+    items.map((item) => {
+      list.push(item.category);
+    });
+    list = [...new Set(list)];
+    res.json(list);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   GET api/inventory/:_id
 // @desc    Get one by id
 // @access  Public
@@ -174,24 +192,6 @@ router.get('/category/:category', async (req, res) => {
   try {
     const items = await Inventory.find({ category: req.params.category });
     res.json(items);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
-
-// @route   GET api/inventory/list
-// @desc    Get list of categories
-// @access  Public
-router.get('/list', async (req, res) => {
-  try {
-    const items = await Inventory.find();
-    let list = [];
-    items.map((item) => {
-      list.push(item.category);
-    });
-    list = [...new Set(list)];
-    res.json(list);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
