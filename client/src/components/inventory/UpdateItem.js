@@ -11,10 +11,15 @@ const UpdateItem = ({ updateItem, item }) => {
     price: '',
     stock: '',
   });
+  const [newFile, setNewFile] = useState('');
 
   const { name, category, price, stock } = newItem;
   const onChange = (e) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
+  };
+
+  const onFileChange = (e) => {
+    setNewFile(e.target.files[0]);
   };
 
   const onSubmit = async (e) => {
@@ -31,7 +36,10 @@ const UpdateItem = ({ updateItem, item }) => {
     if (stock === '' && item.stock !== null) {
       setNewItem({ ...newItem, stock: item.stock });
     }
-    updateItem(newItem, item._id);
+    if (newFile === '' && item.image_filename !== null) {
+      setNewFile(item.image_filename);
+    }
+    updateItem(newItem, newFile, item._id);
   };
 
   return (
@@ -76,8 +84,19 @@ const UpdateItem = ({ updateItem, item }) => {
             />
           </div>
 
+          <div>
+            <input type='file' name='file' onChange={(e) => onFileChange(e)} />
+          </div>
+
           <input type='submit' value='Submit' />
         </form>
+        <div style={{ height: '200px', width: '200px' }}>
+          <img
+            style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+            src={`api/inventory/image/${item.image_filename}`}
+            alt='Second slide'
+          />
+        </div>
       </div>
     </div>
   );

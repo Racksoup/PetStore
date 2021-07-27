@@ -13,15 +13,21 @@ const CreateItem = ({ createItem }) => {
     price: '',
     stock: '',
   });
+  const [newFile, setNewFile] = useState('');
 
   const { name, category, price, stock } = newItem;
+  const { file } = newFile;
   const onChange = (e) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
   };
 
+  const onFileChange = (e) => {
+    setNewFile(e.target.files[0]);
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    createItem(newItem);
+    createItem(newItem, newFile);
   };
 
   return (
@@ -64,6 +70,9 @@ const CreateItem = ({ createItem }) => {
               value={stock}
               onChange={(e) => onChange(e)}
             />
+          </div>
+          <div>
+            <input type='file' name='file' value={file} onChange={(e) => onFileChange(e)} />
           </div>
 
           <input type='submit' value='Submit' />

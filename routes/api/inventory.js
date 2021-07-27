@@ -69,7 +69,6 @@ router.post('/', [auth, upload.single('file')], async (req, res) => {
     const item = new Inventory(postItem);
     await item.save();
     res.json({
-      file: req.file,
       item: item,
     });
   } catch (err) {
@@ -82,12 +81,13 @@ router.post('/', [auth, upload.single('file')], async (req, res) => {
 // @desc    Update Inventory Item by Name
 // @access  Private
 router.put('/item', auth, async (req, res) => {
-  const { category, price, name, stock } = req.body;
+  const { category, price, name, stock, image_filename } = req.body;
   const postItem = {};
   if (category) postItem.category = category;
   if (price) postItem.price = price;
   if (name) postItem.name = name;
   if (stock) postItem.stock = stock;
+  if (image_filename) postItem.image_filename = image_filename;
 
   try {
     const item = await Inventory.findOneAndUpdate({ name: req.body.name }, postItem);
@@ -103,12 +103,13 @@ router.put('/item', auth, async (req, res) => {
 // @desc    Update Inventory Item by _id
 // @access  Private
 router.put('/:_id', auth, async (req, res) => {
-  const { category, price, name, stock } = req.body;
+  const { category, price, name, stock, image_filename } = req.body;
   const postItem = {};
   if (category) postItem.category = category;
   if (price) postItem.price = price;
   if (name) postItem.name = name;
   if (stock) postItem.stock = stock;
+  if (image_filename) postItem.image_filename = image_filename;
 
   try {
     const item = await Inventory.findOneAndUpdate({ _id: req.params._id }, postItem);
@@ -126,7 +127,7 @@ router.put('/:_id', auth, async (req, res) => {
 router.delete('/:_id', auth, async (req, res) => {
   try {
     await Inventory.findOneAndRemove({ _id: req.params._id });
-    gfs.remove({ _id: req.params._id, root: 'merchandise' }, (err, gridStore) => {
+    gfs.remove({ _id: req.params._id, root: 'merchandise' }, (err, GridFSBucket) => {
       if (err) {
         return res.status(404).json({ err: err });
       }
@@ -200,11 +201,10 @@ router.get('/list', async (req, res) => {
 // IMAGE ROUTES ===============================
 // ============================================
 
-// @route GET /image/:id
-// @desc  Get inventory image by id
+// @route GET /image/:filename
+// @desc  Get inventory image by filename
 router.get('/image/:filename', async (req, res) => {
   await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-    console.log(file);
     // Check if files
     if (!file || file.length === 0) {
       return res.status(404).json({
@@ -224,19 +224,24 @@ router.get('/image/:filename', async (req, res) => {
   });
 });
 
-// @route DELETE /delete-image/:id
+// @route DELETE /delete-image/:filename
 // @desc  Delete image
-router.delete('/delete-image/:filename', async (req, res) => {
-  await gfs.remove({ filename: req.params.filename, root: 'merchandise' }, (err, gridStore) => {
-    if (err) {
-      return res.status(404).json({ err: err });
+router.delete('/deleteimage/:filename', async (req, res) => {
+  const x = await gfs.remove(
+    { filename: req.params.filename, root: 'merchandise' },
+    (err, GridFSBucket) => {
+      if (err) {
+        return res.status(404).json({ err: err });
+      }
     }
-  });
+  );
+  res.json(x);
 });
 
 // @route POST /upload-image
 // @desc  Uploads file to DB
-app.post('/upload-image', upload.single('file'), (req, res) => {
+router.post('/uploadimage', upload.single('file'), (req, res) => {
+  console.log(req.file);
   res.json({ file: req.file });
 });
 

@@ -1,4 +1,5 @@
 import { setAlert } from './alert';
+import FormData from 'form-data';
 import {
   CREATE_ITEM,
   INVENTORY_ERROR,
@@ -11,15 +12,22 @@ import {
 
 import axios from 'axios';
 
-export const createItem = (item) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  const body = JSON.stringify(item);
+export const createItem = (item, file) => async (dispatch) => {
+  let data = new FormData();
+  data.append('file', file);
+  data.append('name', item.name);
+  data.append('stock', item.stock);
+  data.append('price', item.price);
+  data.append('category', item.category);
   try {
-    const res = await axios.post('/api/inventory', body, config);
+    const config = {
+      headers: {
+        accept: 'application/json',
+        'Accept-Language': 'en-US,en;q=0.8',
+        'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+      },
+    };
+    const res = await axios.post('/api/inventory', data, config);
     dispatch({
       type: CREATE_ITEM,
       payload: res.data,
@@ -37,20 +45,40 @@ export const createItem = (item) => async (dispatch) => {
   }
 };
 
-export const updateItem = (item, id) => async (dispatch) => {
+export const updateItem = (item, file, id) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
-  const body = JSON.stringify(item);
+
+  let data = new FormData();
+  data.append('file', file);
+  const fileConfig = {
+    headers: {
+      accept: 'application/json',
+      'Accept-Language': 'en-US,en;q=0.8',
+      'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+    },
+  };
   try {
-    await axios.put(`/api/inventory/${id}`, body, config);
-    item._id = id;
-    dispatch({
-      type: UPDATE_ITEM,
-      payload: item,
-    });
+    const oldItem = await axios.get(`/api/inventory/${id}`);
+    if (file !== '') {
+      await axios.delete(`/api/inventory/deleteimage/${oldItem.data.image_filename}`);
+      const newImage = await axios.post('/api/inventory/uploadimage', data, fileConfig);
+      item.image_filename = newImage.data.file.filename;
+    }
+    if (item) {
+      console.log(item.image_filename);
+      const body = JSON.stringify(item);
+      console.log(body);
+      await axios.put(`/api/inventory/${id}`, body, config);
+      item._id = id;
+      dispatch({
+        type: UPDATE_ITEM,
+        payload: item,
+      });
+    }
   } catch (err) {
     const errors = err.response.data.errors;
 
