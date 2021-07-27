@@ -55,3 +55,8 @@
   border-radius: 6px;
   border-color: #29b919;
 }
+
+.LoginContainer {
+  width: 70%;
+  margin: auto;
+}
