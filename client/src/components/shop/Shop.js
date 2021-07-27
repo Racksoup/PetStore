@@ -5,85 +5,14 @@ import spinner from '../../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/button';
-import Dropdown from 'react-bootstrap/dropdown';
 
-const Shop = ({
-  item,
-  items,
-  categories,
-  authLoading,
-  getCategories,
-  getItem,
-  getItems,
-  getItemById,
-}) => {
-  useEffect(() => {
-    getCategories();
-  }, [getCategories]);
-  const [search, setSearch] = useState('');
-
-  const onSearchChange = (e) => {
-    console.log(e.target.value);
-    setSearch(e.target.value);
-  };
-
-  const onSearchClick = (e) => {
-    e.preventDefault();
-    categories.map((category) => {
-      if (category === search) {
-        getItems(search);
-      }
-    });
-  };
-
-  const onDropdownClick = (e) => {
-    onSearchChange(e);
-    onSearchClick();
-  };
-
+const Shop = ({ authLoading }) => {
   return (
     <Fragment>
       {authLoading ? (
         <img src={spinner} alt='loading' />
       ) : (
         <Fragment>
-          <InputGroup className='mx-auto mb-1 mt-1'>
-            <select className='SearchDropdown'>
-              <option className='SearchOption'>Categories</option>
-              {categories.map((category, i) => {
-                return (
-                  <option
-                    className='SearchOption'
-                    key={i}
-                    value={category}
-                    name='search'
-                    onClick={(e) => onDropdownClick(e)}
-                  >
-                    {category}
-                  </option>
-                );
-              })}
-            </select>
-            <input
-              className='SearchInput'
-              style={{ background: 'rgb(40,40,40)', border: 'none' }}
-              type='text'
-              name='search'
-              onChange={(e) => onSearchChange(e)}
-            />
-            <button
-              className='SearchButton'
-              type='submit'
-              text='search'
-              onClick={(e) => onSearchClick(e)}
-            >
-              <div className='searchText'>Search</div>
-            </button>
-          </InputGroup>
           <ShopHome />
         </Fragment>
       )}
