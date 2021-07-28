@@ -1,5 +1,6 @@
 import React from 'react';
 import { getItemById, setToggle } from '../../actions/inventory';
+import './Inventory.css';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -12,15 +13,36 @@ const Categories = ({ items, getItemById, setToggle }) => {
   };
 
   return (
-    <div>
-      hello
+    <div className='CategoriesContainer'>
+      <h3 className='CategoriesTitle'>Category</h3>
       {items.map((item) => {
         return (
-          <div key={item._id} id={item._id} onClick={(e) => onClick(e)}>
-            <div style={{ display: 'inline' }}>Name: </div>
-            <p style={{ display: 'inline' }}>{item.name} </p>
-            <p style={{ display: 'inline' }}>Category: </p>
-            <p style={{ display: 'inline' }}> {item.category} </p>
+          <div className='CategoryItem'>
+            <input className='CategoryCheckbox' type='checkbox' />
+            <div className='ClickItem' key={item._id} id={item._id} onClick={(e) => onClick(e)}>
+              <div style={{ height: '90px', width: '90px' }}>
+                <img
+                  style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+                  src={`api/inventory/image/${item.image_filename}`}
+                  alt={item.image_filename}
+                />
+              </div>
+
+              <div className='CategoryInfoBox'>
+                <div>
+                  <div style={{ display: 'inline' }}>Name: </div>
+                  <p style={{ display: 'inline' }}>{item.name} </p>
+                </div>
+                <div>
+                  <p style={{ display: 'inline' }}>Price: </p>
+                  <p style={{ display: 'inline' }}> {item.price} </p>
+                </div>
+                <div>
+                  <p style={{ display: 'inline' }}>Stock: </p>
+                  <p style={{ display: 'inline' }}> {item.stock} </p>
+                </div>
+              </div>
+            </div>
           </div>
         );
       })}
@@ -29,7 +51,7 @@ const Categories = ({ items, getItemById, setToggle }) => {
 };
 
 Categories.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.array.isRequired,
   getItemById: PropTypes.func.isRequired,
   setToggle: PropTypes.func.isRequired,
 };
