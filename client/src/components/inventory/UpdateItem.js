@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { updateItem } from '../../actions/inventory';
+import './Inventory.css';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -40,54 +41,73 @@ const UpdateItem = ({ updateItem, item }) => {
   };
 
   return (
-    <div>
-      <div>
-        <h2>Update Item</h2>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div>
-            <input
-              type='text'
-              placeholder={item.name}
-              name='name'
-              value={name}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div>
-            <input
-              type='text'
-              placeholder={item.category}
-              name='category'
-              value={category}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div>
-            <input
-              type='text'
-              placeholder={item.price}
-              name='price'
-              value={price}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div>
-            <input
-              type='text'
-              placeholder={item.stock}
-              name='stock'
-              value={stock}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
+    <Fragment>
+      <div className='UpdateItemGrid'>
+        <div className='UpdateItemBox'>
+          <h4 className='UpdateItemBoxTitle'>Update Item</h4>
+          <form onSubmit={(e) => onSubmit(e)}>
+            <div className='UpdateItemInputFlexBox'>
+              <p className='UpdateItemInputTitle'>Name: </p>
+              <input
+                className='UpdateItemInput'
+                type='text'
+                placeholder={item.name}
+                name='name'
+                value={name}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <div className='UpdateItemInputFlexBox'>
+              <p className='UpdateItemInputTitle'>Category: </p>
+              <input
+                className='UpdateItemInput'
+                type='text'
+                placeholder={item.category}
+                name='category'
+                value={category}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <div className='UpdateItemInputFlexBox'>
+              <p className='UpdateItemInputTitle'>Price: </p>
+              <input
+                className='UpdateItemInput'
+                type='text'
+                placeholder={item.price}
+                name='price'
+                value={price}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <div className='UpdateItemInputFlexBox'>
+              <p className='UpdateItemInputTitle'>Stock: </p>
+              <input
+                className='UpdateItemInput'
+                type='text'
+                placeholder={item.stock}
+                name='stock'
+                value={stock}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
 
-          <div>
-            <input type='file' name='file' onChange={(e) => onFileChange(e)} />
-          </div>
+            <div className='UpdateItemInputFlexBox'>
+              <input
+                className='UpdateFileInput'
+                type='file'
+                name='file'
+                onChange={(e) => onFileChange(e)}
+              />
+            </div>
 
-          <input type='submit' value='Submit' />
-        </form>
-        <div style={{ height: '200px', width: '200px' }}>
+            <div className='UpdateItemInputFlexBox'>
+              <input className='UpdateSubmitButton' type='submit' value='Submit' />
+
+              <button className='DeleteItemButton'>Delete</button>
+            </div>
+          </form>
+        </div>
+        <div className='UpdateItemBox'>
           <img
             style={{ height: '100%', width: '100%', objectFit: 'cover' }}
             src={`api/inventory/image/${item.image_filename}`}
@@ -95,7 +115,7 @@ const UpdateItem = ({ updateItem, item }) => {
           />
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

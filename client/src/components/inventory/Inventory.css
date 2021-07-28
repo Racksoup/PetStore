@@ -1,8 +1,10 @@
-.HeaderImagesTitleBox {
+.TitleBox {
   display: flex;
   margin-bottom: 30px;
 }
 
+/* Update Headerimages */
+/* Update Headerimages */
 .BackButton {
   width: 90px;
   margin-right: -90px;
@@ -44,7 +46,7 @@
 
 .HeaderImageContainer {
   height: 100%;
-  width: 325px;
+  width: 350px;
   border: solid;
   border-color: #007c1b;
   border-radius: 20px;
@@ -63,3 +65,108 @@
   margin-left: 88px;
   margin-top: 9px;
 }
+
+/* Inventory Item */
+/* Inventory Item */
+.InventoryItemTitle {
+  margin: auto;
+}
+
+.InventoryItemForm {
+  display: flex;
+  margin-left: -250px;
+}
+
+.AddItemButton {
+  height: 32px;
+  padding: 3px;
+  padding-top: 1px;
+  border: none;
+  background: none;
+}
+
+.AddItemIcon {
+  font-size: 30px;
+  color: #007c1b;
+}
+
+/* Update Item */
+/* Update Item */
+.UpdateItemGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 450px;
+  grid-gap: 75px;
+}
+
+.UpdateItemBox {
+  border-style: solid;
+  border-color: #007c1b;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.UpdateItemInput {
+  width: 65%;
+  background-color: rgb(45, 45, 45);
+  border-style: solid;
+  border-width: 1px;
+  margin-right: 20px;
+}
+
+.UpdateFileInput {
+  width: 92%;
+  background-color: rgb(45, 45, 45);
+  border-style: solid;
+  border-width: 1px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.UpdateItemBoxTitle {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.UpdateItemInputFlexBox {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.UpdateItemInputTitle {
+  margin-right: auto;
+  margin-left: 20px;
+}
+
+.UpdateSubmitButton {
+  width: 35%;
+  margin: auto;
+}
+
+.DeleteItemButton {
+  width: 150px;
+  position: absolute;
+  margin-top: 130px;
+  margin-left: 180px;
+}
+
+/* Add Item Modal */
+/* Add Item Modal */
+.ModalBackground {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.AddItemModal {
+  margin: auto;
+  width: 600px;
+}
+
+/* Categories View */
+/* Categories View */

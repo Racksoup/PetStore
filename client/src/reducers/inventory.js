@@ -6,6 +6,7 @@ import {
   GOT_ITEMS,
   UPDATE_ITEM,
   TOGGLE,
+  TOGGLE_ITEM_MODAL,
 } from '../actions/types';
 
 const initialState = {
@@ -13,12 +14,18 @@ const initialState = {
   items: [],
   categories: [],
   toggle: 0,
+  toggleItemModal: false,
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case TOGGLE_ITEM_MODAL:
+      return {
+        ...state,
+        toggleItemModal: payload,
+      };
     case INVENTORY_ERROR:
       return {
         ...state,

@@ -4,6 +4,7 @@ import { getHeaderImages } from '../../actions/shop';
 import './Inventory.css';
 
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const UpdateHeaderImages = ({
@@ -29,8 +30,10 @@ const UpdateHeaderImages = ({
 
   return (
     <div>
-      <div className='HeaderImagesTitleBox'>
-        <button className='BackButton'>Back</button>
+      <div className='TitleBox'>
+        <Link to='dashboard'>
+          <button className='BackButton'>Back</button>
+        </Link>
         <h3 className='HeaderImagesTitle'>Update Header Images</h3>
       </div>
       <form className='UploadForm' onSubmit={(e) => onSubmit(e)}>

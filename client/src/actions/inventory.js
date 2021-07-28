@@ -11,6 +11,7 @@ import {
   HEADER_IMAGE_DELETED,
   HEADER_IMAGE_CREATED,
   IMAGE_LOADING,
+  TOGGLE_ITEM_MODAL,
 } from './types';
 
 import axios from 'axios';
@@ -201,4 +202,11 @@ export const removeHeaderImage = (filename) => async (dispatch) => {
       type: INVENTORY_ERROR,
     });
   }
+};
+
+export const setToggleItemModal = (val) => (dispatch) => {
+  dispatch({
+    type: TOGGLE_ITEM_MODAL,
+    payload: val,
+  });
 };

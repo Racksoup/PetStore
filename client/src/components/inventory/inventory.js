@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { getCategories, getItem, getItems, getItemById, setToggle } from '../../actions/inventory';
+import {
+  getCategories,
+  getItem,
+  getItems,
+  getItemById,
+  setToggle,
+  setToggleItemModal,
+} from '../../actions/inventory';
 import Categories from './Categories';
 import UpdateItem from './UpdateItem';
+import CreateItem from './CreateItem';
+import './Inventory.css';
 
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import Button from 'react-bootstrap/button';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 const Inventory = ({
   isAuthenticated,
@@ -17,6 +27,8 @@ const Inventory = ({
   getItemById,
   toggle,
   setToggle,
+  toggleItemModal,
+  setToggleItemModal,
 }) => {
   useEffect(() => {
     getCategories();
@@ -31,6 +43,24 @@ const Inventory = ({
       return <UpdateItem />;
     }
     return null;
+  };
+
+  const AddItemModal = () => {
+    if (toggleItemModal) {
+      return (
+        <div className='ModalBackground' onClick={() => setToggleItemModal(!toggleItemModal)}>
+          <div className='AddItemModal' onClick={(e) => handleChildClick(e)}>
+            <CreateItem />
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const handleChildClick = (e) => {
+    e.stopPropagation();
   };
 
   const submit = async (e) => {
@@ -63,18 +93,24 @@ const Inventory = ({
   }
   return (
     <div>
-      <h2>Update Page</h2>
-      <Link to='/dashboard'>
-        <Button variant='primary'>Back To Dashboard</Button>
-      </Link>
-      <Link to='/create-item'>
-        <Button variant='primary'>Create New Item</Button>
-      </Link>
-      <h4>Search for item</h4>
-      <form onSubmit={(e) => submit(e)}>
-        <input type='text' onChange={(e) => onChange(e)} />
-        <input type='submit' value='Submit' />
-      </form>
+      {AddItemModal()}
+      <div className='TitleBox'>
+        <Link to='dashboard'>
+          <button className='BackButton'>Back</button>
+        </Link>
+        <h2 className='InventoryItemTitle'>Update Item</h2>
+        <div className='InventoryItemForm'>
+          <button className='AddItemButton' onClick={() => setToggleItemModal(!toggleItemModal)}>
+            <div style={{ height: '100%', width: '100%' }}>
+              <FontAwesomeIcon className='AddItemIcon' icon={faPlusSquare}></FontAwesomeIcon>
+            </div>
+          </button>
+          <form onSubmit={(e) => submit(e)}>
+            <input type='text' onChange={(e) => onChange(e)} />
+            <input type='submit' value='Submit' />
+          </form>
+        </div>
+      </div>
       {View()}
     </div>
   );
@@ -89,12 +125,15 @@ Inventory.propTypes = {
   getItemById: PropTypes.func.isRequired,
   toggle: PropTypes.number,
   setToggle: PropTypes.func.isRequired,
+  toggleItemModal: PropTypes.bool,
+  setToggleItemModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   categories: state.inventory.categories,
   toggle: state.inventory.toggle,
+  toggleItemModal: state.inventory.toggleItemModal,
 });
 
 export default connect(mapStateToProps, {
@@ -103,4 +142,5 @@ export default connect(mapStateToProps, {
   getItems,
   getItemById,
   setToggle,
+  setToggleItemModal,
 })(Inventory);

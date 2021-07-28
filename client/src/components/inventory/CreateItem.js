@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { createItem } from '../../actions/inventory';
+import { createItem, setToggleItemModal } from '../../actions/inventory';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/button';
 import Alert from 'react-bootstrap/alert';
 
-const CreateItem = ({ createItem }) => {
+const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
   const [newItem, setNewItem] = useState({
     name: '',
     category: '',
@@ -30,15 +28,9 @@ const CreateItem = ({ createItem }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      newItem.name !== '' &&
-      newItem.category !== '' &&
-      newItem.price !== '' &&
-      newItem.stock !== '' &&
-      newFile !== ''
-    ) {
-      console.log('sending data');
+    if (name !== '' && category !== '' && price !== '' && stock !== '' && newFile !== '') {
       createItem(newItem, newFile);
+      setToggleItemModal(!toggleItemModal);
     } else {
       setShowAlert(true);
     }
@@ -47,58 +39,72 @@ const CreateItem = ({ createItem }) => {
   return (
     <div>
       {showAlert && (
-        <Alert variant='secondary' onClose={() => setShowAlert(false)} dismissible>
+        <Alert
+          variant='secondary'
+          style={{ position: 'fixed', width: '600px' }}
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
           Please fill out all fields
         </Alert>
       )}
-      <div>
-        <h2>Create Item</h2>
+      <div className='UpdateItemBox' style={{ backgroundColor: 'rgb(27, 27, 27)' }}>
+        <h4 className='UpdateItemBoxTitle'>Create Item</h4>
         <form onSubmit={(e) => onSubmit(e)}>
-          <div>
+          <div className='UpdateItemInputFlexBox'>
+            <p className='UpdateItemInputTitle'>Name: </p>
             <input
+              className='UpdateItemInput'
               type='text'
-              placeholder='Name'
               name='name'
               value={name}
               onChange={(e) => onChange(e)}
             />
           </div>
-          <div>
+          <div className='UpdateItemInputFlexBox'>
+            <p className='UpdateItemInputTitle'>Category: </p>
             <input
+              className='UpdateItemInput'
               type='text'
-              placeholder='Category'
               name='category'
               value={category}
               onChange={(e) => onChange(e)}
             />
           </div>
-          <div>
+          <div className='UpdateItemInputFlexBox'>
+            <p className='UpdateItemInputTitle'>Price: </p>
             <input
+              className='UpdateItemInput'
               type='text'
-              placeholder='Price'
               name='price'
               value={price}
               onChange={(e) => onChange(e)}
             />
           </div>
-          <div>
+          <div className='UpdateItemInputFlexBox'>
+            <p className='UpdateItemInputTitle'>Stock: </p>
             <input
+              className='UpdateItemInput'
               type='text'
-              placeholder='Stock'
               name='stock'
               value={stock}
               onChange={(e) => onChange(e)}
             />
           </div>
-          <div>
-            <input type='file' name='file' onChange={(e) => onFileChange(e)} />
+
+          <div className='UpdateItemInputFlexBox'>
+            <input
+              className='UpdateFileInput'
+              type='file'
+              name='file'
+              onChange={(e) => onFileChange(e)}
+            />
           </div>
 
-          <input type='submit' value='Submit' />
+          <div className='UpdateItemInputFlexBox'>
+            <input className='UpdateSubmitButton' type='submit' value='Submit' />
+          </div>
         </form>
-        <Link to='/inventory'>
-          <Button variant='primary'>Back to Inventory</Button>
-        </Link>
       </div>
     </div>
   );
@@ -106,6 +112,12 @@ const CreateItem = ({ createItem }) => {
 
 CreateItem.propTypes = {
   createItem: PropTypes.func.isRequired,
+  setToggleItemModal: PropTypes.func.isRequired,
+  toggleItemModal: PropTypes.bool,
 };
 
-export default connect(null, { createItem })(CreateItem);
+const mapStateToProps = (state) => ({
+  toggleItemModal: state.inventory.toggleItemModal,
+});
+
+export default connect(mapStateToProps, { createItem, setToggleItemModal })(CreateItem);
