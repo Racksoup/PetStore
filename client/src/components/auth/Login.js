@@ -4,7 +4,6 @@ import { login } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Button from 'react-bootstrap/button';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -29,12 +28,13 @@ const Login = ({ login, isAuthenticated }) => {
   return (
     <Fragment>
       <section className='LoginForm'>
-        <h1 className='text'>Login</h1>
+        <h1 className='LoginTitle'>Login</h1>
         <form onSubmit={(e) => onSubmit(e)}>
           <div>
+            <h6 className='LoginInputTitle'>Username</h6>
             <input
+              className='LoginInput'
               type='text'
-              placeholder='Username'
               name='username'
               value={username}
               onChange={(e) => onChange(e)}
@@ -42,23 +42,23 @@ const Login = ({ login, isAuthenticated }) => {
             />
           </div>
           <div>
+            <h6 className='LoginInputTitle'>Password</h6>
             <input
+              className='LoginInput'
               type='password'
-              placeholder='Password'
               name='password'
               value={password}
               onChange={(e) => onChange(e)}
               require='true'
             />
           </div>
-          <input type='submit' value='Login' />
+          <input className='LoginSubmit' type='submit' value='Sign In' />
         </form>
-        <h4>Dont have an account? Click here to register an account</h4>
-        <Button>
+        <p className='RegisterLink'>
           <Link to='register' style={{ color: 'white' }}>
-            Register
+            Create Account
           </Link>
-        </Button>
+        </p>
       </section>
     </Fragment>
   );

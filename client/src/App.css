@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   background-color: rgb(24, 24, 24);
   position: fixed;
   width: 100vw;
@@ -9,6 +8,48 @@
 
 .text {
   text-align: center;
+}
+
+/* Login Page */
+/* Login Page */
+/* Login Page */
+.LoginForm {
+  width: 25%;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.LoginTitle {
+  margin-top: 50px;
+  margin-bottom: -5px;
+}
+
+.LoginInputTitle {
+  margin-top: 20px;
+}
+
+.LoginInput {
+  width: 100%;
+  background-color: rgb(45, 45, 45);
+  border-style: solid;
+  border-width: 1px;
+}
+
+.LoginSubmit {
+  margin-top: 20px;
+  margin-left: 5px;
+  width: 95%;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+
+.RegisterLink {
+  text-align: center;
+  margin-top: 5px;
 }
 
 /* navbar */
@@ -38,14 +79,6 @@
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
-}
-
-.LoginForm {
-  width: 20%;
-  margin: auto;
-  border: solid;
-  border-radius: 6px;
-  border-color: #29b919;
 }
 
 .LoginContainer {
@@ -81,8 +114,4 @@
 
 .SideElementContainer {
   width: 270px;
-}
-
-.RightElementContainer {
-  width: 300px;
 }

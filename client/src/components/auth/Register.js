@@ -36,12 +36,13 @@ const Register = ({ register, isAuthenticated }) => {
   return (
     <Fragment>
       <section className='LoginForm'>
-        <h1 className='text'>Register</h1>
+        <h1 className='LoginTitle'>Register</h1>
         <form onSubmit={(e) => onSubmit(e)}>
           <div>
+            <h6 className='LoginInputTitle'>Username</h6>
             <input
+              className='LoginInput'
               type='text'
-              placeholder='Username'
               name='username'
               value={username}
               onChange={(e) => onChange(e)}
@@ -49,27 +50,23 @@ const Register = ({ register, isAuthenticated }) => {
             />
           </div>
           <div>
+            <h6 className='LoginInputTitle'>Password</h6>
             <input
+              className='LoginInput'
               type='password'
-              placeholder='Password'
               name='password'
               value={password}
               onChange={(e) => onChange(e)}
               require='true'
             />
           </div>
-          <div>
-            <div style={{ display: 'inline-block' }}>Master</div>
-            <input type='checkbox' name='master' value={master} onChange={(e) => onCheck(e)} />
-          </div>
-          <button type='submit'>Register</button>
+          <input className='LoginSubmit' type='submit' value='Create Account' />
         </form>
-        <h4>Already have an account? Click here to login</h4>
-        <Button>
-          <Link to='login' style={{ color: 'white' }}>
-            Login
+        <p className='RegisterLink'>
+          <Link to='register' style={{ color: 'white' }}>
+            Sign In
           </Link>
-        </Button>
+        </p>
       </section>
     </Fragment>
   );
