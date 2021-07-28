@@ -20,7 +20,7 @@ const ShopHome = ({ headerImages, getHeaderImages }) => {
                 <img
                   style={{ height: '100%', width: '100%', objectFit: 'cover' }}
                   src={`api/headerimage/image/${image.filename}`}
-                  alt='Second slide'
+                  alt={image.filename}
                 />
               ) : null}
             </div>

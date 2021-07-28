@@ -1,0 +1,65 @@
+.HeaderImagesTitleBox {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.BackButton {
+  width: 90px;
+  margin-right: -90px;
+}
+
+.HeaderImagesTitle {
+  margin: auto;
+}
+
+.UploadForm {
+  display: flex;
+  height: 30px;
+}
+
+.UploadText {
+  margin-left: auto;
+  margin-bottom: 0px;
+  margin-right: 10px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.UploadInput {
+}
+
+.UploadButton {
+  display: flex;
+  margin-right: auto;
+}
+
+.HeaderImagesFlexBox {
+  display: flex;
+  margin-top: 20px;
+  border-top-style: solid;
+  border-width: 1px;
+  height: 250px;
+  flex-wrap: wrap;
+}
+
+.HeaderImageContainer {
+  height: 100%;
+  width: 325px;
+  border: solid;
+  border-color: #007c1b;
+  border-radius: 20px;
+  margin: 8px;
+  overflow: hidden;
+}
+
+.HeaderImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.LoadingTag {
+  position: absolute;
+  margin-left: 88px;
+  margin-top: 9px;
+}

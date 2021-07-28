@@ -8,6 +8,9 @@ import {
   GOT_ITEM,
   UPDATE_ITEM,
   TOGGLE,
+  HEADER_IMAGE_DELETED,
+  HEADER_IMAGE_CREATED,
+  IMAGE_LOADING,
 } from './types';
 
 import axios from 'axios';
@@ -150,4 +153,52 @@ export const setToggle = (val) => (dispatch) => {
     type: TOGGLE,
     payload: val,
   });
+};
+
+export const submitFile = (file) => async (dispatch) => {
+  dispatch({
+    type: IMAGE_LOADING,
+  });
+  let data = new FormData();
+  data.append('file', file);
+  data.append('category', 'headerImage');
+  try {
+    const config = {
+      headers: {
+        accept: 'application/json',
+        'Accept-Language': 'en-US,en;q=0.8',
+        'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+      },
+    };
+
+    const res = await axios.post('/api/headerimage/upload', data, config);
+
+    dispatch({
+      type: HEADER_IMAGE_CREATED,
+      payload: res.data.file,
+    });
+  } catch (err) {
+    console.log(err.message);
+    dispatch({
+      type: INVENTORY_ERROR,
+    });
+  }
+};
+
+export const removeHeaderImage = (filename) => async (dispatch) => {
+  dispatch({
+    type: IMAGE_LOADING,
+  });
+  try {
+    const res = await axios.delete(`/api/headerimage/files/${filename}`);
+    dispatch({
+      type: HEADER_IMAGE_DELETED,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: INVENTORY_ERROR,
+    });
+  }
 };

@@ -18,7 +18,7 @@ const Dashboard = ({ profileLoading, isAuthenticated, profile, getCurrentProfile
   }
 
   if (profileLoading) {
-    return <img src={spinner} style={{ margin: 'auto' }} className='center' alt='loading' />;
+    return <img src={spinner} className='center' alt='loading' />;
   }
 
   return (
