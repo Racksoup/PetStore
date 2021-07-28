@@ -8,7 +8,6 @@ const UpdateHeaderImages = ({ submitFile }) => {
   const [File, setFile] = useState('');
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(File);
     submitFile(File);
   };
 

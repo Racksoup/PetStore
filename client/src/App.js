@@ -10,6 +10,12 @@ import Dashboard from './components/dashboard/Dashboard';
 import Inventory from './components/inventory/Inventory';
 import Shop from './components/shop/Shop';
 import CreateItem from './components/inventory/CreateItem';
+import UpdateHeaderImages from './components/inventory/UpdateHeaderImages';
+import UpdateProfile from './components/dashboard/UpdateProfile';
+import UpdateUser from './components/dashboard/UpdateUser';
+import Cart from './components/dashboard/Cart';
+import Orders from './components/dashboard/Orders';
+import Wishlist from './components/dashboard/Wishlist';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -39,6 +45,12 @@ const App = () => {
                 <Route exact path='/dashboard' component={Dashboard} />
                 <Route exact path='/inventory' component={Inventory} />
                 <Route exact path='/create-item' component={CreateItem} />
+                <Route exact path='/update-header-images' component={UpdateHeaderImages} />
+                <Route exact path='/update-profile' component={UpdateProfile} />
+                <Route exact path='/update-user' component={UpdateUser} />
+                <Route exact path='/cart' component={Cart} />
+                <Route exact path='/orders' component={Orders} />
+                <Route exact path='/wish-list' component={Wishlist} />
               </Switch>
             </Container>
           </section>

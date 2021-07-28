@@ -4,28 +4,22 @@ import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Button from 'react-bootstrap/button';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
-    master: undefined,
   });
 
-  const { username, password, master } = formData;
+  const { username, password } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onCheck = (e) => {
-    setFormData({ ...formData, [e.target.name]: !e.target.value });
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
-    register(username, password, master);
+    register(username, password);
   };
 
   // Redirect if logged in

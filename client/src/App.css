@@ -10,6 +10,11 @@
   text-align: center;
 }
 
+.center {
+  display: flex;
+  margin: auto;
+}
+
 /* Login Page */
 /* Login Page */
 /* Login Page */
