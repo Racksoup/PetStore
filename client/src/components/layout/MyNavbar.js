@@ -9,7 +9,6 @@ import { getItems, getCategories } from '../../actions/inventory';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -44,11 +43,11 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
   return (
     <Fragment>
       <Navbar className='d-flex justify-content-center' style={{ background: '#38281c' }}>
-        <Navbar.Text className='mr-auto pl-3'>
+        <div className='SideElementContainer'>
           <Link to='/' style={{ color: 'white', fontSize: '20px' }}>
             {'Pets&Paws'}
           </Link>
-        </Navbar.Text>
+        </div>
 
         <div className='InputBar'>
           <div className='Hamburger'>
@@ -89,32 +88,34 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
           </button>
         </div>
 
-        <Nav className='ml-auto align-items-center'>
-          <Navbar.Text className=''>
-            <Link to='/dashboard' style={{ color: 'white', fontSize: '20px' }}>
-              Profile
-            </Link>
-          </Navbar.Text>
-          <Navbar.Text>
-            <Link to='/register' style={{ color: 'white', margin: '5px' }}>
-              Register
-            </Link>
-          </Navbar.Text>
-          <Navbar.Text>
-            <Link to='/login' style={{ color: 'white', margin: '5px' }}>
-              Login
-            </Link>
-          </Navbar.Text>
-          <Navbar.Text>
-            <Button
-              onClick={logout}
-              href='#!'
-              style={{ color: 'white', margin: '5px', background: '#155e0d', border: 'none' }}
-            >
-              Logout
-            </Button>
-          </Navbar.Text>
-        </Nav>
+        <div className='SideElementContainer'>
+          <Nav className='align-items-center'>
+            <Navbar.Text className=''>
+              <Link to='/dashboard' style={{ color: 'white', fontSize: '20px' }}>
+                Profile
+              </Link>
+            </Navbar.Text>
+            <Navbar.Text>
+              <Link to='/register' style={{ color: 'white', margin: '5px' }}>
+                Register
+              </Link>
+            </Navbar.Text>
+            <Navbar.Text>
+              <Link to='/login' style={{ color: 'white', margin: '5px' }}>
+                Login
+              </Link>
+            </Navbar.Text>
+            <Navbar.Text>
+              <Button
+                onClick={logout}
+                href='#!'
+                style={{ color: 'white', margin: '5px', background: '#155e0d', border: 'none' }}
+              >
+                Logout
+              </Button>
+            </Navbar.Text>
+          </Nav>
+        </div>
       </Navbar>
     </Fragment>
   );
