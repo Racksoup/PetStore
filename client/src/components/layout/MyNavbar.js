@@ -12,7 +12,7 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 
-const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
+const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
   useEffect(() => {
     getCategories();
   }, [getCategories]);
@@ -90,30 +90,37 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
 
         <div className='SideElementContainer'>
           <Nav className='align-items-center'>
-            <Navbar.Text className=''>
-              <Link to='/dashboard' style={{ color: 'white', fontSize: '20px' }}>
-                Profile
-              </Link>
-            </Navbar.Text>
-            <Navbar.Text>
-              <Link to='/register' style={{ color: 'white', margin: '5px' }}>
-                Register
-              </Link>
-            </Navbar.Text>
-            <Navbar.Text>
-              <Link to='/login' style={{ color: 'white', margin: '5px' }}>
-                Login
-              </Link>
-            </Navbar.Text>
-            <Navbar.Text>
-              <Button
-                onClick={logout}
-                href='#!'
-                style={{ color: 'white', margin: '5px', background: '#155e0d', border: 'none' }}
-              >
-                Logout
-              </Button>
-            </Navbar.Text>
+            {user ? (
+              <div>
+                <Navbar.Text style={{ marginRight: '10px' }}>
+                  <Link to='/dashboard' style={{ color: 'white', fontSize: '20px' }}>
+                    Profile
+                  </Link>
+                </Navbar.Text>
+                <Navbar.Text>
+                  <a
+                    onClick={logout}
+                    href='!#'
+                    style={{ color: 'white', margin: '5px', fontSize: '20px' }}
+                  >
+                    Logout
+                  </a>
+                </Navbar.Text>
+              </div>
+            ) : (
+              <div>
+                <Navbar.Text style={{ marginRight: '10px' }}>
+                  <Link to='/register' style={{ color: 'white', margin: '5px', fontSize: '20px' }}>
+                    Register
+                  </Link>
+                </Navbar.Text>
+                <Navbar.Text>
+                  <Link to='/login' style={{ color: 'white', margin: '5px', fontSize: '20px' }}>
+                    Login
+                  </Link>
+                </Navbar.Text>
+              </div>
+            )}
           </Nav>
         </div>
       </Navbar>
@@ -123,6 +130,7 @@ const MyNavbar = ({ logout, getItems, getCategories, categories }) => {
 
 MyNavbar.propTypes = {
   categories: PropTypes.array,
+  user: PropTypes.bool,
   logout: PropTypes.func.isRequired,
   getItems: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
@@ -130,6 +138,7 @@ MyNavbar.propTypes = {
 
 const mapStateToProps = (state) => ({
   categories: state.inventory.categories,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { logout, getItems, getCategories })(MyNavbar);
