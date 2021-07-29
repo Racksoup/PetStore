@@ -33,6 +33,9 @@ const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
       setToggleItemModal(!toggleItemModal);
     } else {
       setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2000);
     }
   };
 

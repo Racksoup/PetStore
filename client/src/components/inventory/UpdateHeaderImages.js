@@ -6,6 +6,7 @@ import './Inventory.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/alert';
 
 const UpdateHeaderImages = ({
   submitFile,
@@ -18,10 +19,18 @@ const UpdateHeaderImages = ({
     getHeaderImages();
   }, [getHeaderImages]);
 
+  const [alert, setAlert] = useState(false);
   const [File, setFile] = useState('');
   const onSubmit = (e) => {
     e.preventDefault();
-    submitFile(File);
+    if (File) {
+      submitFile(File);
+    } else {
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 2000);
+    }
   };
 
   const onChange = (e) => {
@@ -34,7 +43,19 @@ const UpdateHeaderImages = ({
         <Link to='dashboard'>
           <button className='BackButton'>Back</button>
         </Link>
-        <h3 className='HeaderImagesTitle'>Update Header Images</h3>
+        <h3 className='HeaderImagesTitle'>
+          Update Header Images{' '}
+          {alert && (
+            <Alert
+              variant='secondary'
+              style={{ position: 'fixed', width: '600px', marginLeft: '-150px', marginTop: '15px' }}
+              onClose={() => setAlert(false)}
+              dismissible
+            >
+              Please select an image
+            </Alert>
+          )}
+        </h3>
       </div>
       <form className='UploadForm' onSubmit={(e) => onSubmit(e)}>
         <p className='UploadText'>Add New Header Image:</p>
