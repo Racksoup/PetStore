@@ -32,6 +32,7 @@ const Inventory = ({
 }) => {
   useEffect(() => {
     getCategories();
+    setToggle(0);
   }, [getCategories]);
   const [searchItem, setSearchItem] = useState('');
 
@@ -40,7 +41,7 @@ const Inventory = ({
       return <ShowCategories />;
     }
     if (toggle === 1) {
-      return <Categories props={(toggle, setToggle)} />;
+      return <Categories />;
     }
     if (toggle === 2) {
       return <UpdateItem />;
@@ -52,7 +53,7 @@ const Inventory = ({
     if (toggleItemModal) {
       return (
         <div className='ModalBackground' onClick={() => setToggleItemModal(!toggleItemModal)}>
-          <div className='AddItemModal' onClick={(e) => handleChildClick(e)}>
+          <div className='Modal' onClick={(e) => handleChildClick(e)}>
             <CreateItem />
           </div>
         </div>

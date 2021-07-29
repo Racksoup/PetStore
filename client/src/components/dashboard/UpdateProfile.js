@@ -1,44 +1,31 @@
-import React, { Fragment } from 'react';
-import './Dashboard.css';
-
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-const UpdateProfile = ({ profile }) => {
+const UpdateProfile = (props) => {
   return (
-    <Fragment>
-      <div className='ProfileTitleBox'>
-        <Link to='/dashboard'>
-          <button className='ProfileBackButton'>Back</button>
-        </Link>
-        <h3 className='ProfileTitle'>Profile</h3>
-        <button className='UpdateProfileButton'>Update Profile</button>
-      </div>
-      <div className='ProfileInfoBox'>
-        <div className='ProfileInfoItem'>
-          <p className='ProfileInfoTag'>Name:</p>
-          <p className='ProfileInfoValue'>{profile.name}</p>
+    <div className='UpdateProfileBox'>
+      <h3 className='UpdateProfileTitle'>Update Profile</h3>
+      <form>
+        <div className='UpdateProfileItem'>
+          <p className='UpdateProfileItemTag'>Name:</p>
+          <input className='UpdateProfileInput' />
         </div>
-        <div className='ProfileInfoItem'>
-          <p className='ProfileInfoTag'>Email:</p>
-          <p className='ProfileInfoValue'>{profile.email}</p>
+        <div className='UpdateProfileItem'>
+          <p className='UpdateProfileItemTag'>Email:</p>
+          <input className='UpdateProfileInput' />
         </div>
-        <div className='ProfileInfoItem'>
-          <p className='ProfileInfoTag'>Address:</p>
-          <p className='ProfileInfoValue'>{profile.address}</p>
+        <div className='UpdateProfileItem'>
+          <p className='UpdateProfileItemTag'>Address:</p>
+          <input className='UpdateProfileInput' />
         </div>
-      </div>
-    </Fragment>
+        <div className='UpdateProfileItem'>
+          <input type='submit' value='Submit' className='UpdateProfileSubmit' />
+        </div>
+      </form>
+    </div>
   );
 };
 
-UpdateProfile.propTypes = {
-  profile: PropTypes.object,
-};
+UpdateProfile.propTypes = {};
 
-const mapStateToProps = (state) => ({
-  profile: state.profile.profile,
-});
-
-export default connect(mapStateToProps, {})(UpdateProfile);
+export default UpdateProfile;

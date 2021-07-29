@@ -8,8 +8,8 @@ import Inventory from './inventory/Inventory';
 import Shop from './shop/Shop';
 import CreateItem from './inventory/CreateItem';
 import UpdateHeaderImages from './inventory/UpdateHeaderImages';
-import UpdateProfile from './dashboard/UpdateProfile';
-import UpdateUser from './dashboard/UpdateUser';
+import Profile from './dashboard/Profile';
+import User from './dashboard/User';
 import Cart from './dashboard/Cart';
 import Orders from './dashboard/Orders';
 import Wishlist from './dashboard/Wishlist';
@@ -39,8 +39,8 @@ const Base = ({ loading }) => {
             <Route exact path='/inventory' component={Inventory} />
             <Route exact path='/create-item' component={CreateItem} />
             <Route exact path='/update-header-images' component={UpdateHeaderImages} />
-            <Route exact path='/update-profile' component={UpdateProfile} />
-            <Route exact path='/update-user' component={UpdateUser} />
+            <Route exact path='/update-profile' component={Profile} />
+            <Route exact path='/update-user' component={User} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/orders' component={Orders} />
             <Route exact path='/wish-list' component={Wishlist} />

@@ -4,18 +4,25 @@ import {
   PROFILE_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  TOGGLE_PROFILE_MODAL,
 } from '../actions/types';
 
 const initialState = {
   profile: null,
   error: {},
   profileLoading: true,
+  toggleProfileModal: false,
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case TOGGLE_PROFILE_MODAL:
+      return {
+        ...state,
+        toggleProfileModal: payload,
+      };
     case CREATE_PROFILE:
       return {
         ...state,

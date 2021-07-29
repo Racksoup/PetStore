@@ -1,5 +1,11 @@
 import { setAlert } from './alert';
-import { CREATE_PROFILE, GET_ONE_PROFILE, PROFILE_ERROR, FILE_SUBMITED } from './types';
+import {
+  CREATE_PROFILE,
+  GET_ONE_PROFILE,
+  PROFILE_ERROR,
+  FILE_SUBMITED,
+  TOGGLE_PROFILE_MODAL,
+} from './types';
 
 import FormData from 'form-data';
 import axios from 'axios';
@@ -46,4 +52,11 @@ export const getCurrentProfile = () => async (dispatch) => {
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
+};
+
+export const setToggleProfileModal = (val) => (dispatch) => {
+  dispatch({
+    type: TOGGLE_PROFILE_MODAL,
+    payload: val,
+  });
 };
