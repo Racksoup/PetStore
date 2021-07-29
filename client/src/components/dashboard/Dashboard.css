@@ -32,3 +32,40 @@
   background-color: rgb(216, 255, 77);
   border-style: none;
 }
+
+/* Update Profile */
+/* Update Profile */
+.ProfileTitleBox {
+  display: flex;
+}
+
+.ProfileBackButton {
+  width: 90px;
+  margin-right: -90px;
+}
+
+.ProfileTitle {
+  margin: auto;
+}
+
+.UpdateProfileButton {
+  width: 130px;
+  margin-left: -130px;
+}
+
+.ProfileInfoBox {
+  width: 40%;
+  margin: auto;
+  margin-top: 60px;
+  font-size: 20px;
+}
+
+.ProfileInfoItem {
+  display: flex;
+  margin-top: 5px;
+}
+
+.ProfileInfoTag {
+  margin-right: 120px;
+  width: 0px;
+}
