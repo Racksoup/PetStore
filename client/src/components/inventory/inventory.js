@@ -36,6 +36,9 @@ const Inventory = ({
   const [searchItem, setSearchItem] = useState('');
 
   const View = () => {
+    if (toggle === 0) {
+      return <ShowCategories />;
+    }
     if (toggle === 1) {
       return <Categories props={(toggle, setToggle)} />;
     }
@@ -59,12 +62,38 @@ const Inventory = ({
     }
   };
 
+  const ShowCategories = () => {
+    return (
+      <div className='CategoriesBox'>
+        <div className='CategoriesCenterBox'>
+          <h1>Categories</h1>
+          {categories.map((category) => {
+            return (
+              <button
+                className='CategoryButton'
+                value={category}
+                onClick={(e) => CategoryButton(e)}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  const CategoryButton = (e) => {
+    getItems(e.target.value);
+    setToggle(1);
+  };
+
   const handleChildClick = (e) => {
     e.stopPropagation();
   };
 
   const submit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     let isName = true;
     categories.map((category) => {
       if (category === searchItem) {

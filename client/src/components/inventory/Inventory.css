@@ -74,7 +74,7 @@
 
 .InventoryItemForm {
   display: flex;
-  margin-left: -250px;
+  margin-left: -280px;
 }
 
 .AddItemButton {
@@ -88,6 +88,24 @@
 .AddItemIcon {
   font-size: 30px;
   color: #007c1b;
+}
+
+.CategoriesBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.CategoriesCenterBox {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.CategoryButton {
+  width: 100px;
+  margin: auto;
+  margin-top: 4px;
 }
 
 /* Update Item */
