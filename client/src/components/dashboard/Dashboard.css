@@ -121,3 +121,92 @@
   margin: auto;
   margin-top: 20px;
 }
+
+/* User */
+/* User */
+.UserTitleBox {
+  display: flex;
+}
+
+.UserBackButton {
+  width: 90px;
+  margin-right: -90px;
+}
+
+.UserTitle {
+  margin: auto;
+}
+
+.UpdateUserButton {
+  width: 130px;
+  margin-left: -130px;
+}
+
+.UserInfoBox {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  padding: 30px;
+  border-style: solid;
+  border-radius: 16px;
+  margin: auto;
+  margin-top: 60px;
+  font-size: 20px;
+}
+
+.UserInfoTitle {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.UserInfoItem {
+  display: flex;
+  margin-top: 5px;
+}
+
+.UserInfoTag {
+  margin-right: 120px;
+  width: 0px;
+}
+
+/* Update User */
+/* Update User */
+.UpdateUserBox {
+  margin: auto;
+  width: 85%;
+  background-color: rgb(27, 27, 27);
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  border-color: #007c1b;
+  padding: 40px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.UpdateUserTitle {
+  margin: auto;
+  margin-top: -10px;
+  margin-bottom: 45px;
+}
+
+.UpdateUserItem {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.UpdateUserItemTag {
+  margin-right: 120px;
+  width: 0px;
+}
+
+.UpdateUserInput {
+  width: 72%;
+}
+
+.UpdateUserSubmit {
+  width: 100px;
+  margin: auto;
+  margin-top: 20px;
+}

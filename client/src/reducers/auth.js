@@ -8,6 +8,7 @@ import {
   LOGOUT,
   ACCOUNT_DELETED,
   DELETE_FAIL,
+  TOGGLE_USER_MODAL,
 } from '../actions/types';
 
 const initialState = {
@@ -15,12 +16,18 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: null,
+  toggleUserModal: false,
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case TOGGLE_USER_MODAL:
+      return {
+        ...state,
+        toggleUserModal: payload,
+      };
     case USER_LOADED:
       return {
         ...state,

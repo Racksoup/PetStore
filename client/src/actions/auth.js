@@ -10,6 +10,7 @@ import {
   LOGOUT,
   ACCOUNT_DELETED,
   DELETE_FAIL,
+  TOGGLE_USER_MODAL,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -121,4 +122,11 @@ export const deleteAccount = () => async (dispatch) => {
       });
     }
   }
+};
+
+export const setToggleUserModal = (val) => (dispatch) => {
+  dispatch({
+    type: TOGGLE_USER_MODAL,
+    payload: val,
+  });
 };
