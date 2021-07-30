@@ -6,6 +6,19 @@
   top: 62px;
 }
 
+::-webkit-scrollbar-track {
+  background-color: #38281c;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #007c1b;
+  border-radius: 2px;
+}
+
 .Background {
   background-color: rgb(24, 24, 24);
   position: fixed;
