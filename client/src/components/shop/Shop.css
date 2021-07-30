@@ -1,12 +1,12 @@
 .ShopAboutBackground {
   position: fixed;
-  overflow-y: scroll;
+
   width: 100vw;
   height: 100vh;
   background-image: url('../../images/CatGrass.jpg');
   top: 0;
   left: 0;
-  z-index: -100;
+  z-index: -3;
 }
 
 .ShopBackground {

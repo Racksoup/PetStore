@@ -12,8 +12,8 @@ const HeaderImages = ({ headerImages, getHeaderImages }) => {
 
   return (
     <Fragment>
-      <div className='ShopBackground' style={{ height: '600px', top: '62px' }}></div>
-      <Carousel indicators={false} className='mx-auto' style={{ height: '600px', top: '62px' }}>
+      <div className='ShopBackground' style={{ height: '600px' }}></div>
+      <Carousel indicators={false} className='mx-auto' style={{ height: '600px' }}>
         {headerImages.map((image) => {
           return (
             <Carousel.Item style={{ height: '600px' }}>

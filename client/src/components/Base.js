@@ -30,24 +30,23 @@ const Base = ({ loading }) => {
     <Fragment>
       <MyNavbar />
       <section className='App'>
-        <section className='Background'>
-          <Container>
-            <Switch>
-              <Route exact path='/' component={Shop} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/dashboard' component={Dashboard} />
-              <Route exact path='/inventory' component={Inventory} />
-              <Route exact path='/create-item' component={CreateItem} />
-              <Route exact path='/update-header-images' component={UpdateHeaderImages} />
-              <Route exact path='/update-profile' component={Profile} />
-              <Route exact path='/update-user' component={User} />
-              <Route exact path='/cart' component={Cart} />
-              <Route exact path='/orders' component={Orders} />
-              <Route exact path='/wish-list' component={Wishlist} />
-            </Switch>
-          </Container>
-        </section>
+        <section className='Background'></section>
+        <Container>
+          <Switch>
+            <Route exact path='/' component={Shop} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/inventory' component={Inventory} />
+            <Route exact path='/create-item' component={CreateItem} />
+            <Route exact path='/update-header-images' component={UpdateHeaderImages} />
+            <Route exact path='/update-profile' component={Profile} />
+            <Route exact path='/update-user' component={User} />
+            <Route exact path='/cart' component={Cart} />
+            <Route exact path='/orders' component={Orders} />
+            <Route exact path='/wish-list' component={Wishlist} />
+          </Switch>
+        </Container>
       </section>
     </Fragment>
   );
