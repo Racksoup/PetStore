@@ -1,5 +1,6 @@
 .ShopAboutBackground {
   position: fixed;
+  overflow-y: scroll;
   width: 100vw;
   height: 100vh;
   background-image: url('../../images/CatGrass.jpg');
@@ -71,16 +72,16 @@
 /* About */
 /* About */
 .AboutContainer {
-  height: 400px;
+  height: 470px;
+  padding-left: 80px;
+  padding-top: 60px;
 }
 
 .AboutInfoContainer {
-  margin-top: 50px;
-  margin-left: 80px;
   border-style: solid;
   border-color: #007c1b;
   border-radius: 20px;
   background-color: #38281c;
-  height: 170px;
-  width: 320px;
+  height: 180px;
+  width: 340px;
 }
