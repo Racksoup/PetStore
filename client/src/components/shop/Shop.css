@@ -136,3 +136,48 @@
   left: -100px;
   z-index: -1;
 }
+
+/* Blog */
+/* Blog */
+.BlogSectionContainer {
+  height: 505px;
+  display: flex;
+  flex-direction: column;
+}
+
+.BlogSectionTitleContainer {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-around;
+}
+
+.AllBlogsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
+}
+
+.BlogContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.BlogImageContainer {
+  margin: auto;
+  height: 250px;
+  width: 300px;
+}
+
+.BlogImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.BlogDate {
+  margin: auto;
+}
+
+.BlogTitle {
+  margin: auto;
+}
