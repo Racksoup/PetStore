@@ -205,11 +205,24 @@ router.get('/category/:category', async (req, res) => {
 });
 
 // @route   GET api/inventory/pet
-// @desc    Get all by pet
+// @desc    Get 5 by pet
 // @access  Public
 router.get('/pet/:pet', async (req, res) => {
   try {
     const items = await Inventory.find({ pet: req.params.pet }).limit(5);
+    res.json(items);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/inventory/sale
+// @desc    Get 3 by sale
+// @access  Public
+router.get('/sale/:sale', async (req, res) => {
+  try {
+    const items = await Inventory.find({ sale: req.params.sale }).limit(3);
     res.json(items);
   } catch (err) {
     console.error(err.message);

@@ -140,6 +140,10 @@
   margin-right: 20px;
 }
 
+.UpdateItemCheckbox {
+  margin-right: 20px;
+}
+
 .UpdateFileInput {
   width: 92%;
   background-color: rgb(45, 45, 45);

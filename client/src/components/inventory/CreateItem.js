@@ -119,7 +119,12 @@ const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
           </div>
           <div className='UpdateItemInputFlexBox'>
             <p className='UpdateItemInputTitle'>Sale: </p>
-            <input type='checkbox' name='sale' onChange={() => onCheck(!sale)} />
+            <input
+              className='UpdateItemCheckbox'
+              type='checkbox'
+              name='sale'
+              onChange={() => onCheck(!sale)}
+            />
           </div>
 
           <div className='UpdateItemInputFlexBox'>
