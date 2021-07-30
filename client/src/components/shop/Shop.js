@@ -19,6 +19,7 @@ const Shop = ({ authLoading }) => {
         <img src={spinner} alt='loading' />
       ) : (
         <Fragment>
+          <div className='ShopAboutBackground'></div>
           <HeaderImages />
           <Pets />
           <About />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { getHeaderImages } from '../../actions/shop';
 
 import { connect } from 'react-redux';
@@ -11,23 +11,26 @@ const HeaderImages = ({ headerImages, getHeaderImages }) => {
   }, [getHeaderImages]);
 
   return (
-    <Carousel indicators={false} className='mx-auto' style={{ height: '600px' }}>
-      {headerImages.map((image) => {
-        return (
-          <Carousel.Item style={{ height: '600px' }}>
-            <div style={{ height: '100%', width: '100%' }}>
-              {headerImages.length > 0 ? (
-                <img
-                  style={{ height: '100%', width: '100%', objectFit: 'cover' }}
-                  src={`api/headerimage/image/${image.filename}`}
-                  alt={image.filename}
-                />
-              ) : null}
-            </div>
-          </Carousel.Item>
-        );
-      })}
-    </Carousel>
+    <Fragment>
+      <div className='ShopBackground' style={{ height: '600px' }}></div>
+      <Carousel indicators={false} className='mx-auto' style={{ height: '600px' }}>
+        {headerImages.map((image) => {
+          return (
+            <Carousel.Item style={{ height: '600px' }}>
+              <div style={{ height: '100%', width: '100%' }}>
+                {headerImages.length > 0 ? (
+                  <img
+                    style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+                    src={`api/headerimage/image/${image.filename}`}
+                    alt={image.filename}
+                  />
+                ) : null}
+              </div>
+            </Carousel.Item>
+          );
+        })}
+      </Carousel>
+    </Fragment>
   );
 };
 

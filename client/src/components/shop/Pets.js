@@ -14,6 +14,7 @@ const Pets = ({ getPetLists, petLists }) => {
   console.log(petLists[pets[0]]);
   return (
     <Fragment>
+      <div className='ShopBackground' style={{ height: '610px' }}></div>
       <div className='PetGrid'>
         {pets.map((pet) => {
           return (
@@ -25,13 +26,11 @@ const Pets = ({ getPetLists, petLists }) => {
                     if (i < 2) {
                       return (
                         <div className='PetContainerItemContainer'>
-                          <div style={{ height: '100%', width: '100%' }}>
-                            <img
-                              style={{ height: '100%', width: '100%', objectFit: 'stretch' }}
-                              src={`api/inventory/image/${item.image_filename}`}
-                              alt={item.image_filename}
-                            />
-                          </div>
+                          <img
+                            className='PetContainerImage'
+                            src={`api/inventory/image/${item.image_filename}`}
+                            alt={item.image_filename}
+                          />
                         </div>
                       );
                     }
@@ -43,13 +42,11 @@ const Pets = ({ getPetLists, petLists }) => {
                     if (i >= 2) {
                       return (
                         <div className='PetContainerItemContainer'>
-                          <div style={{ height: '100%', width: '100%' }}>
-                            <img
-                              style={{ height: '100%', width: '100%', objectFit: 'cover' }}
-                              src={`api/inventory/image/${item.image_filename}`}
-                              alt={item.image_filename}
-                            />
-                          </div>
+                          <img
+                            className='PetContainerImage'
+                            src={`api/inventory/image/${item.image_filename}`}
+                            alt={item.image_filename}
+                          />
                         </div>
                       );
                     }
@@ -59,7 +56,6 @@ const Pets = ({ getPetLists, petLists }) => {
           );
         })}
       </div>
-      )
     </Fragment>
   );
 };
