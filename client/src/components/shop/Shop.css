@@ -99,3 +99,40 @@
   border-style: solid;
   border-radius: 6px;
 }
+
+/* Subscribe */
+/* Subscribe */
+.SubscribeContainer {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  padding: 40px;
+}
+
+.SubscribeTitle {
+  margin: auto;
+}
+
+.SubscribeInputContainer {
+  margin: auto;
+}
+
+.SubscribeInput {
+  width: 100px;
+  border-right: none;
+  border-style: solid;
+}
+
+.SubscribeButton {
+  width: 100px;
+  border-left: none;
+  border-style: solid;
+}
+
+.SubscribeBackground {
+  background-color: #38281c;
+  position: absolute;
+  width: 120vw;
+  left: -100px;
+  z-index: -1;
+}
