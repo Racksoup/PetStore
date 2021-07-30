@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import '../App.css';
 import MyNavbar from './layout/MyNavbar';
+import Footer from './layout/Footer';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import Dashboard from './dashboard/Dashboard';
@@ -48,6 +49,7 @@ const Base = ({ loading }) => {
           </Switch>
         </Container>
       </section>
+      <Footer />
     </Fragment>
   );
 };
