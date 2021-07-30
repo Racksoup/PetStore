@@ -56,7 +56,7 @@ const upload = multer({ storage });
 // @desc    Create Inventory item
 // @access  Private
 router.post('/', [auth, upload.single('file')], async (req, res) => {
-  const { category, pet, price, name, stock } = req.body;
+  const { category, pet, price, name, stock, sale } = req.body;
 
   const postItem = {};
   if (category) postItem.category = category;
@@ -64,6 +64,7 @@ router.post('/', [auth, upload.single('file')], async (req, res) => {
   if (price) postItem.price = price;
   if (name) postItem.name = name;
   if (stock) postItem.stock = stock;
+  if (sale !== null) postItem.sale = sale;
   postItem.image_filename = req.file.filename;
 
   try {
@@ -82,13 +83,14 @@ router.post('/', [auth, upload.single('file')], async (req, res) => {
 // @desc    Update Inventory Item by Name
 // @access  Private
 router.put('/item', auth, async (req, res) => {
-  const { category, pet, price, name, stock, image_filename } = req.body;
+  const { category, pet, price, name, stock, sale, image_filename } = req.body;
   const postItem = {};
   if (category) postItem.category = category;
   if (pet) postItem.pet = pet;
   if (price) postItem.price = price;
   if (name) postItem.name = name;
   if (stock) postItem.stock = stock;
+  if (sale !== null) postItem.sale = sale;
   if (image_filename) postItem.image_filename = image_filename;
 
   try {
@@ -105,13 +107,14 @@ router.put('/item', auth, async (req, res) => {
 // @desc    Update Inventory Item by _id
 // @access  Private
 router.put('/:_id', auth, async (req, res) => {
-  const { category, pet, price, name, stock, image_filename } = req.body;
+  const { category, pet, price, name, stock, sale, image_filename } = req.body;
   const postItem = {};
   if (category) postItem.category = category;
   if (pet) postItem.pet = pet;
   if (price) postItem.price = price;
   if (name) postItem.name = name;
   if (stock) postItem.stock = stock;
+  if (sale !== null) postItem.sale = sale;
   if (image_filename) postItem.image_filename = image_filename;
 
   try {

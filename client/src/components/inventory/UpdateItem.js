@@ -12,16 +12,21 @@ const UpdateItem = ({ updateItem, item }) => {
     pet: '',
     price: '',
     stock: '',
+    sale: false,
   });
   const [newFile, setNewFile] = useState('');
 
-  const { name, category, pet, price, stock } = newItem;
+  const { name, category, pet, price, stock, sale } = newItem;
   const onChange = (e) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
   };
 
   const onFileChange = (e) => {
     setNewFile(e.target.files[0]);
+  };
+
+  const onCheck = (val) => {
+    setNewItem({ ...newItem, sale: val });
   };
 
   const onSubmit = async (e) => {
@@ -104,6 +109,11 @@ const UpdateItem = ({ updateItem, item }) => {
                 value={stock}
                 onChange={(e) => onChange(e)}
               />
+            </div>
+
+            <div className='UpdateItemInputFlexBox'>
+              <p className='UpdateItemInputTitle'>Sale: </p>
+              <input type='checkbox' name='sale' onChange={() => onCheck(!sale)} />
             </div>
 
             <div className='UpdateItemInputFlexBox'>

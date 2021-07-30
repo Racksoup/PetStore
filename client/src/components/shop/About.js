@@ -7,7 +7,6 @@ const About = (props) => {
       <div className='AboutContainer'>
         <div className='AboutInfoContainer'>About</div>
       </div>
-      ;
     </Fragment>
   );
 };

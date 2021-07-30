@@ -1,6 +1,5 @@
 .ShopAboutBackground {
   position: fixed;
-
   width: 100vw;
   height: 100vh;
   background-image: url('../../images/CatGrass.jpg');
@@ -84,4 +83,14 @@
   background-color: #38281c;
   height: 180px;
   width: 340px;
+}
+
+/* Sale */
+/* Sale */
+.SaleGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 400px;
+  padding: 20px;
+  grid-gap: 20px;
 }

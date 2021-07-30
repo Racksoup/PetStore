@@ -24,6 +24,9 @@ export const createItem = (item, file) => async (dispatch) => {
   data.append('price', item.price);
   data.append('category', item.category);
   data.append('pet', item.pet);
+  if (item.sale) {
+    data.append('sale', item.sale);
+  }
   try {
     const config = {
       headers: {
@@ -33,6 +36,7 @@ export const createItem = (item, file) => async (dispatch) => {
       },
     };
     const res = await axios.post('/api/inventory', data, config);
+    console.log(res);
     dispatch({
       type: CREATE_ITEM,
       payload: res.data,
@@ -57,6 +61,7 @@ export const updateItem = (item, file, id) => async (dispatch) => {
     },
   };
 
+  console.log(item.sale);
   try {
     const oldItem = await axios.get(`/api/inventory/${id}`);
     if (file !== '' && file !== null && file !== undefined) {
@@ -75,7 +80,9 @@ export const updateItem = (item, file, id) => async (dispatch) => {
     }
     if (item) {
       const body = JSON.stringify(item);
-      const res = await axios.put(`/api/inventory/${id}`, body, config);
+      console.log(body);
+      const res = await axios.put(`/api/inventory/${id}`, item, config);
+      console.log(res);
       dispatch({
         type: UPDATE_ITEM,
         payload: res.data,

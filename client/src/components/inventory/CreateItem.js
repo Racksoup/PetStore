@@ -12,14 +12,19 @@ const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
     pet: '',
     price: '',
     stock: '',
+    sale: null,
   });
   const [newFile, setNewFile] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
-  const { name, category, pet, price, stock } = newItem;
+  const { name, category, pet, price, stock, sale } = newItem;
 
   const onChange = (e) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
+  };
+
+  const onCheck = (val) => {
+    setNewItem({ ...newItem, sale: val });
   };
 
   const onFileChange = (e) => {
@@ -111,6 +116,10 @@ const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
               value={stock}
               onChange={(e) => onChange(e)}
             />
+          </div>
+          <div className='UpdateItemInputFlexBox'>
+            <p className='UpdateItemInputTitle'>Sale: </p>
+            <input type='checkbox' name='sale' onChange={() => onCheck(!sale)} />
           </div>
 
           <div className='UpdateItemInputFlexBox'>

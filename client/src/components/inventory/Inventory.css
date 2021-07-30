@@ -113,7 +113,7 @@
 .UpdateItemGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 450px;
+  grid-template-rows: minmax(0, 1fr);
   grid-gap: 75px;
 }
 

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const Sale = (props) => {
   return (
     <Fragment>
-      <div className='ShopBackground' style={{ height: '50px' }}></div>
-      <div>Sale</div>
+      <div className='ShopBackground' style={{ height: '440px' }}></div>
+      <div className='SaleGrid'></div>
     </Fragment>
   );
 };
