@@ -9,13 +9,14 @@ const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
   const [newItem, setNewItem] = useState({
     name: '',
     category: '',
+    pet: '',
     price: '',
     stock: '',
   });
   const [newFile, setNewFile] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
-  const { name, category, price, stock } = newItem;
+  const { name, category, pet, price, stock } = newItem;
 
   const onChange = (e) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
@@ -28,7 +29,14 @@ const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (name !== '' && category !== '' && price !== '' && stock !== '' && newFile !== '') {
+    if (
+      name !== '' &&
+      category !== '' &&
+      pet !== '' &&
+      price !== '' &&
+      stock !== '' &&
+      newFile !== ''
+    ) {
       createItem(newItem, newFile);
       setToggleItemModal(!toggleItemModal);
     } else {
@@ -51,7 +59,7 @@ const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
           Please fill out all fields
         </Alert>
       )}
-      <div className='UpdateItemBox' style={{ backgroundColor: 'rgb(27, 27, 27)' }}>
+      <div className='CreateItemBox' style={{ backgroundColor: 'rgb(27, 27, 27)' }}>
         <h4 className='UpdateItemBoxTitle'>Create Item</h4>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className='UpdateItemInputFlexBox'>
@@ -71,6 +79,16 @@ const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
               type='text'
               name='category'
               value={category}
+              onChange={(e) => onChange(e)}
+            />
+          </div>
+          <div className='UpdateItemInputFlexBox'>
+            <p className='UpdateItemInputTitle'>Pet: </p>
+            <input
+              className='UpdateItemInput'
+              type='text'
+              name='pet'
+              value={pet}
               onChange={(e) => onChange(e)}
             />
           </div>

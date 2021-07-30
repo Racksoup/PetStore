@@ -23,7 +23,6 @@ const Dashboard = ({ profileLoading, isAuthenticated, profile, getCurrentProfile
 
   return (
     <Fragment>
-      <h1 className='DashboardTitle'>Your Account</h1>
       <div className='ProfileGrid'>
         <Link to='/orders'>
           <button className='ProfileButton'>Your Orders</button>

@@ -124,6 +124,14 @@
   overflow: hidden;
 }
 
+.CreateItemBox {
+  border-style: solid;
+  border-color: #007c1b;
+  border-radius: 10px;
+  width: 614px;
+  overflow: hidden;
+}
+
 .UpdateItemInput {
   width: 65%;
   background-color: rgb(45, 45, 45);

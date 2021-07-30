@@ -23,6 +23,7 @@ export const createItem = (item, file) => async (dispatch) => {
   data.append('stock', item.stock);
   data.append('price', item.price);
   data.append('category', item.category);
+  data.append('pet', item.pet);
   try {
     const config = {
       headers: {

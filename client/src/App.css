@@ -1,9 +1,15 @@
 .App {
+  color: white;
+}
+
+.Background {
   background-color: rgb(24, 24, 24);
   position: fixed;
-  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 100vh;
-  color: white;
+  width: 100vw;
+  z-index: -1;
 }
 
 .text {

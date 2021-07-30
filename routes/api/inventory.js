@@ -56,10 +56,11 @@ const upload = multer({ storage });
 // @desc    Create Inventory item
 // @access  Private
 router.post('/', [auth, upload.single('file')], async (req, res) => {
-  const { category, price, name, stock } = req.body;
+  const { category, pet, price, name, stock } = req.body;
 
   const postItem = {};
   if (category) postItem.category = category;
+  if (pet) postItem.pet = pet;
   if (price) postItem.price = price;
   if (name) postItem.name = name;
   if (stock) postItem.stock = stock;
@@ -81,9 +82,10 @@ router.post('/', [auth, upload.single('file')], async (req, res) => {
 // @desc    Update Inventory Item by Name
 // @access  Private
 router.put('/item', auth, async (req, res) => {
-  const { category, price, name, stock, image_filename } = req.body;
+  const { category, pet, price, name, stock, image_filename } = req.body;
   const postItem = {};
   if (category) postItem.category = category;
+  if (pet) postItem.pet = pet;
   if (price) postItem.price = price;
   if (name) postItem.name = name;
   if (stock) postItem.stock = stock;
@@ -103,9 +105,10 @@ router.put('/item', auth, async (req, res) => {
 // @desc    Update Inventory Item by _id
 // @access  Private
 router.put('/:_id', auth, async (req, res) => {
-  const { category, price, name, stock, image_filename } = req.body;
+  const { category, pet, price, name, stock, image_filename } = req.body;
   const postItem = {};
   if (category) postItem.category = category;
+  if (pet) postItem.pet = pet;
   if (price) postItem.price = price;
   if (name) postItem.name = name;
   if (stock) postItem.stock = stock;
@@ -191,6 +194,19 @@ router.get('/:_id', async (req, res) => {
 router.get('/category/:category', async (req, res) => {
   try {
     const items = await Inventory.find({ category: req.params.category });
+    res.json(items);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/inventory/pet
+// @desc    Get all by pet
+// @access  Public
+router.get('/pet/:pet', async (req, res) => {
+  try {
+    const items = await Inventory.find({ pet: req.params.pet }).limit(5);
     res.json(items);
   } catch (err) {
     console.error(err.message);

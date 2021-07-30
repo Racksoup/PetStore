@@ -1,0 +1,42 @@
+/* Pets */
+.PetGrid {
+  width: 100%;
+  margin-top: -150px;
+  background-color: blue;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 350px 350px;
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.PetContainer {
+  border-style: solid;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 1fr 3fr 2fr;
+  grid-gap: 12px;
+  padding: 8px;
+}
+
+.PetContainerTitle {
+  text-align: center;
+}
+
+.TopPetContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 12px;
+}
+
+.BottomPetContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 12px;
+}
+
+.PetContainerItemContainer {
+  border-style: solid;
+  border-radius: 5px;
+}

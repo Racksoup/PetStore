@@ -42,13 +42,16 @@ const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
 
   return (
     <Fragment>
-      <Navbar className='d-flex justify-content-center' style={{ background: '#38281c' }}>
+      <Navbar
+        className='d-flex justify-content-center'
+        style={{ background: '#38281c', position: 'fixed', width: '100%', zIndex: '2' }}
+      >
+        d
         <div className='SideElementContainer'>
           <Link to='/' style={{ color: 'white', fontSize: '20px' }}>
             {'Pets&Paws'}
           </Link>
         </div>
-
         <div className='InputBar'>
           <div className='Hamburger'>
             <button
@@ -87,7 +90,6 @@ const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
-
         <div className='SideElementContainer'>
           <Nav className='align-items-center'>
             {user ? (

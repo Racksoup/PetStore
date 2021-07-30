@@ -5,6 +5,10 @@ const InventorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  pet: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,

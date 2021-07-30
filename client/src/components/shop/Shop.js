@@ -1,6 +1,12 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import './Shop.css';
 import { getCategories, getItem, getItems, getItemById } from '../../actions/shop';
-import ShopHome from './ShopHome';
+import HeaderImages from './HeaderImages';
+import Pets from './Pets';
+import About from './About';
+import Sale from './Sale';
+import Subscribe from './Subscribe';
+import Blog from './Blog';
 import spinner from '../../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
@@ -13,7 +19,12 @@ const Shop = ({ authLoading }) => {
         <img src={spinner} alt='loading' />
       ) : (
         <Fragment>
-          <ShopHome />
+          <HeaderImages />
+          <Pets />
+          <About />
+          <Sale />
+          <Subscribe />
+          <Blog />
         </Fragment>
       )}
     </Fragment>

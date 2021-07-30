@@ -5,16 +5,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 
-const ShopHome = ({ headerImages, getHeaderImages }) => {
+const HeaderImages = ({ headerImages, getHeaderImages }) => {
   useEffect(() => {
     getHeaderImages();
   }, [getHeaderImages]);
 
   return (
-    <Carousel className='mx-auto' style={{ height: '420px' }}>
+    <Carousel indicators={false} className='mx-auto' style={{ height: '600px' }}>
       {headerImages.map((image) => {
         return (
-          <Carousel.Item style={{ height: '420px' }}>
+          <Carousel.Item style={{ height: '600px' }}>
             <div style={{ height: '100%', width: '100%' }}>
               {headerImages.length > 0 ? (
                 <img
@@ -24,10 +24,6 @@ const ShopHome = ({ headerImages, getHeaderImages }) => {
                 />
               ) : null}
             </div>
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
           </Carousel.Item>
         );
       })}
@@ -35,7 +31,7 @@ const ShopHome = ({ headerImages, getHeaderImages }) => {
   );
 };
 
-ShopHome.propTypes = {
+HeaderImages.propTypes = {
   headerImages: PropTypes.array,
   getHeaderImages: PropTypes.func.isRequired,
 };
@@ -44,4 +40,4 @@ const mapStateToProps = (state) => ({
   headerImages: state.shop.headerImages,
 });
 
-export default connect(mapStateToProps, { getHeaderImages })(ShopHome);
+export default connect(mapStateToProps, { getHeaderImages })(HeaderImages);

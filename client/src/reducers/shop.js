@@ -9,6 +9,7 @@ import {
   HEADER_IMAGE_DELETED,
   HEADER_IMAGE_CREATED,
   IMAGE_LOADING,
+  GOT_PET_LISTS,
 } from '../actions/types';
 
 const initialState = {
@@ -17,12 +18,18 @@ const initialState = {
   categories: [],
   headerImages: [],
   imageLoading: false,
+  petLists: {},
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case GOT_PET_LISTS:
+      return {
+        ...state,
+        petLists: payload,
+      };
     case IMAGE_LOADING:
       return {
         ...state,

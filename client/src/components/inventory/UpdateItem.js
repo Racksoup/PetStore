@@ -9,12 +9,13 @@ const UpdateItem = ({ updateItem, item }) => {
   const [newItem, setNewItem] = useState({
     name: '',
     category: '',
+    pet: '',
     price: '',
     stock: '',
   });
   const [newFile, setNewFile] = useState('');
 
-  const { name, category, price, stock } = newItem;
+  const { name, category, pet, price, stock } = newItem;
   const onChange = (e) => {
     setNewItem({ ...newItem, [e.target.name]: e.target.value });
   };
@@ -30,6 +31,9 @@ const UpdateItem = ({ updateItem, item }) => {
     }
     if (category === '' && item.category !== null) {
       setNewItem({ ...newItem, category: item.category });
+    }
+    if (pet === '' && item.pet !== null) {
+      setNewItem({ ...newItem, pet: item.pet });
     }
     if (price === '' && item.price !== null) {
       setNewItem({ ...newItem, price: item.price });
@@ -65,6 +69,17 @@ const UpdateItem = ({ updateItem, item }) => {
                 placeholder={item.category}
                 name='category'
                 value={category}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <div className='UpdateItemInputFlexBox'>
+              <p className='UpdateItemInputTitle'>Pet: </p>
+              <input
+                className='UpdateItemInput'
+                type='text'
+                placeholder={item.pet}
+                name='pet'
+                value={pet}
                 onChange={(e) => onChange(e)}
               />
             </div>

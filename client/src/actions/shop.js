@@ -7,9 +7,48 @@ import {
   SHOP_GOT_ITEMS,
   SHOP_UPDATE_ITEM,
   GOT_HEADER_IMAGES,
+  GOT_PET_LISTS,
 } from '../actions/types';
 
 import axios from 'axios';
+
+export const getPetLists = () => async (dispatch) => {
+  try {
+    const pets = ['Dog', 'Cat', 'Bird', 'Aquarium', 'Small', 'Reptile'];
+    const load = {};
+    let unload = [];
+    let reload = [];
+    let final = {};
+    const res = pets.map(async (pet) => {
+      const data = await axios.get(`/api/inventory/pet/${pet}`);
+      return data;
+    });
+    await Promise.allSettled(res).then((values, i) => (load[i] = values));
+
+    load.undefined.map((item, i) => (unload[i] = item));
+
+    unload.map((item) => reload.push(item.value.data));
+
+    for (let i = 0; i < reload.length; i++) {
+      for (let j = 0; j < pets.length; j++) {
+        if (reload[i][0] && reload[i][0]['pet'] === pets[j]) {
+          final[pets[j]] = reload[i];
+        }
+      }
+    }
+
+    console.log(final);
+    dispatch({
+      type: GOT_PET_LISTS,
+      payload: final,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: SHOP_INVENTORY_ERROR,
+    });
+  }
+};
 
 export const createItem = (item) => async (dispatch) => {
   const config = {
