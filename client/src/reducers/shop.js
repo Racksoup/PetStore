@@ -10,6 +10,7 @@ import {
   HEADER_IMAGE_CREATED,
   IMAGE_LOADING,
   GOT_PET_LISTS,
+  GOT_SALE_ITEMS,
 } from '../actions/types';
 
 const initialState = {
@@ -19,12 +20,18 @@ const initialState = {
   headerImages: [],
   imageLoading: false,
   petLists: {},
+  saleItems: [],
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case GOT_SALE_ITEMS:
+      return {
+        ...state,
+        saleItems: payload,
+      };
     case GOT_PET_LISTS:
       return {
         ...state,

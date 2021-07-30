@@ -8,6 +8,7 @@ import {
   SHOP_UPDATE_ITEM,
   GOT_HEADER_IMAGES,
   GOT_PET_LISTS,
+  GOT_SALE_ITEMS,
 } from '../actions/types';
 
 import axios from 'axios';
@@ -41,6 +42,21 @@ export const getPetLists = () => async (dispatch) => {
     dispatch({
       type: GOT_PET_LISTS,
       payload: final,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: SHOP_INVENTORY_ERROR,
+    });
+  }
+};
+
+export const getSaleItems = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/inventory/sale/true`);
+    dispatch({
+      type: GOT_SALE_ITEMS,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
