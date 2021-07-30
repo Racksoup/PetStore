@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 const About = (props) => {
   return (
     <Fragment>
-      <div> about</div>;
+      <div className='AboutContainer'>
+        <div className='AboutInfoContainer'>About</div>
+      </div>
+      ;
     </Fragment>
   );
 };

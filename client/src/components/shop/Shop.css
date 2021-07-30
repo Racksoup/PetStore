@@ -17,6 +17,7 @@
 }
 
 /* Pets */
+/* Pets */
 .PetGrid {
   width: 100%;
   margin-top: -150px;
@@ -65,4 +66,21 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+/* About */
+/* About */
+.AboutContainer {
+  height: 400px;
+}
+
+.AboutInfoContainer {
+  margin-top: 50px;
+  margin-left: 80px;
+  border-style: solid;
+  border-color: #007c1b;
+  border-radius: 20px;
+  background-color: #38281c;
+  height: 170px;
+  width: 320px;
 }
