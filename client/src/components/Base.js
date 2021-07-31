@@ -48,6 +48,7 @@ const Base = ({ loading }) => {
             <Route exact path='/wish-list' component={Wishlist} />
           </Switch>
         </Container>
+        <section className='FooterSpace'></section>
       </section>
       <Footer />
     </Fragment>

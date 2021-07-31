@@ -123,8 +123,7 @@
   display: flex;
   width: 100px;
   flex-direction: column;
-  position: absolute;
-  z-index: 1;
+  position: fixed;
 }
 
 .Hamburger {
@@ -165,29 +164,35 @@
 /* Footer */
 /* Footer */
 .Footer {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  height: 300px;
-  background-color: rgb(27, 27, 27);
+  height: 240px;
+  background-color: rgb(28, 28, 28);
+  color: white;
   margin-top: 62px;
   display: flex;
+  z-index: -3;
+}
+
+.FooterSpace {
+  height: 240px;
 }
 
 .FooterForm {
-  width: 200px;
+  width: 300px;
   display: flex;
   flex-direction: column;
+  margin-left: 80px;
+  margin-right: 80px;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .FooterLinks {
   width: 200px;
   display: flex;
   flex-direction: column;
-}
-
-.FooterFormTitle {
-  margin: auto;
-}
-
-.FooterFormInfo {
-  margin: auto;
+  justify-content: center;
+  align-items: center;
 }

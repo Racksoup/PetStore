@@ -44,9 +44,15 @@ const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
     <Fragment>
       <Navbar
         className='d-flex justify-content-center'
-        style={{ background: '#38281c', position: 'fixed', width: '100%', zIndex: '2' }}
+        style={{
+          background: '#38281c',
+          position: 'fixed',
+          width: '100%',
+          zIndex: '2',
+          overflowY: 'hidden',
+          overflowX: 'hidden',
+        }}
       >
-        d
         <div className='SideElementContainer'>
           <Link to='/' style={{ color: 'white', fontSize: '20px' }}>
             {'Pets&Paws'}
