@@ -13,13 +13,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Shop = ({ authLoading }) => {
+  let [yOffset, setYOffset] = useState(0);
+  const setY = () => {
+    setYOffset(window.pageYOffset);
+  };
+  window.addEventListener('scroll', setY, { passive: true });
+
   return (
     <Fragment>
       {authLoading ? (
         <img src={spinner} alt='loading' />
       ) : (
         <Fragment>
-          <div className='ShopAboutBackground'></div>
+          {yOffset < 1800 && <div className='ShopAboutBackground'></div>}
           <HeaderImages />
           <Pets />
           <About />

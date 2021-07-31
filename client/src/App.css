@@ -172,11 +172,12 @@
   color: white;
   margin-top: 62px;
   display: flex;
-  z-index: -3;
+  z-index: -4;
 }
 
 .FooterSpace {
   height: 240px;
+  position: relative;
 }
 
 .FooterForm {
