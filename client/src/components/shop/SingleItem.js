@@ -37,7 +37,6 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, updateP
     newProfile._id = profile._id;
     if (profile !== undefined) {
       if ('cart' in profile) {
-        console.log('clicked');
         newProfile.cart = profile.cart;
         newProfile.cart.filter((cartItem) => {
           if (cartItem._id !== item._id) {
@@ -47,6 +46,25 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, updateP
         newProfile.cart.push({ _id: item._id, quantity });
       } else {
         newProfile.cart = [{ _id: item._id, quantity }];
+      }
+      updateProfile(newProfile);
+    }
+  };
+
+  const addToWishlist = () => {
+    let newProfile = {};
+    newProfile._id = profile._id;
+    if (profile !== undefined) {
+      if ('wishlist' in profile) {
+        newProfile.wishlist = profile.wishlist;
+        newProfile.wishlist.filter((wishlistItem) => {
+          if (wishlistItem._id !== item._id) {
+            return wishlistItem;
+          }
+        });
+        newProfile.wishlist.push({ _id: item._id });
+      } else {
+        newProfile.wishlist = [{ _id: item._id }];
       }
       updateProfile(newProfile);
     }
@@ -100,6 +118,15 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, updateP
               />
             </div>
             <div className='SingleItemButtonContainer'>
+              {profile && (
+                <button
+                  className='Button'
+                  onClick={() => addToWishlist()}
+                  style={{ width: '140px' }}
+                >
+                  Add to Wishlist
+                </button>
+              )}
               {profile && (
                 <button className='Button' onClick={() => addToCart()} style={{ width: '100px' }}>
                   Add to Cart

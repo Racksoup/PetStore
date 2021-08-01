@@ -91,7 +91,7 @@ router.put('/user/:_id', auth, async (req, res) => {
   if (wishlist) newItem.wishlist = wishlist;
 
   try {
-    const profile = await Profile.update({ _id: req.params._id }, { $set: newItem });
+    const profile = await Profile.findOneAndUpdate({ _id: req.params._id }, { $set: newItem });
     res.json(profile);
   } catch (err) {
     console.error(err.message);
