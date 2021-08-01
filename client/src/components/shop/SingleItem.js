@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -6,12 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const SingleItem = ({ item, profile }) => {
-  console.log(item);
+  const [quantity, setQuantity] = useState(1);
+
+  const onChange = (e) => {
+    setQuantity(e.target.value);
+  };
+
   return (
     <Fragment>
       <div className='SingleItemPage'>
         <div className='CategoryButtonBox'>
-          <button>{item.category}</button>
+          <button className='Button'>{item.category}</button>
         </div>
         <div className='SingleItem'>
           <div className='ItemImageContainer'>
@@ -41,6 +46,23 @@ const SingleItem = ({ item, profile }) => {
                 <FontAwesomeIcon icon={faTimes} />
               )}
             </p>
+            <div className='QuantityBox'>
+              <p className='ItemBuyMenuVal QuantityTag'>Qty:</p>
+              <input
+                className='QuantityInput'
+                type='number'
+                value={quantity}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <div className='SingleItemButtonContainer'>
+              <button className='Button' style={{ width: '100px' }}>
+                Add to Cart
+              </button>
+              <button className='Button' style={{ width: '80px' }}>
+                Buy Now
+              </button>
+            </div>
           </div>
         </div>
       </div>

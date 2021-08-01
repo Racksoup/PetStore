@@ -5,6 +5,7 @@
   overflow-x: hidden;
   top: 62px;
   --green: #007c1b;
+  --darkGreen: #005c14;
   --darkBlack: rgb(24, 24, 24);
   --lightBlack: rgb(27, 27, 27);
   --brown: #38281c;
@@ -34,6 +35,15 @@
   margin: auto;
 }
 
+.Button {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--darkGreen);
+  border-radius: 4px;
+  background-color: var(--green);
+  color: white;
+}
+
 /* Webkit Navbar */
 /* Webkit Navbar */
 ::-webkit-scrollbar-track {
@@ -47,6 +57,12 @@
 ::-webkit-scrollbar-thumb {
   background-color: #007c1b;
   border-radius: 2px;
+}
+
+/* Always Show Number Input Buttons */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  opacity: 1;
 }
 
 /* Login Page */
