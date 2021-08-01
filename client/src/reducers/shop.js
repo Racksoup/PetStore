@@ -11,6 +11,7 @@ import {
   IMAGE_LOADING,
   GOT_PET_LISTS,
   GOT_SALE_ITEMS,
+  SET_ITEM,
 } from '../actions/types';
 
 const initialState = {
@@ -73,6 +74,7 @@ export default function (state = initialState, action) {
         ...state,
         items: payload,
       };
+    case SET_ITEM:
     case SHOP_GOT_ITEM:
     case SHOP_UPDATE_ITEM:
     case SHOP_CREATE_ITEM:

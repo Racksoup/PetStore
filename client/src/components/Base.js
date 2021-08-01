@@ -14,6 +14,7 @@ import User from './dashboard/User';
 import Cart from './dashboard/Cart';
 import Orders from './dashboard/Orders';
 import Wishlist from './dashboard/Wishlist';
+import SingleItem from './shop/SingleItem';
 import spinner from '../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
@@ -46,6 +47,7 @@ const Base = ({ loading }) => {
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/orders' component={Orders} />
             <Route exact path='/wish-list' component={Wishlist} />
+            <Route exact path='/item' component={SingleItem} />
           </Switch>
         </Container>
         <section className='FooterSpace'></section>

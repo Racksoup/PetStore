@@ -32,6 +32,7 @@
 .PetContainer {
   border-style: solid;
   border-radius: 10px;
+  border-color: white;
   display: grid;
   grid-template-rows: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 2fr);
   grid-gap: 12px;
@@ -180,4 +181,54 @@
 
 .BlogTitle {
   margin: auto;
+}
+
+/* Single Item */
+/* Single Item */
+.SingleItemPage {
+  width: 100%;
+  color: white;
+}
+
+.CategoryButtonBox {
+  display: flex;
+  margin-top: 20px;
+  justify-content: start;
+}
+
+.SingleItem {
+  display: flex;
+}
+
+.ItemImageContainer {
+  height: 400px;
+  width: 400px;
+  border-style: solid;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.SingleItemInfo {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-left: 30px;
+}
+
+.SingleItemTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.SingleItemBuyMenu {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  border-style: solid;
+  border-color: var(--green);
+  border-radius: 8px;
+}
+
+.ItemBuyMenuVal {
+  margin-bottom: 2px;
 }

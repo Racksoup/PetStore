@@ -9,6 +9,7 @@ import {
   GOT_HEADER_IMAGES,
   GOT_PET_LISTS,
   GOT_SALE_ITEMS,
+  SET_ITEM,
 } from '../actions/types';
 
 import axios from 'axios';
@@ -38,7 +39,6 @@ export const getPetLists = () => async (dispatch) => {
       }
     }
 
-    console.log(final);
     dispatch({
       type: GOT_PET_LISTS,
       payload: final,
@@ -199,4 +199,11 @@ export const getHeaderImages = () => async (dispatch) => {
       type: SHOP_INVENTORY_ERROR,
     });
   }
+};
+
+export const setItem = (item) => (dispatch) => {
+  dispatch({
+    type: SET_ITEM,
+    payload: item,
+  });
 };
