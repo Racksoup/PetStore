@@ -1,22 +1,32 @@
 import React, { Fragment, useState } from 'react';
+import { getItems } from '../../actions/shop';
 
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const SingleItem = ({ item, profile }) => {
+const SingleItem = ({ item, items, profile, getItems }) => {
   const [quantity, setQuantity] = useState(1);
 
   const onChange = (e) => {
     setQuantity(e.target.value);
   };
 
+  const onClick = () => {
+    if (item.category !== items[0].category) getItems(item.category);
+  };
+
   return (
     <Fragment>
       <div className='SingleItemPage'>
         <div className='CategoryButtonBox'>
-          <button className='Button'>{item.category}</button>
+          <Link to='/browse'>
+            <button className='Button' onClick={() => onClick()}>
+              {item.category}
+            </button>
+          </Link>
         </div>
         <div className='SingleItem'>
           <div className='ItemImageContainer'>
@@ -72,12 +82,15 @@ const SingleItem = ({ item, profile }) => {
 
 SingleItem.propTypes = {
   item: PropTypes.object,
+  items: PropTypes.array,
   profile: PropTypes.object,
+  getItems: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   item: state.shop.item,
+  items: state.shop.items,
   profile: state.shop.profile,
 });
 
-export default connect(mapStateToProps, {})(SingleItem);
+export default connect(mapStateToProps, { getItems })(SingleItem);

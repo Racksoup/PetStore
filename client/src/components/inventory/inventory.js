@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import {
   getCategories,
   getItem,
-  getItems,
   getItemById,
   setToggle,
   setToggleItemModal,
 } from '../../actions/inventory';
+import { getItems } from '../../actions/shop';
 import Categories from './Categories';
 import UpdateItem from './UpdateItem';
 import CreateItem from './CreateItem';
 import './Inventory.css';
-
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';

@@ -10,6 +10,7 @@ import {
   GOT_PET_LISTS,
   GOT_SALE_ITEMS,
   SET_ITEM,
+  CLEAR_ITEMS,
 } from '../actions/types';
 
 import axios from 'axios';
@@ -63,6 +64,21 @@ export const getSaleItems = () => async (dispatch) => {
     dispatch({
       type: SHOP_INVENTORY_ERROR,
     });
+  }
+};
+
+export const getItems = (item) => async (dispatch) => {
+  dispatch({
+    type: CLEAR_ITEMS,
+  });
+  try {
+    const res = await axios.get(`/api/inventory/category/${item}`);
+    dispatch({
+      type: SHOP_GOT_ITEMS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -144,21 +160,6 @@ export const getItem = (name) => async (dispatch) => {
     const res = await axios.get(`/api/inventory/name/${name}`);
     dispatch({
       type: SHOP_GOT_ITEM,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: SHOP_INVENTORY_ERROR,
-    });
-  }
-};
-
-export const getItems = (item) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/api/inventory/category/${item}`);
-    dispatch({
-      type: SHOP_GOT_ITEMS,
       payload: res.data,
     });
   } catch (err) {

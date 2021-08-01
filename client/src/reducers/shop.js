@@ -12,6 +12,7 @@ import {
   GOT_PET_LISTS,
   GOT_SALE_ITEMS,
   SET_ITEM,
+  CLEAR_ITEMS,
 } from '../actions/types';
 
 const initialState = {
@@ -28,6 +29,11 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case CLEAR_ITEMS:
+      return {
+        ...state,
+        items: [],
+      };
     case GOT_SALE_ITEMS:
       return {
         ...state,

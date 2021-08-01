@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import '../App.css';
 import MyNavbar from './layout/MyNavbar';
 import Footer from './layout/Footer';
@@ -15,6 +15,7 @@ import Cart from './dashboard/Cart';
 import Orders from './dashboard/Orders';
 import Wishlist from './dashboard/Wishlist';
 import SingleItem from './shop/SingleItem';
+import BrowseItems from './shop/BrowseItems';
 import spinner from '../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
@@ -27,7 +28,6 @@ const Base = ({ loading }) => {
   if (loading) {
     return <img src={spinner} className='center' alt='loading' />;
   }
-
   return (
     <Fragment>
       <MyNavbar />
@@ -48,9 +48,9 @@ const Base = ({ loading }) => {
             <Route exact path='/orders' component={Orders} />
             <Route exact path='/wish-list' component={Wishlist} />
             <Route exact path='/item' component={SingleItem} />
+            <Route exact path='/browse' component={BrowseItems} />
           </Switch>
         </Container>
-        <section className='FooterSpace'></section>
       </section>
       <Footer />
     </Fragment>

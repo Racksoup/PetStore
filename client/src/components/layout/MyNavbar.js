@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import { getItems, getCategories } from '../../actions/inventory';
+import { getCategories } from '../../actions/inventory';
+import { getItems } from '../../actions/shop';
 
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -31,9 +32,10 @@ const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
     });
   };
 
-  const onDropdownClick = (e) => {
+  const onDropdownClick = (e, category) => {
     onSearchChange(e);
-    onSearchClick();
+    setHamburgerClick(false);
+    getItems(category);
   };
 
   const onHamburgerClick = () => {
@@ -71,15 +73,17 @@ const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
               {hamburgerClick &&
                 categories.map((category, i) => {
                   return (
-                    <button
-                      className='HamburgerItem'
-                      key={i}
-                      value={category}
-                      name='search'
-                      onClick={(e) => onDropdownClick(e)}
-                    >
-                      {category}
-                    </button>
+                    <Link to='/browse'>
+                      <button
+                        className='HamburgerItem'
+                        key={i}
+                        value={category}
+                        name='search'
+                        onClick={(e) => onDropdownClick(e, category)}
+                      >
+                        {category}
+                      </button>
+                    </Link>
                   );
                 })}
             </div>
