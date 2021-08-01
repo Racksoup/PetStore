@@ -38,3 +38,4 @@ export const GOT_PET_LISTS = 'GOT_PET_LISTS';
 export const GOT_SALE_ITEMS = 'GOT_SALE_ITEMS';
 export const SET_ITEM = 'SET_ITEM';
 export const CLEAR_ITEMS = 'CLEAR_ITEMS';
+export const PROFILE_UPDATED = 'PROFILE_UPDATED';

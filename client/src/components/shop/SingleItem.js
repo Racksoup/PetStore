@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { getItems } from '../../actions/shop';
+import { updateProfile, getCurrentProfile } from '../../actions/profile';
 
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,8 +8,21 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const SingleItem = ({ item, items, profile, getItems }) => {
+const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, updateProfile }) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, [getCurrentProfile]);
   const [quantity, setQuantity] = useState(1);
+
+  if (profile !== undefined && profile !== null) {
+    if ('cart' in profile) {
+      profile.cart.map((cartItem) => {
+        if (cartItem._id === item._id) {
+          setQuantity(cartItem.quantity);
+        }
+      });
+    }
+  }
 
   const onChange = (e) => {
     setQuantity(e.target.value);
@@ -16,6 +30,26 @@ const SingleItem = ({ item, items, profile, getItems }) => {
 
   const onClick = () => {
     if (item.category !== items[0].category) getItems(item.category);
+  };
+
+  const addToCart = () => {
+    let newProfile = {};
+    newProfile._id = profile._id;
+    if (profile !== undefined) {
+      if ('cart' in profile) {
+        console.log('clicked');
+        newProfile.cart = profile.cart;
+        newProfile.cart.filter((cartItem) => {
+          if (cartItem._id !== item._id) {
+            return cartItem;
+          }
+        });
+        newProfile.cart.push({ _id: item._id, quantity });
+      } else {
+        newProfile.cart = [{ _id: item._id, quantity }];
+      }
+      updateProfile(newProfile);
+    }
   };
 
   return (
@@ -66,9 +100,11 @@ const SingleItem = ({ item, items, profile, getItems }) => {
               />
             </div>
             <div className='SingleItemButtonContainer'>
-              <button className='Button' style={{ width: '100px' }}>
-                Add to Cart
-              </button>
+              {profile && (
+                <button className='Button' onClick={() => addToCart()} style={{ width: '100px' }}>
+                  Add to Cart
+                </button>
+              )}
               <button className='Button' style={{ width: '80px' }}>
                 Buy Now
               </button>
@@ -85,12 +121,14 @@ SingleItem.propTypes = {
   items: PropTypes.array,
   profile: PropTypes.object,
   getItems: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   item: state.shop.item,
   items: state.shop.items,
-  profile: state.shop.profile,
+  profile: state.profile.profile,
 });
 
-export default connect(mapStateToProps, { getItems })(SingleItem);
+export default connect(mapStateToProps, { getItems, updateProfile, getCurrentProfile })(SingleItem);

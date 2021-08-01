@@ -14,6 +14,12 @@ const ProfileSchema = new mongoose.Schema({
   address: {
     type: String,
   },
+  cart: {
+    type: Array,
+  },
+  wishlist: {
+    type: Array,
+  },
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

@@ -5,6 +5,7 @@ import {
   PROFILE_ERROR,
   FILE_SUBMITED,
   TOGGLE_PROFILE_MODAL,
+  PROFILE_UPDATED,
 } from './types';
 
 import FormData from 'form-data';
@@ -59,4 +60,20 @@ export const setToggleProfileModal = (val) => (dispatch) => {
     type: TOGGLE_PROFILE_MODAL,
     payload: val,
   });
+};
+
+export const updateProfile = (profile) => async (dispatch) => {
+  console.log('hit');
+  try {
+    const res = await axios.put(`api/profile/user/${profile._id}`, profile);
+    dispatch({
+      type: PROFILE_UPDATED,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: PROFILE_ERROR,
+    });
+  }
 };
