@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
 import fakeImage from '../../images/CatGrass.jpg';
-import PropTypes from 'prop-types';
 
 const Blog = (props) => {
   const fakeBlogs = [
@@ -48,7 +47,5 @@ const Blog = (props) => {
     </Fragment>
   );
 };
-
-Blog.propTypes = {};
 
 export default Blog;

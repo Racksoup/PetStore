@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import './Shop.css';
 import { getPetLists, setItem } from '../../actions/shop';
 
@@ -12,7 +12,6 @@ const Pets = ({ setItem, getPetLists, petLists }) => {
   }, [getPetLists]);
 
   const imageClicked = (item) => {
-    console.log(item);
     setItem(item);
   };
 

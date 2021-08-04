@@ -6,6 +6,7 @@ import {
   LOGIN_SUCCESS,
   TOGGLE_PROFILE_MODAL,
   PROFILE_UPDATED,
+  UPDATE_QUANTITY,
 } from '../actions/types';
 
 const initialState = {
@@ -15,10 +16,11 @@ const initialState = {
   toggleProfileModal: false,
 };
 
-export default function (state = initialState, action) {
+export default function profile(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case UPDATE_QUANTITY:
     case PROFILE_UPDATED:
       return {
         ...state,

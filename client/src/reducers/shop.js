@@ -13,10 +13,11 @@ import {
   GOT_SALE_ITEMS,
   SET_ITEM,
   CLEAR_ITEMS,
+  UPDATED_SHOP_ITEMS,
 } from '../actions/types';
 
 const initialState = {
-  item: {},
+  item: null,
   items: [],
   categories: [],
   headerImages: [],
@@ -25,7 +26,7 @@ const initialState = {
   saleItems: [],
 };
 
-export default function (state = initialState, action) {
+export default function shop(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -75,10 +76,11 @@ export default function (state = initialState, action) {
         ...state,
         categories: payload,
       };
+    case UPDATED_SHOP_ITEMS:
     case SHOP_GOT_ITEMS:
       return {
         ...state,
-        items: payload,
+        items: [...payload],
       };
     case SET_ITEM:
     case SHOP_GOT_ITEM:

@@ -82,7 +82,7 @@ input[type='number']::-webkit-outer-spin-button {
 
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .LoginTitle {

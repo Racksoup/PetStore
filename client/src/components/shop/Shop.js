@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import './Shop.css';
 import { getCategories, getItem, getItems, getItemById } from '../../actions/shop';
 import HeaderImages from './HeaderImages';

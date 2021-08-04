@@ -27,5 +27,3 @@ const App = () => {
 };
 
 export default App;
-
-// style={{ border: 'solid', borderColor: '#38361c', borderRadius: '5px' }}

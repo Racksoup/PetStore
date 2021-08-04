@@ -29,7 +29,11 @@ const BrowseItems = ({ items, setItem }) => {
             <div className='BrowseItemContainer'>
               <Link to='/item'>
                 <div className='BrowseItemImage' onClick={() => setItem(item)}>
-                  <img className='Image' src={`api/inventory/image/${item.image_filename}`} />
+                  <img
+                    className='Image'
+                    alt={item.name}
+                    src={`api/inventory/image/${item.image_filename}`}
+                  />
                 </div>
               </Link>
               <h3>{item.name}</h3>

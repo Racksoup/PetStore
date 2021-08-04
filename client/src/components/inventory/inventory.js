@@ -32,7 +32,7 @@ const Inventory = ({
   useEffect(() => {
     getCategories();
     setToggle(0);
-  }, [getCategories]);
+  }, [getCategories, setToggle]);
   const [searchItem, setSearchItem] = useState('');
 
   const View = () => {
@@ -84,8 +84,8 @@ const Inventory = ({
   };
 
   const CategoryButton = (e) => {
-    getItems(e.target.value);
     setToggle(1);
+    getItems(e.target.value);
   };
 
   const handleChildClick = (e) => {

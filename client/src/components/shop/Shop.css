@@ -193,7 +193,7 @@
 .CategoryButtonBox {
   display: flex;
   margin-top: 20px;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .SingleItem {

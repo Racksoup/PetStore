@@ -39,3 +39,5 @@ export const GOT_SALE_ITEMS = 'GOT_SALE_ITEMS';
 export const SET_ITEM = 'SET_ITEM';
 export const CLEAR_ITEMS = 'CLEAR_ITEMS';
 export const PROFILE_UPDATED = 'PROFILE_UPDATED';
+export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
+export const UPDATED_SHOP_ITEMS = 'UPDATED_SHOP_ITEMS';

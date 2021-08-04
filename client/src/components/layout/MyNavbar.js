@@ -9,7 +9,6 @@ import { getItems } from '../../actions/shop';
 
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 

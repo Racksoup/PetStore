@@ -57,7 +57,7 @@ Categories.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  items: state.inventory.items,
+  items: state.shop.items,
 });
 
 export default connect(mapStateToProps, { getItemById, setToggle })(Categories);

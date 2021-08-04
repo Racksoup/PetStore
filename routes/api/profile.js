@@ -91,6 +91,31 @@ router.put('/user/:_id', auth, async (req, res) => {
   if (wishlist) newItem.wishlist = wishlist;
 
   try {
+    const profile = await Profile.findOneAndUpdate(
+      { _id: req.params._id },
+      { $set: newItem },
+      { returnOriginal: false }
+    );
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'Profile not found' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
+router.put('/add-cart/:_id', auth, async (req, res) => {
+  const { name, email, address, cart, wishlist } = req.body;
+  const newItem = {};
+  if (name) newItem.name = name;
+  if (email) newItem.email = email;
+  if (address) newItem.address = address;
+  if (cart) newItem.cart = cart;
+  if (wishlist) newItem.wishlist = wishlist;
+
+  try {
     const profile = await Profile.findOneAndUpdate({ _id: req.params._id }, { $set: newItem });
     res.json(profile);
   } catch (err) {

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 const Subscribe = (props) => {
   return (
@@ -15,7 +14,5 @@ const Subscribe = (props) => {
     </Fragment>
   );
 };
-
-Subscribe.propTypes = {};
 
 export default Subscribe;

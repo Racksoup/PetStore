@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { deleteAccount } from '../../actions/auth';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 import spinner from '../../images/Spinner.gif';

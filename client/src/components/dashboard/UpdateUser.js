@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const UpdateUser = (props) => {
   return (
@@ -17,7 +16,5 @@ const UpdateUser = (props) => {
     </div>
   );
 };
-
-UpdateUser.propTypes = {};
 
 export default UpdateUser;

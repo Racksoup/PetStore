@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 const Footer = (props) => {
   return (
@@ -32,7 +31,5 @@ const Footer = (props) => {
     </Fragment>
   );
 };
-
-Footer.propTypes = {};
 
 export default Footer;
