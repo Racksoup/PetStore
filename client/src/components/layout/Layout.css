@@ -1,0 +1,23 @@
+.FooterLinkComponent {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: auto;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.FooterLinkTitle {
+  margin-bottom: 25px;
+}
+
+.FooterLinkInfoBox {
+  margin-bottom: 40px;
+}
+
+.FooterLinkInfoTitle {
+  margin-bottom: 20px;
+}
+
+.FooterLinkInfoText {
+}

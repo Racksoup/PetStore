@@ -16,6 +16,11 @@ import Orders from './dashboard/Orders';
 import Wishlist from './dashboard/Wishlist';
 import SingleItem from './shop/SingleItem';
 import BrowseItems from './shop/BrowseItems';
+import ToS from './layout/ToS';
+import Returns from './layout/Returns';
+import Shipping from './layout/Shipping';
+import Privacy from './layout/Privacy';
+import Blogs from './layout/Blogs';
 import spinner from '../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
@@ -49,6 +54,11 @@ const Base = ({ loading }) => {
             <Route exact path='/wish-list' component={Wishlist} />
             <Route exact path='/item' component={SingleItem} />
             <Route exact path='/browse' component={BrowseItems} />
+            <Route exact path='/tos' component={ToS} />
+            <Route exact path='/returns' component={Returns} />
+            <Route exact path='/shipping' component={Shipping} />
+            <Route exact path='/privacy' component={Privacy} />
+            <Route exact path='/blogs' component={Blogs} />
           </Switch>
         </Container>
       </section>
