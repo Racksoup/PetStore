@@ -16,7 +16,6 @@ import Orders from './dashboard/Orders';
 import Wishlist from './dashboard/Wishlist';
 import SingleItem from './shop/SingleItem';
 import BrowseItems from './shop/BrowseItems';
-import Holder from './layout/Holder';
 import spinner from '../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
@@ -50,7 +49,6 @@ const Base = ({ loading }) => {
             <Route exact path='/wish-list' component={Wishlist} />
             <Route exact path='/item' component={SingleItem} />
             <Route exact path='/browse' component={BrowseItems} />
-            <Route exact path='/holder' component={Holder} />
           </Switch>
         </Container>
       </section>

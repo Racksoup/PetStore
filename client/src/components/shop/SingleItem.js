@@ -14,17 +14,17 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
   }, []);
   const [quantity, setQuantity] = useState(1);
 
-  console.log(item);
-
-  if (profile !== undefined && profile !== null && item !== null && item !== undefined) {
-    if ('cart' in profile) {
-      profile.cart.map((cartItem) => {
-        if (cartItem._id === item._id) {
-          setQuantity(cartItem.quantity);
-        }
-      });
+  useEffect(() => {
+    if (profile !== undefined && profile !== null && item !== null && item !== undefined) {
+      if ('cart' in profile) {
+        profile.cart.map((cartItem) => {
+          if (cartItem._id === item._id) {
+            setQuantity(cartItem.quantity);
+          }
+        });
+      }
     }
-  }
+  }, []);
 
   const onChange = (e) => {
     setQuantity(e.target.value);

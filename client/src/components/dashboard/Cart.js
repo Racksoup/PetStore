@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getItemById } from '../../actions/shop';
+import { setItem } from '../../actions/shop';
 import {
   getAllCartItems,
   removeCartItem,
@@ -14,7 +14,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Cart = ({
-  getItemById,
+  setItem,
   removeCartItem,
   updateQuantity,
   getCurrentProfile,
@@ -112,8 +112,8 @@ const Cart = ({
     removeCartItem(newProfile, newItems);
   };
 
-  const imageClicked = (id) => {
-    getItemById(id);
+  const imageClicked = (item) => {
+    setItem(item);
   };
 
   const burger = () => {
@@ -158,8 +158,8 @@ const Cart = ({
                     checked={currCheckedItem.checked}
                     onClick={() => onCheck(item)}
                   />
-                  <div className='ShoppingCartImage' onClick={() => imageClicked(item._id)}>
-                    <Link to='/holder'>
+                  <div className='ShoppingCartImage' onClick={() => imageClicked(item)}>
+                    <Link to='/item'>
                       <img
                         className='Image'
                         alt={item.name}
@@ -200,7 +200,7 @@ Cart.propTypes = {
   items: PropTypes.array.isRequired,
   profile: PropTypes.object,
   isAuthenticated: PropTypes.bool.isRequired,
-  getItemById: PropTypes.func.isRequired,
+  setItem: PropTypes.func.isRequired,
   getAllCartItems: PropTypes.func.isRequired,
   updateQuantity: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
@@ -214,7 +214,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getItemById,
+  setItem,
   updateQuantity,
   getAllCartItems,
   getCurrentProfile,
