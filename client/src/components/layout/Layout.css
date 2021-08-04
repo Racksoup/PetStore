@@ -54,3 +54,27 @@
 .EntryInput {
   width: 280px;
 }
+
+/* Blogs */
+/* Blogs */
+.BlogsBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Blog {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  align-items: center;
+}
+
+.BlogImageContainer {
+  height: 200px;
+  width: 325px;
+}
+
+.TagsBox {
+  display: flex;
+}

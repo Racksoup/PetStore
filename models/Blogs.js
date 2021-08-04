@@ -16,7 +16,7 @@ const BlogsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
+  image_filename: {
     type: String,
   },
 });

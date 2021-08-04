@@ -56,12 +56,11 @@ const upload = multer({ storage });
 // ========================
 
 router.post('/', [auth, upload.single('file')], async (req, res) => {
-  const { title, tags, date, text } = req.body;
+  const { title, tags, text } = req.body;
 
   const postItem = {};
   if (title) postItem.title = title;
   if (tags) postItem.tags = tags;
-  if (date) postItem.date = date;
   if (text) postItem.text = text;
   postItem.image_filename = req.file.filename;
 
@@ -120,6 +119,45 @@ router.get('/three', async (req, res) => {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
+});
+
+// ===========================
+// IMAGE ROUTES
+// ===========================
+
+router.get('/image/:filename', async (req, res) => {
+  await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if files
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist',
+      });
+    }
+    // Check if image
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+      // Read output to browser
+      const readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res);
+    } else {
+      res.status(404).json({
+        err: 'Not an image',
+      });
+    }
+  });
+});
+
+// @route DELETE /delete-image/:filename
+// @desc  Delete image
+router.delete('/deleteimage/:filename', async (req, res) => {
+  const x = await gfs.remove(
+    { filename: req.params.filename, root: 'blogImages' },
+    (err, GridFSBucket) => {
+      if (err) {
+        return res.status(404).json({ err: err });
+      }
+    }
+  );
+  res.json(x);
 });
 
 module.exports = router;
