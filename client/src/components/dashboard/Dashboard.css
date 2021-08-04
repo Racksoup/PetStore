@@ -22,7 +22,7 @@
 .AdminGrid {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 130px 130px;
+  grid-template-rows: 130px 130px 130px;
   grid-gap: 10px;
 }
 

@@ -47,9 +47,13 @@ const Dashboard = ({ profileLoading, isAuthenticated, profile, getCurrentProfile
         </Link>
         <div />
         <div />
-
         <Link to='/update-header-images'>
           <button className='AdminButton'>Update Header Images</button>
+        </Link>
+        <div />
+        <div />
+        <Link to='/create-blog'>
+          <button className='AdminButton'>Create Blog Post</button>
         </Link>
         <div />
       </div>

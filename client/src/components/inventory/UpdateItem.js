@@ -132,10 +132,9 @@ const UpdateItem = ({ updateItem, item }) => {
 
             <div className='UpdateItemInputFlexBox'>
               <input className='UpdateSubmitButton' type='submit' value='Submit' />
-
-              <button className='DeleteItemButton'>Delete</button>
             </div>
           </form>
+          <button className='DeleteItemButton'>Delete</button>
         </div>
         <div className='UpdateItemBox'>
           <img

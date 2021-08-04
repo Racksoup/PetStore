@@ -21,6 +21,7 @@ import Returns from './layout/Returns';
 import Shipping from './layout/Shipping';
 import Privacy from './layout/Privacy';
 import Blogs from './layout/Blogs';
+import CreateBlog from './layout/CreateBlog';
 import spinner from '../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
@@ -59,6 +60,7 @@ const Base = ({ loading }) => {
             <Route exact path='/shipping' component={Shipping} />
             <Route exact path='/privacy' component={Privacy} />
             <Route exact path='/blogs' component={Blogs} />
+            <Route exact path='/create-blog' component={CreateBlog} />
           </Switch>
         </Container>
       </section>
