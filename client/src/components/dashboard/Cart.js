@@ -77,7 +77,6 @@ const Cart = ({
       });
     });
 
-    console.log(newCheckout);
     setCheckout(newCheckout);
   };
 

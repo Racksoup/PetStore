@@ -142,6 +142,34 @@ export const getAllCartItems = () => async (dispatch) => {
   }
 };
 
+export const getAllWishlistItems = () => async (dispatch) => {
+  const res = await axios.get('/api/profile/me');
+  dispatch({
+    type: CLEAR_ITEMS,
+  });
+  try {
+    let pathRequests = [];
+    let getRequests = [];
+    res.data.wishlist.map((item) => pathRequests.push(`api/inventory/${item._id}`));
+    pathRequests.map(async (req) => await getRequests.push(axios.get(req)));
+    await axios.all(getRequests).then(
+      axios.spread((...responses) => {
+        getRequests = responses.map((response, i) => response.data);
+      })
+    );
+    getRequests.map((req) => (req = req.data));
+    dispatch({
+      type: SHOP_GOT_ITEMS,
+      payload: getRequests,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: PROFILE_ERROR,
+    });
+  }
+};
+
 export const updateQuantity = (e, item) => async (dispatch) => {
   const val = e.target.value;
   const profile1 = store.getState().profile.profile;
