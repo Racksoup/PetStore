@@ -48,3 +48,7 @@ export const GOT_THREE_BLOGS = 'GOT_THREE_BLOGS';
 export const GOT_ONE_BLOG = 'GOT_ONE_BLOG';
 export const BLOG_DELETED = 'BLOG_DELETED';
 export const SET_BLOG = 'SET_BLOG';
+export const TOGGLE_UPDATE_USER_LOGIN = 'TOGGLE_UPDATE_USER_LOGIN';
+export const UPDATE_USER_FAILED = 'UPDATE_USER_FAILED';
+export const USER_UPDATED = 'USER_UPDATED';
+export const SET_LOADING = 'SET_LOADING';

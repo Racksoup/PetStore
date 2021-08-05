@@ -11,6 +11,10 @@ import {
   ACCOUNT_DELETED,
   DELETE_FAIL,
   TOGGLE_USER_MODAL,
+  TOGGLE_UPDATE_USER_LOGIN,
+  UPDATE_USER_FAILED,
+  USER_UPDATED,
+  SET_LOADING,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -70,6 +74,10 @@ export const register = (username, password) => async (dispatch) => {
 // Login User
 // Sends username and password, receives auth token. calls loadUser() after token is set into localstorage
 export const login = (username, password) => async (dispatch) => {
+  dispatch({
+    type: SET_LOADING,
+    payload: true,
+  });
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -129,4 +137,33 @@ export const setToggleUserModal = (val) => (dispatch) => {
     type: TOGGLE_USER_MODAL,
     payload: val,
   });
+};
+
+export const setToggleUpdateUserLogin = (val) => (dispatch) => {
+  dispatch({
+    type: TOGGLE_UPDATE_USER_LOGIN,
+    payload: val,
+  });
+};
+
+export const updateUser = (username, password, id) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ username, password });
+  try {
+    const res = await axios.put(`api/users/${id}`, body, config);
+    dispatch({
+      type: USER_UPDATED,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: UPDATE_USER_FAILED,
+    });
+  }
 };

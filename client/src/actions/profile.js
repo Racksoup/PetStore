@@ -66,6 +66,7 @@ export const setToggleProfileModal = (val) => (dispatch) => {
 };
 
 export const updateProfile = (profile) => async (dispatch) => {
+  console.log(profile);
   try {
     const res = await axios.put(`api/profile/user/${profile._id}`, profile);
     dispatch({

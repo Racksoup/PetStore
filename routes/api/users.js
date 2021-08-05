@@ -49,7 +49,7 @@ router.post('/', [
         },
       };
 
-      jwt.sign(payload, config.get('jwtSecret'), { expiresIn: '5m' }, (err, token) => {
+      jwt.sign(payload, config.get('jwtSecret'), { expiresIn: '1h' }, (err, token) => {
         if (err) throw err;
         res.json({ token });
       });
@@ -70,6 +70,41 @@ router.delete('/', auth, async (req, res) => {
     res.json({ msg: 'User deleted' });
   } catch (err) {
     console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.put('/:_id', auth, async (req, res) => {
+  const { name, password } = req.body;
+  const newUser = {};
+  if (name) newUser.name = name;
+  if (password) newUser.password = password;
+
+  try {
+    if (password) {
+      const salt = await bcrypt.genSalt(10);
+      newUser.password = await bcrypt.hash(password, salt);
+    }
+
+    const user = await User.findOneAndUpdate({ _id: req.params._id }, newUser);
+    await user.save();
+    res.json(user);
+
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    jwt.sign(payload, config.get('jwtSecret'), { expiresIn: '1h' }, (err, token) => {
+      if (err) throw err;
+      res.json({ token });
+    });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'Profile not found' });
+    }
     res.status(500).send('Server Error');
   }
 });

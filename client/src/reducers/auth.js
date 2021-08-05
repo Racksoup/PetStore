@@ -9,13 +9,19 @@ import {
   ACCOUNT_DELETED,
   DELETE_FAIL,
   TOGGLE_USER_MODAL,
+  TOGGLE_UPDATE_USER_LOGIN,
+  USER_UPDATED,
+  UPDATE_USER_FAILED,
+  SET_LOADING,
 } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
+  loadingAuth: false,
   user: null,
+  toggleUpdateUserLogin: false,
   toggleUserModal: false,
 };
 
@@ -23,11 +29,22 @@ export default function auth(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case SET_LOADING:
+      return {
+        ...state,
+        loadingAuth: payload,
+      };
     case TOGGLE_USER_MODAL:
       return {
         ...state,
         toggleUserModal: payload,
       };
+    case TOGGLE_UPDATE_USER_LOGIN:
+      return {
+        ...state,
+        toggleUpdateUserLogin: payload,
+      };
+    case USER_UPDATED:
     case USER_LOADED:
       return {
         ...state,
@@ -43,6 +60,7 @@ export default function auth(state = initialState, action) {
         ...payload,
         isAuthenticated: true,
         loading: false,
+        loadingAuth: false,
       };
     case AUTH_ERROR:
     case REGISTER_FAIL:
@@ -55,7 +73,9 @@ export default function auth(state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false,
+        loadingAuth: false,
       };
+    case UPDATE_USER_FAILED:
     case DELETE_FAIL:
     default:
       return state;

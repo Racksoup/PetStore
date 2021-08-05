@@ -1,17 +1,38 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import './Dashboard.css';
 import UpdateUser from './UpdateUser';
-import { setToggleUserModal } from '../../actions/auth';
+import LoginUpdateUser from './LoginUpdateUser';
+import { setToggleUpdateUserLogin, setToggleUserModal, logout } from '../../actions/auth';
 
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const User = ({ user, toggleUserModal, setToggleUserModal }) => {
+const User = ({
+  user,
+  toggleUpdateUserLogin,
+  toggleUserModal,
+  setToggleUpdateUserLogin,
+  setToggleUserModal,
+  logout,
+  isAuthenticated,
+  loadingAuth,
+}) => {
+  useEffect(() => {
+    if (isAuthenticated) {
+      setToggleUserModal(true);
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    setToggleUpdateUserLogin(false);
+    setToggleUserModal(false);
+  }, []);
+
   const UpdateUserModal = () => {
     if (toggleUserModal) {
       return (
-        <div className='ModalBackground' onClick={() => setToggleUserModal(!toggleUserModal)}>
+        <div className='ModalBackground' onClick={() => onBackgroundClick()}>
           <div className='Modal' onClick={(e) => handleChildClick(e)}>
             <UpdateUser />
           </div>
@@ -22,8 +43,32 @@ const User = ({ user, toggleUserModal, setToggleUserModal }) => {
     }
   };
 
+  const UpdateUserLoginModal = () => {
+    if (toggleUpdateUserLogin) {
+      return (
+        <div className='ModalBackground' onClick={() => onBackgroundClick()}>
+          <div className='Modal' onClick={(e) => handleChildClick(e)}>
+            <LoginUpdateUser />
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const onBackgroundClick = (e) => {
+    setToggleUpdateUserLogin(false);
+    setToggleUserModal(false);
+  };
+
   const handleChildClick = (e) => {
     e.stopPropagation();
+  };
+
+  const updateUserButton = () => {
+    logout();
+    setToggleUpdateUserLogin(true);
   };
 
   if (!user) {
@@ -32,13 +77,17 @@ const User = ({ user, toggleUserModal, setToggleUserModal }) => {
 
   return (
     <Fragment>
+      {!isAuthenticated && !toggleUpdateUserLogin && !toggleUserModal && !loadingAuth && (
+        <Redirect to='/login' />
+      )}
+      {UpdateUserLoginModal()}
       {UpdateUserModal()}
       <div className='UserTitleBox'>
         <Link to='/dashboard'>
           <button className='UserBackButton'>Back</button>
         </Link>
         <h3 className='UserTitle'>User</h3>
-        <button className='UpdateUserButton' onClick={() => setToggleUserModal(true)}>
+        <button className='UpdateUserButton' onClick={() => updateUserButton()}>
           Update User
         </button>
       </div>
@@ -55,13 +104,23 @@ const User = ({ user, toggleUserModal, setToggleUserModal }) => {
 
 User.propTypes = {
   user: PropTypes.object,
+  toggleUpdateUserLogin: PropTypes.bool,
   toggleUserModal: PropTypes.bool,
+  isAuthenticated: PropTypes.bool,
+  loadingAuth: PropTypes.bool,
+  setToggleUpdateUserLogin: PropTypes.func.isRequired,
   setToggleUserModal: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
+  toggleUpdateUserLogin: state.auth.toggleUpdateUserLogin,
   toggleUserModal: state.auth.toggleUserModal,
+  isAuthenticated: state.auth.isAuthenticated,
+  loadingAuth: state.auth.loadingAuth,
 });
 
-export default connect(mapStateToProps, { setToggleUserModal })(User);
+export default connect(mapStateToProps, { setToggleUpdateUserLogin, setToggleUserModal, logout })(
+  User
+);

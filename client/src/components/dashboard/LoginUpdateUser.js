@@ -1,24 +1,16 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { setToggleUserModal, updateUser } from '../../actions/auth';
+import React, { Fragment, useState } from 'react';
+import { setToggleUserModal, setToggleUpdateUserLogin, login } from '../../actions/auth';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const UpdateUser = ({ isAuthenticated, setToggleUserModal, user, updateUser }) => {
-  useEffect(() => {
-    if (!isAuthenticated) {
-      setToggleUserModal(false);
-    }
-  }, [isAuthenticated]);
-
+const LoginUpdateUser = ({ setToggleUserModal, setToggleUpdateUserLogin, login }) => {
   const [newAuth, setNewAuth] = useState({
     username: '',
     password: '',
-    password2: '',
-    id: user._id,
   });
 
-  const { username, password, password2, id } = newAuth;
+  const { username, password } = newAuth;
 
   const onChange = (e) => {
     setNewAuth({ ...newAuth, [e.target.name]: e.target.value });
@@ -26,13 +18,9 @@ const UpdateUser = ({ isAuthenticated, setToggleUserModal, user, updateUser }) =
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (password === password2) {
-      updateUser(username, password, id);
-      setToggleUserModal(false);
-    } else {
-      console.log('need alert');
-      setToggleUserModal(false);
-    }
+    login(username, password);
+    setToggleUserModal(true);
+    setToggleUpdateUserLogin(false);
   };
 
   return (
@@ -60,16 +48,6 @@ const UpdateUser = ({ isAuthenticated, setToggleUserModal, user, updateUser }) =
             />
           </div>
           <div className='UpdateProfileItem'>
-            <p className='UpdateProfileItemTag'>Password:</p>
-            <input
-              className='UpdateProfileInput'
-              type='password'
-              name='password2'
-              value={password2}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div className='UpdateProfileItem'>
             <input type='submit' value='Submit' className='UpdateProfileSubmit' />
           </div>
         </form>
@@ -78,16 +56,12 @@ const UpdateUser = ({ isAuthenticated, setToggleUserModal, user, updateUser }) =
   );
 };
 
-UpdateUser.propTypes = {
+LoginUpdateUser.propTypes = {
+  setToggleUpdateUserLogin: PropTypes.func.isRequired,
   setToggleUserModal: PropTypes.func.isRequired,
-  updateUser: PropTypes.func.isRequired,
-  user: PropTypes.object,
-  isAuthenticated: PropTypes.bool,
+  login: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps, { setToggleUserModal, updateUser })(UpdateUser);
+export default connect(null, { setToggleUserModal, setToggleUpdateUserLogin, login })(
+  LoginUpdateUser
+);
