@@ -1,3 +1,7 @@
+import TwitterIcon from '../../images/TwitterIcon.png';
+import InstagramIcon from '../../images/InstagramIcon.png';
+import PinterestIcon from '../../images/PinterestIcon.png';
+import FacebookIcon from '../../images/FacebookIcon.png';
 import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
@@ -9,6 +13,28 @@ const Footer = (props) => {
         <div className='FooterForm'>
           <h4 className='FooterFormTitle'>Sign up and save</h4>
           <h5 className='FooterFormInfo'>Subscribe for all the best pet news and deals!</h5>
+          <div className='FooterShareLinks'>
+            <div className='FooterShareLink'>
+              <a href='https://www.facebook.com' target='_blank'>
+                <img className='Image' src={FacebookIcon} />
+              </a>
+            </div>
+            <div className='FooterShareLink'>
+              <a href='https://www.instagram.com' target='_blank'>
+                <img className='Image' src={InstagramIcon} />
+              </a>
+            </div>
+            <div className='FooterShareLink'>
+              <a href='https://www.twitter.com' target='_blank'>
+                <img className='Image' src={TwitterIcon} />
+              </a>
+            </div>
+            <div className='FooterShareLink'>
+              <a href='https://www.pinterest.com' target='_blank'>
+                <img className='Image' src={PinterestIcon} />
+              </a>
+            </div>
+          </div>
         </div>
         <div className='FooterLinks'>
           <Link to='/tos' className='FooterLink'>
