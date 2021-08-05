@@ -235,7 +235,8 @@ input[type='number']::-webkit-outer-spin-button {
 /* Share Links */
 .ShareLinks {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 140px;
 }
 
 .ShareLink {

@@ -154,7 +154,7 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
             </div>
           </div>
           <div className='SingleItemShareLinks'>
-            <div className='ShareLinks' style={{ marginLeft: 'auto', marginRight: '62px' }}>
+            <div className='ShareLinks' style={{ marginLeft: 'auto', marginRight: '50px' }}>
               <div className='ShareLink'>
                 <a href='https://www.facebook.com' target='_blank'>
                   <img className='Image' src={FacebookIcon} />
