@@ -5,6 +5,7 @@ import {
   GOT_THREE_BLOGS,
   GOT_ONE_BLOG,
   BLOG_DELETED,
+  SET_BLOG,
 } from '../actions/types';
 
 const initialState = {
@@ -38,6 +39,7 @@ export default function blogs(state = initialState, action) {
         blogs: payload,
       };
     case GOT_ONE_BLOG:
+    case SET_BLOG:
       return {
         ...state,
         blog: payload,

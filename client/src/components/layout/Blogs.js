@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
 import './Layout.css';
-import { getAllBlogs } from '../../actions/blogs';
+import { getAllBlogs, setBlog } from '../../actions/blogs';
 
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Blogs = ({ blogs, getAllBlogs }) => {
+const Blogs = ({ blogs, getAllBlogs, setBlog }) => {
   useEffect(() => {
     getAllBlogs();
   }, [getAllBlogs]);
@@ -17,17 +18,19 @@ const Blogs = ({ blogs, getAllBlogs }) => {
         {blogs &&
           blogs.map((blog) => {
             return (
-              <div className='Blog'>
-                <div className='BlogImageContainer'>
-                  <img className='Image' src={`api/blogs/image/${blog.image_filename}`} />
-                </div>
-                <p>{blog.date}</p>
-                <div className='TagsBox'>
-                  {blog.tags.map((tag) => {
-                    return <p>{tag} </p>;
-                  })}
-                </div>
-                <h3>{blog.title}</h3>
+              <div className='Blog' onClick={() => setBlog(blog)}>
+                <Link to='/blog'>
+                  <div className='BlogImageContainer'>
+                    <img className='Image' src={`api/blogs/image/${blog.image_filename}`} />
+                  </div>
+                  <p>{blog.date}</p>
+                  <div className='TagsBox'>
+                    {blog.tags.map((tag) => {
+                      return <p>{tag} </p>;
+                    })}
+                  </div>
+                  <h3>{blog.title}</h3>
+                </Link>
               </div>
             );
           })}
@@ -39,10 +42,11 @@ const Blogs = ({ blogs, getAllBlogs }) => {
 Blogs.propTypes = {
   blogs: PropTypes.array,
   getAllBlogs: PropTypes.func.isRequired,
+  setBlog: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   blogs: state.blogs.blogs,
 });
 
-export default connect(mapStateToProps, { getAllBlogs })(Blogs);
+export default connect(mapStateToProps, { getAllBlogs, setBlog })(Blogs);

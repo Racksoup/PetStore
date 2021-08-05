@@ -47,3 +47,4 @@ export const GOT_ALL_BLOGS = 'GOT_ALL_BLOGS';
 export const GOT_THREE_BLOGS = 'GOT_THREE_BLOGS';
 export const GOT_ONE_BLOG = 'GOT_ONE_BLOG';
 export const BLOG_DELETED = 'BLOG_DELETED';
+export const SET_BLOG = 'SET_BLOG';

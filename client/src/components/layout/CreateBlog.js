@@ -22,7 +22,7 @@ const CreateBlog = ({ createBlogPost }) => {
 
   const onTagChange = (e) => {
     setTagsHolder(e.target.value);
-    const newTags = tagsHolder.split(' ');
+    const newTags = e.target.value.split(' ');
     setNewBlog({ ...newBlog, tags: [...newTags] });
   };
 
@@ -30,14 +30,14 @@ const CreateBlog = ({ createBlogPost }) => {
     setNewFile(e.target.files[0]);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
     if (tagsHolder === '') {
       setNewBlog({ ...newBlog, tags: [] });
     }
 
-    if (title !== '' && text !== '' && newFile !== '') {
+    if (title !== '' && text !== '' && newFile !== '' && tags) {
       createBlogPost(newBlog, newFile);
     }
   };

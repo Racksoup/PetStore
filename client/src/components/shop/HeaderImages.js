@@ -14,21 +14,22 @@ const HeaderImages = ({ headerImages, getHeaderImages }) => {
     <Fragment>
       <div className='ShopBackground' style={{ height: '600px' }}></div>
       <Carousel indicators={false} className='mx-auto' style={{ height: '600px' }}>
-        {headerImages.map((image) => {
-          return (
-            <Carousel.Item style={{ height: '600px' }}>
-              <div style={{ height: '100%', width: '100%' }}>
-                {headerImages.length > 0 ? (
-                  <img
-                    style={{ height: '100%', width: '100%', objectFit: 'cover' }}
-                    src={`api/headerimage/image/${image.filename}`}
-                    alt={image.filename}
-                  />
-                ) : null}
-              </div>
-            </Carousel.Item>
-          );
-        })}
+        {headerImages &&
+          headerImages.map((image) => {
+            return (
+              <Carousel.Item style={{ height: '600px' }}>
+                <div style={{ height: '100%', width: '100%' }}>
+                  {headerImages.length > 0 ? (
+                    <img
+                      style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+                      src={`api/headerimage/image/${image.filename}`}
+                      alt={image.filename}
+                    />
+                  ) : null}
+                </div>
+              </Carousel.Item>
+            );
+          })}
       </Carousel>
     </Fragment>
   );

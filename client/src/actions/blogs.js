@@ -6,6 +6,7 @@ import {
   GOT_THREE_BLOGS,
   GOT_ONE_BLOG,
   BLOG_DELETED,
+  SET_BLOG,
 } from './types';
 import axios from 'axios';
 
@@ -87,4 +88,11 @@ export const deleteBlog = (id) => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const setBlog = (blog) => (dispatch) => {
+  dispatch({
+    type: SET_BLOG,
+    payload: blog,
+  });
 };
