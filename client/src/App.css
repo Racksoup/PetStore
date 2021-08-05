@@ -230,3 +230,15 @@ input[type='number']::-webkit-outer-spin-button {
   justify-content: center;
   align-items: center;
 }
+
+/* Share Links */
+/* Share Links */
+.ShareLinks {
+  display: flex;
+  justify-content: space-around;
+}
+
+.ShareLink {
+  width: 30px;
+  height: 30px;
+}

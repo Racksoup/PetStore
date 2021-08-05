@@ -1,6 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { getItems } from '../../actions/shop';
 import { addToCart, getCurrentProfile } from '../../actions/profile';
+import TwitterIcon from '../../images/TwitterIcon.png';
+import InstagramIcon from '../../images/InstagramIcon.png';
+import PinterestIcon from '../../images/PinterestIcon.png';
+import FacebookIcon from '../../images/FacebookIcon.png';
 
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -146,6 +150,30 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
                 <button className='Button' style={{ width: '80px' }}>
                   Buy Now
                 </button>
+              </div>
+            </div>
+          </div>
+          <div className='SingleItemShareLinks'>
+            <div className='ShareLinks' style={{ marginLeft: 'auto', marginRight: '62px' }}>
+              <div className='ShareLink'>
+                <a href='https://www.facebook.com' target='_blank'>
+                  <img className='Image' src={FacebookIcon} />
+                </a>
+              </div>
+              <div className='ShareLink'>
+                <a href='https://www.instagram.com' target='_blank'>
+                  <img className='Image' src={InstagramIcon} />
+                </a>
+              </div>
+              <div className='ShareLink'>
+                <a href='https://www.twitter.com' target='_blank'>
+                  <img className='Image' src={TwitterIcon} />
+                </a>
+              </div>
+              <div className='ShareLink'>
+                <a href='https://www.pinterest.com' target='_blank'>
+                  <img className='Image' src={PinterestIcon} />
+                </a>
               </div>
             </div>
           </div>

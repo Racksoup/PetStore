@@ -13,23 +13,23 @@ const Footer = (props) => {
         <div className='FooterForm'>
           <h4 className='FooterFormTitle'>Sign up and save</h4>
           <h5 className='FooterFormInfo'>Subscribe for all the best pet news and deals!</h5>
-          <div className='FooterShareLinks'>
-            <div className='FooterShareLink'>
+          <div className='ShareLinks'>
+            <div className='ShareLink'>
               <a href='https://www.facebook.com' target='_blank'>
                 <img className='Image' src={FacebookIcon} />
               </a>
             </div>
-            <div className='FooterShareLink'>
+            <div className='ShareLink'>
               <a href='https://www.instagram.com' target='_blank'>
                 <img className='Image' src={InstagramIcon} />
               </a>
             </div>
-            <div className='FooterShareLink'>
+            <div className='ShareLink'>
               <a href='https://www.twitter.com' target='_blank'>
                 <img className='Image' src={TwitterIcon} />
               </a>
             </div>
-            <div className='FooterShareLink'>
+            <div className='ShareLink'>
               <a href='https://www.pinterest.com' target='_blank'>
                 <img className='Image' src={PinterestIcon} />
               </a>

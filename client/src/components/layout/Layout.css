@@ -22,16 +22,6 @@
 .FooterLinkInfoText {
 }
 
-.FooterShareLinks {
-  display: flex;
-  justify-content: space-around;
-}
-
-.FooterShareLink {
-  width: 30px;
-  height: 30px;
-}
-
 /* Create Blog Post */
 /* Create Blog Post */
 .CreateBlogPost {

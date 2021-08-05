@@ -198,6 +198,7 @@
 
 .SingleItem {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .ItemImageContainer {
@@ -266,6 +267,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.SingleItemShareLinks {
+  display: flex;
+  margin-top: 20px;
 }
 
 /* Browse Items */
