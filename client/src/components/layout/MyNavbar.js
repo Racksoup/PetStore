@@ -10,7 +10,7 @@ import { getItems } from '../../actions/shop';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
   useEffect(() => {
@@ -103,7 +103,10 @@ const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
           <Nav className='align-items-center'>
             {user ? (
               <div>
-                <Navbar.Text style={{ marginRight: '10px' }}>
+                <Link to='/cart' style={{ marginRight: '5px' }}>
+                  <FontAwesomeIcon icon={faShoppingCart} />
+                </Link>
+                <Navbar.Text>
                   <Link to='/dashboard' style={{ color: 'white', fontSize: '20px' }}>
                     Profile
                   </Link>
