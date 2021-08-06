@@ -24,10 +24,11 @@ export const createProfile = (profile) => async (dispatch) => {
   const body = JSON.stringify(profile);
 
   try {
-    await axios.post('/api/profile', body, config);
+    const res = await axios.post('/api/profile', body, config);
 
     dispatch({
       type: CREATE_PROFILE,
+      payload: res.data,
     });
   } catch (err) {
     const errors = err.response.data.errors;

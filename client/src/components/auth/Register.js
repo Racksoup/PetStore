@@ -9,9 +9,10 @@ const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
+    email: '',
   });
 
-  const { username, password } = formData;
+  const { username, password, email } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +20,7 @@ const Register = ({ register, isAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    register(username, password);
+    register(username, password, email);
   };
 
   // Redirect if logged in
@@ -32,6 +33,17 @@ const Register = ({ register, isAuthenticated }) => {
       <section className='LoginForm'>
         <h1 className='LoginTitle'>Register</h1>
         <form onSubmit={(e) => onSubmit(e)}>
+          <div>
+            <h6 className='LoginInputTitle'>Email</h6>
+            <input
+              className='LoginInput'
+              type='email'
+              name='email'
+              value={email}
+              onChange={(e) => onChange(e)}
+              require='true'
+            />
+          </div>
           <div>
             <h6 className='LoginInputTitle'>Username</h6>
             <input

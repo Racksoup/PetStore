@@ -19,6 +19,7 @@ import {
 import setAuthToken from '../utils/setAuthToken';
 
 import axios from 'axios';
+import { createProfile } from './profile';
 
 // Load User
 export const loadUser = () => async (dispatch) => {
@@ -41,7 +42,7 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register User
-export const register = (username, password) => async (dispatch) => {
+export const register = (username, password, email) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -58,6 +59,7 @@ export const register = (username, password) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+    dispatch(createProfile({ email: email }));
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -117,6 +119,7 @@ export const deleteAccount = () => async (dispatch) => {
   if (window.confirm('Are your sure? This can NOT be undone!')) {
     try {
       await axios.delete('/api/users');
+      await axios.delete('/api/profile');
 
       dispatch({ type: ACCOUNT_DELETED });
     } catch (err) {

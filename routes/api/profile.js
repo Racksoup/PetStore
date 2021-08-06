@@ -32,7 +32,7 @@ module.exports = router;
 // @access  Private
 router.post('/', auth, async (req, res) => {
   const { name, email, address } = req.body;
-
+  console.log(req.user);
   const profileFields = {};
   profileFields.user = req.user.id;
   if (name) profileFields.name = name;
@@ -40,18 +40,6 @@ router.post('/', auth, async (req, res) => {
   if (address) profileFields.address = address;
 
   try {
-    let profile = await Profile.findOne({ user: req.user.id });
-
-    //update
-    if (profile) {
-      profile = await Profile.findOneAndUpdate(
-        { user: req.user.id },
-        { $set: profileFields },
-        { new: true }
-      );
-      return res.json(profile);
-    }
-
     //create
     profile = new Profile(profileFields);
     await profile.save();
