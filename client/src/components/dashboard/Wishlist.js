@@ -66,7 +66,7 @@ const Cart = ({
     setCheckout(newCheckout);
   };
 
-  const removeCartItems = () => {
+  const removeWishlistItems = () => {
     let newProfile = {};
     let newItems = items;
     newProfile._id = profile._id;
@@ -97,6 +97,31 @@ const Cart = ({
     removeCartItem(newProfile, newItems);
   };
 
+  const removeSingleWishlistItem = (oldItem) => {
+    let newProfile = {};
+    let newItems = items;
+    newProfile._id = profile._id;
+    newProfile.wishlist = profile.wishlist;
+    newProfile.wishlist = newProfile.wishlist.filter((item) => {
+      if (oldItem._id !== item._id) {
+        return item;
+      }
+    });
+    newItems = newItems.filter((item) => {
+      if (oldItem._id !== item._id) {
+        return item;
+      }
+    });
+
+    const newCheckedItems = checkedItems.filter((checkedItem) => {
+      if (checkedItem._id !== oldItem.id) {
+        return checkedItem;
+      }
+    });
+    setCheckedItems(newCheckedItems);
+    removeCartItem(newProfile, newItems);
+  };
+
   const imageClicked = (item) => {
     setItem(item);
   };
@@ -111,7 +136,7 @@ const Cart = ({
       <div className='Wishlist'>
         <div className='ShoppingCartTitle'>
           <h2>Wishlist</h2>
-          <button onClick={() => removeCartItems()}>Remove Selected</button>
+          <button onClick={() => removeWishlistItems()}>Remove Selected</button>
         </div>
         {profile &&
           checkedItems &&
@@ -133,26 +158,32 @@ const Cart = ({
             if (checkedItemIsPresent) {
               return (
                 <div className='ShoppingCartItem'>
-                  <input
-                    className='ShoppingCartItemCheckBox'
-                    type='checkbox'
-                    checked={currCheckedItem.checked}
-                    onClick={() => onCheck(item)}
-                  />
-                  <div className='ShoppingCartImage' onClick={() => imageClicked(item)}>
-                    <Link to='/item'>
-                      <img
-                        className='Image'
-                        alt={item.name}
-                        src={`api/inventory/image/${item.image_filename}`}
-                      />
-                    </Link>
+                  <div className='ShoppingButtonSeperator'>
+                    <input
+                      className='ShoppingCartItemCheckBox'
+                      type='checkbox'
+                      checked={currCheckedItem.checked}
+                      onClick={() => onCheck(item)}
+                    />
+                    <div className='ShoppingCartImage' onClick={() => imageClicked(item)}>
+                      <Link to='/item'>
+                        <img
+                          className='Image'
+                          alt={item.name}
+                          src={`api/inventory/image/${item.image_filename}`}
+                        />
+                      </Link>
+                    </div>
+                    <div className='ShoppingCartItemInfo'>
+                      <h5>{item.name}</h5>
+                      <h6>${item.price}</h6>
+                      <h6>{item.name}</h6>
+                      <h6>{item.stock}</h6>
+                    </div>
                   </div>
-                  <div className='ShoppingCartItemInfo'>
-                    <h5>{item.name}</h5>
-                    <h6>${item.price}</h6>
-                    <h6>{item.name}</h6>
-                    <h6>{item.stock}</h6>
+                  <div className='ShoppingCartDelete'>
+                    <button>Add To Cart</button>
+                    <button onClick={() => removeSingleWishlistItem(item)}>Delete Item</button>
                   </div>
                 </div>
               );
