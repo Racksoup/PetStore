@@ -37,7 +37,6 @@ const Cart = ({
   const [checkedItems, setCheckedItems] = useState(initCheckedState());
   const [checkout, setCheckout] = useState([]);
   useEffect(() => {
-    getCurrentProfile();
     getAllCartItems();
   }, []);
 

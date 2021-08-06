@@ -130,7 +130,11 @@ export const getAllCartItems = () => async (dispatch) => {
         getRequests = responses.map((response, i) => response.data);
       })
     );
+    console.log(getRequests);
+    getRequests = getRequests.filter((req) => req !== null);
+    console.log(getRequests);
     getRequests.map((req) => (req = req.data));
+    console.log(getRequests);
     dispatch({
       type: SHOP_GOT_ITEMS,
       payload: getRequests,

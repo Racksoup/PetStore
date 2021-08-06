@@ -11,12 +11,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import Alert from 'react-bootstrap/Alert';
 
 const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCart }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
   const [quantity, setQuantity] = useState(1);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertText, setAlertText] = useState('');
 
   useEffect(() => {
     if (profile !== undefined && profile !== null && item !== null && item !== undefined) {
@@ -54,6 +57,11 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
         newProfile.cart = [{ _id: item._id, quantity }];
       }
       addToCart(newProfile);
+      setAlertText('ITEM ADDED TO CART');
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1500);
     }
   };
 
@@ -73,12 +81,27 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
         newProfile.wishlist = [{ _id: item._id }];
       }
       addToCart(newProfile);
+      setAlertText('ITEM ADDED TO WISHLIST');
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1500);
     }
   };
 
   if (item) {
     return (
       <Fragment>
+        {showAlert && (
+          <Alert
+            variant='secondary'
+            style={{ position: 'absolute', width: '400px', left: '40%' }}
+            onClose={() => setShowAlert(false)}
+            dismissible
+          >
+            {alertText}
+          </Alert>
+        )}
         <div className='SingleItemPage'>
           <div className='CategoryButtonBox'>
             <Link to='/browse'>
