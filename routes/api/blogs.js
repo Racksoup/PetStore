@@ -110,16 +110,6 @@ router.delete('/:_id', auth, async (req, res) => {
   }
 });
 
-router.get('/:_id', async (req, res) => {
-  try {
-    const item = await Blogs.findById(req.params._id);
-    res.json(item);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
-
 router.get('/', async (req, res) => {
   try {
     const items = await Blogs.find();
@@ -134,6 +124,16 @@ router.get('/three', async (req, res) => {
   try {
     const items = await Blogs.find().limit(3);
     res.json(items);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.get('/:_id', async (req, res) => {
+  try {
+    const item = await Blogs.findById(req.params._id);
+    res.json(item);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
