@@ -21,8 +21,10 @@ import Returns from './layout/Returns';
 import Shipping from './layout/Shipping';
 import Privacy from './layout/Privacy';
 import Blogs from './layout/Blogs';
-import CreateBlog from './layout/CreateBlog';
+import CreateBlog from './dashboard/CreateBlog';
 import SingleBlog from './layout/SingleBlog';
+import EditBlogs from './dashboard/EditBlogs';
+import EditBlog from './dashboard/EditBlog';
 import spinner from '../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
@@ -63,6 +65,8 @@ const Base = ({ loading }) => {
             <Route exact path='/blogs' component={Blogs} />
             <Route exact path='/create-blog' component={CreateBlog} />
             <Route exact path='/blog' component={SingleBlog} />
+            <Route exact path='/edit-blogs' component={EditBlogs} />
+            <Route exact path='/edit-blog' component={EditBlog} />
           </Switch>
         </Container>
       </section>

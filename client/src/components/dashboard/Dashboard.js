@@ -41,21 +41,20 @@ const Dashboard = ({ profileLoading, isAuthenticated, profile, getCurrentProfile
         </Link>
       </div>
       <div className='AdminGrid'>
-        <div />
         <Link to='/inventory'>
           <button className='AdminButton'>Update Inventory</button>
         </Link>
         <div />
-        <div />
         <Link to='/update-header-images'>
           <button className='AdminButton'>Update Header Images</button>
         </Link>
-        <div />
-        <div />
         <Link to='/create-blog'>
           <button className='AdminButton'>Create Blog Post</button>
         </Link>
         <div />
+        <Link to='/edit-blogs'>
+          <button className='AdminButton'>Edit Blog Posts</button>
+        </Link>
       </div>
     </Fragment>
   );

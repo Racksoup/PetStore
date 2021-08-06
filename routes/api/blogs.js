@@ -76,6 +76,25 @@ router.post('/', [auth, upload.single('file')], async (req, res) => {
   }
 });
 
+router.put('/:_id', auth, async (req, res) => {
+  console.log('hit');
+  const { title, tags, text, image_filename } = req.body;
+  const postItem = {};
+  if (title) postItem.title = title;
+  if (tags) postItem.tags = tags;
+  if (text) postItem.text = text;
+  if (image_filename) postItem.image_filename = image_filename;
+
+  try {
+    const item = await Blogs.findOneAndUpdate({ _id: req.params._id }, postItem);
+    await item.save();
+    res.json(item);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 router.delete('/:_id', auth, async (req, res) => {
   try {
     await Blogs.findOneAndRemove({ _id: req.params._id });
@@ -158,6 +177,22 @@ router.delete('/deleteimage/:filename', async (req, res) => {
     }
   );
   res.json(x);
+});
+
+router.delete('/deleteimage/id/:files_id', async (req, res) => {
+  const x = await gfs.remove(
+    { files_id: req.params.files_id, root: 'blogImages' },
+    (err, GridFSBucket) => {
+      if (err) {
+        return res.status(404).json({ err: err });
+      }
+    }
+  );
+  res.json(x);
+});
+
+router.post('/uploadimage', upload.single('file'), (req, res) => {
+  res.json({ file: req.file });
 });
 
 module.exports = router;

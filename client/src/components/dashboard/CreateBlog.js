@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import './Layout.css';
+import './Dashboard';
 import { createBlogPost } from '../../actions/blogs';
 
 import { connect } from 'react-redux';

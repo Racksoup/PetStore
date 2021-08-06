@@ -21,8 +21,8 @@
 
 .AdminGrid {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 130px 130px 130px;
+  grid-template-columns: 10fr 1fr 10fr;
+  grid-template-rows: 130px 130px;
   grid-gap: 10px;
 }
 
@@ -271,7 +271,6 @@
 
 /* Wishlist */
 /* Wishlist */
-
 .Wishlist {
   width: 100%;
   display: flex;
@@ -279,4 +278,68 @@
   border-style: solid;
   border-radius: 10px;
   overflow: hidden;
+}
+
+/* Create Blog Post */
+/* Create Blog Post */
+.CreateBlogPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.CreateBlogTitle {
+  margin-bottom: 10px;
+}
+
+.CreateBlogForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.EntryContainer {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.EntryTag {
+  width: 0px;
+  margin-right: 100px;
+}
+
+.EntryInput {
+  width: 280px;
+}
+
+/* Update Blog Post */
+/* Update Blog Post */
+.UpdateSingleBlog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.UpdateSingleHeader {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.UpdateBlogForm {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.UpdateSingleBlogInputRow {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.UpdateSingleBlogInput {
+  width: 80%;
 }

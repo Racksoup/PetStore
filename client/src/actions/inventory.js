@@ -80,9 +80,7 @@ export const updateItem = (item, file, id) => async (dispatch) => {
     }
     if (item) {
       const body = JSON.stringify(item);
-      console.log(body);
       const res = await axios.put(`/api/inventory/${id}`, item, config);
-      console.log(res);
       dispatch({
         type: UPDATE_ITEM,
         payload: res.data,

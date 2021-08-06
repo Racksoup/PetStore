@@ -22,39 +22,6 @@
 .FooterLinkInfoText {
 }
 
-/* Create Blog Post */
-/* Create Blog Post */
-.CreateBlogPost {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.CreateBlogTitle {
-  margin-bottom: 10px;
-}
-
-.CreateBlogForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.EntryContainer {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.EntryTag {
-  width: 0px;
-  margin-right: 100px;
-}
-
-.EntryInput {
-  width: 280px;
-}
-
 /* Blogs */
 /* Blogs */
 .BlogsBox {
