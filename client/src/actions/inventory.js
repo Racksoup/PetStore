@@ -12,6 +12,7 @@ import {
   HEADER_IMAGE_CREATED,
   IMAGE_LOADING,
   TOGGLE_ITEM_MODAL,
+  INVENTORY_ITEM_DELETED,
 } from './types';
 
 import axios from 'axios';
@@ -61,7 +62,6 @@ export const updateItem = (item, file, id) => async (dispatch) => {
     },
   };
 
-  console.log(item.sale);
   try {
     const oldItem = await axios.get(`/api/inventory/${id}`);
     if (file !== '' && file !== null && file !== undefined) {
@@ -96,6 +96,19 @@ export const updateItem = (item, file, id) => async (dispatch) => {
     dispatch({
       type: INVENTORY_ERROR,
     });
+  }
+};
+
+export const deleteInventoryItem = (item) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/inventory/${item._id}`);
+    await axios.delete(`api/inventory/deleteimage/${item.image_filename}`);
+    dispatch({
+      type: INVENTORY_ITEM_DELETED,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
   }
 };
 

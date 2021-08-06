@@ -54,7 +54,7 @@ const CreateBlog = ({ createBlogPost }) => {
       {showAlert && (
         <Alert
           variant='secondary'
-          style={{ position: 'fixed', width: '600px', left: '35%' }}
+          style={{ position: 'absolute', width: '600px', left: '35%' }}
           onClose={() => setShowAlert(false)}
           dismissible
         >

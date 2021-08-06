@@ -114,6 +114,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: minmax(0, 1fr);
+  height: 620px;
+  padding-bottom: 100px;
   grid-gap: 75px;
 }
 
@@ -177,7 +179,7 @@
 .DeleteItemButton {
   width: 150px;
   position: absolute;
-  margin-top: 130px;
+  margin-top: 40px;
   margin-left: 180px;
 }
 

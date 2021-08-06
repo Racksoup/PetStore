@@ -1,11 +1,12 @@
-import React, { useState, Fragment } from 'react';
-import { updateItem } from '../../actions/inventory';
+import React, { useState, Fragment, useEffect } from 'react';
+import { updateItem, deleteInventoryItem, setToggle } from '../../actions/inventory';
 import './Inventory.css';
 
 import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const UpdateItem = ({ updateItem, item }) => {
+const UpdateItem = ({ item, updateItem, deleteInventoryItem, setToggle }) => {
   const [newItem, setNewItem] = useState({
     name: '',
     category: '',
@@ -49,112 +50,123 @@ const UpdateItem = ({ updateItem, item }) => {
     updateItem(newItem, newFile, item._id);
   };
 
+  const deleteClick = (item) => {
+    deleteInventoryItem(item);
+    setToggle(0);
+  };
+
   return (
     <Fragment>
-      <div className='UpdateItemGrid'>
-        <div className='UpdateItemBox'>
-          <h4 className='UpdateItemBoxTitle'>Update Item</h4>
-          <form onSubmit={(e) => onSubmit(e)}>
-            <div className='UpdateItemInputFlexBox'>
-              <p className='UpdateItemInputTitle'>Name: </p>
-              <input
-                className='UpdateItemInput'
-                type='text'
-                placeholder={item.name}
-                name='name'
-                value={name}
-                onChange={(e) => onChange(e)}
-              />
-            </div>
-            <div className='UpdateItemInputFlexBox'>
-              <p className='UpdateItemInputTitle'>Category: </p>
-              <input
-                className='UpdateItemInput'
-                type='text'
-                placeholder={item.category}
-                name='category'
-                value={category}
-                onChange={(e) => onChange(e)}
-              />
-            </div>
-            <div className='UpdateItemInputFlexBox'>
-              <p className='UpdateItemInputTitle'>Pet: </p>
-              <input
-                className='UpdateItemInput'
-                type='text'
-                placeholder={item.pet}
-                name='pet'
-                value={pet}
-                onChange={(e) => onChange(e)}
-              />
-            </div>
-            <div className='UpdateItemInputFlexBox'>
-              <p className='UpdateItemInputTitle'>Price: </p>
-              <input
-                className='UpdateItemInput'
-                type='text'
-                placeholder={item.price}
-                name='price'
-                value={price}
-                onChange={(e) => onChange(e)}
-              />
-            </div>
-            <div className='UpdateItemInputFlexBox'>
-              <p className='UpdateItemInputTitle'>Stock: </p>
-              <input
-                className='UpdateItemInput'
-                type='text'
-                placeholder={item.stock}
-                name='stock'
-                value={stock}
-                onChange={(e) => onChange(e)}
-              />
-            </div>
+      {item && (
+        <div className='UpdateItemGrid'>
+          <div className='UpdateItemBox'>
+            <h4 className='UpdateItemBoxTitle'>Update Item</h4>
+            <form onSubmit={(e) => onSubmit(e)}>
+              <div className='UpdateItemInputFlexBox'>
+                <p className='UpdateItemInputTitle'>Name: </p>
+                <input
+                  className='UpdateItemInput'
+                  type='text'
+                  placeholder={item.name}
+                  name='name'
+                  value={name}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+              <div className='UpdateItemInputFlexBox'>
+                <p className='UpdateItemInputTitle'>Category: </p>
+                <input
+                  className='UpdateItemInput'
+                  type='text'
+                  placeholder={item.category}
+                  name='category'
+                  value={category}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+              <div className='UpdateItemInputFlexBox'>
+                <p className='UpdateItemInputTitle'>Pet: </p>
+                <input
+                  className='UpdateItemInput'
+                  type='text'
+                  placeholder={item.pet}
+                  name='pet'
+                  value={pet}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+              <div className='UpdateItemInputFlexBox'>
+                <p className='UpdateItemInputTitle'>Price: </p>
+                <input
+                  className='UpdateItemInput'
+                  type='text'
+                  placeholder={item.price}
+                  name='price'
+                  value={price}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+              <div className='UpdateItemInputFlexBox'>
+                <p className='UpdateItemInputTitle'>Stock: </p>
+                <input
+                  className='UpdateItemInput'
+                  type='text'
+                  placeholder={item.stock}
+                  name='stock'
+                  value={stock}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
 
-            <div className='UpdateItemInputFlexBox'>
-              <p className='UpdateItemInputTitle'>Sale: </p>
-              <input
-                className='UpdateItemCheckbox'
-                type='checkbox'
-                name='sale'
-                onChange={() => onCheck(!sale)}
-              />
-            </div>
+              <div className='UpdateItemInputFlexBox'>
+                <p className='UpdateItemInputTitle'>Sale: </p>
+                <input
+                  className='UpdateItemCheckbox'
+                  type='checkbox'
+                  name='sale'
+                  onChange={() => onCheck(!sale)}
+                />
+              </div>
 
-            <div className='UpdateItemInputFlexBox'>
-              <input
-                className='UpdateFileInput'
-                type='file'
-                name='file'
-                onChange={(e) => onFileChange(e)}
-              />
-            </div>
+              <div className='UpdateItemInputFlexBox'>
+                <input
+                  className='UpdateFileInput'
+                  type='file'
+                  name='file'
+                  onChange={(e) => onFileChange(e)}
+                />
+              </div>
 
-            <div className='UpdateItemInputFlexBox'>
-              <input className='UpdateSubmitButton' type='submit' value='Submit' />
-            </div>
-          </form>
-          <button className='DeleteItemButton'>Delete</button>
+              <div className='UpdateItemInputFlexBox'>
+                <input className='UpdateSubmitButton' type='submit' value='Submit' />
+              </div>
+            </form>
+            <button className='DeleteItemButton' onClick={() => deleteClick(item)}>
+              Delete
+            </button>
+          </div>
+          <div className='UpdateItemBox'>
+            <img
+              style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+              src={`api/inventory/image/${item.image_filename}`}
+              alt='Second slide'
+            />
+          </div>
         </div>
-        <div className='UpdateItemBox'>
-          <img
-            style={{ height: '100%', width: '100%', objectFit: 'cover' }}
-            src={`api/inventory/image/${item.image_filename}`}
-            alt='Second slide'
-          />
-        </div>
-      </div>
+      )}
     </Fragment>
   );
 };
 
 UpdateItem.propTypes = {
-  updateItem: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
+  updateItem: PropTypes.func.isRequired,
+  deleteInventoryItem: PropTypes.func.isRequired,
+  setToggle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   item: state.inventory.item,
 });
 
-export default connect(mapStateToProps, { updateItem })(UpdateItem);
+export default connect(mapStateToProps, { updateItem, deleteInventoryItem, setToggle })(UpdateItem);

@@ -137,8 +137,6 @@ router.delete('/:_id', auth, async (req, res) => {
       if (err) {
         return res.status(404).json({ err: err });
       }
-
-      res.redirect('/');
     });
     res.json({ msg: 'Item Deleted' });
   } catch (err) {

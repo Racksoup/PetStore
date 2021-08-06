@@ -7,10 +7,11 @@ import {
   UPDATE_ITEM,
   TOGGLE,
   TOGGLE_ITEM_MODAL,
+  INVENTORY_ITEM_DELETED,
 } from '../actions/types';
 
 const initialState = {
-  item: {},
+  item: null,
   items: [],
   categories: [],
   toggle: 0,
@@ -21,6 +22,12 @@ export default function inventory(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case INVENTORY_ITEM_DELETED:
+      return {
+        ...state,
+        items: state.items.filter((item) => item._id !== payload._id),
+        item: null,
+      };
     case TOGGLE_ITEM_MODAL:
       return {
         ...state,
