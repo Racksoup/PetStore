@@ -144,7 +144,6 @@ const Cart = ({
     newCheckout.map((item) => {
       return (item.totalPrice = parseInt(item.price) * item.quantity);
     });
-    console.log(newCheckout);
     const price = newCheckout.reduce((total, item) => total + item.totalPrice, 0);
     return price;
   };

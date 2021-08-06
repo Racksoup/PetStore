@@ -124,8 +124,14 @@
 
 /* User */
 /* User */
+.UserBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .UserTitleBox {
   display: flex;
+  width: 100%;
 }
 
 .UserBackButton {
@@ -167,6 +173,10 @@
 .UserInfoTag {
   margin-right: 120px;
   width: 0px;
+}
+
+.UserDeleteButton {
+  margin-top: 10px;
 }
 
 /* Update User */

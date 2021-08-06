@@ -2,7 +2,12 @@ import React, { Fragment, useEffect } from 'react';
 import './Dashboard.css';
 import UpdateUser from './UpdateUser';
 import LoginUpdateUser from './LoginUpdateUser';
-import { setToggleUpdateUserLogin, setToggleUserModal, logout } from '../../actions/auth';
+import {
+  setToggleUpdateUserLogin,
+  setToggleUserModal,
+  logout,
+  deleteAccount,
+} from '../../actions/auth';
 
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
@@ -17,6 +22,7 @@ const User = ({
   logout,
   isAuthenticated,
   loadingAuth,
+  deleteAccount,
 }) => {
   useEffect(() => {
     if (isAuthenticated) {
@@ -82,21 +88,26 @@ const User = ({
       )}
       {UpdateUserLoginModal()}
       {UpdateUserModal()}
-      <div className='UserTitleBox'>
-        <Link to='/dashboard'>
-          <button className='UserBackButton'>Back</button>
-        </Link>
-        <h3 className='UserTitle'>User</h3>
-        <button className='UpdateUserButton' onClick={() => updateUserButton()}>
-          Update User
-        </button>
-      </div>
-      <div className='UserInfoBox'>
-        <h2 className='UserInfoTitle'>Info</h2>
-        <div className='UserInfoItem'>
-          <p className='UserInfoTag'>Name:</p>
-          <p className='UserInfoValue'>{user.username}</p>
+      <div className='UserBox'>
+        <div className='UserTitleBox'>
+          <Link to='/dashboard'>
+            <button className='UserBackButton'>Back</button>
+          </Link>
+          <h3 className='UserTitle'>User</h3>
+          <button className='UpdateUserButton' onClick={() => updateUserButton()}>
+            Update User
+          </button>
         </div>
+        <div className='UserInfoBox'>
+          <h2 className='UserInfoTitle'>Info</h2>
+          <div className='UserInfoItem'>
+            <p className='UserInfoTag'>Name:</p>
+            <p className='UserInfoValue'>{user.username}</p>
+          </div>
+        </div>
+        <button className='UserDeleteButton' onClick={() => deleteAccount()}>
+          Delete User
+        </button>
       </div>
     </Fragment>
   );
@@ -111,6 +122,7 @@ User.propTypes = {
   setToggleUpdateUserLogin: PropTypes.func.isRequired,
   setToggleUserModal: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -121,6 +133,9 @@ const mapStateToProps = (state) => ({
   loadingAuth: state.auth.loadingAuth,
 });
 
-export default connect(mapStateToProps, { setToggleUpdateUserLogin, setToggleUserModal, logout })(
-  User
-);
+export default connect(mapStateToProps, {
+  setToggleUpdateUserLogin,
+  setToggleUserModal,
+  logout,
+  deleteAccount,
+})(User);
