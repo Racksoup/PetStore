@@ -122,6 +122,33 @@ const Cart = ({
     removeCartItem(newProfile, newItems);
   };
 
+  const addSingleWishlistItem = (oldItem) => {
+    let newProfile = {};
+    let newItems = items;
+    newProfile._id = profile._id;
+    newProfile.wishlist = profile.wishlist;
+    newProfile.cart = profile.cart;
+    newProfile.cart.push({ _id: oldItem._id, quantity: 1 });
+    newProfile.wishlist = newProfile.wishlist.filter((item) => {
+      if (oldItem._id !== item._id) {
+        return item;
+      }
+    });
+    newItems = newItems.filter((item) => {
+      if (oldItem._id !== item._id) {
+        return item;
+      }
+    });
+
+    const newCheckedItems = checkedItems.filter((checkedItem) => {
+      if (checkedItem._id !== oldItem.id) {
+        return checkedItem;
+      }
+    });
+    setCheckedItems(newCheckedItems);
+    removeCartItem(newProfile, newItems);
+  };
+
   const imageClicked = (item) => {
     setItem(item);
   };
@@ -182,7 +209,7 @@ const Cart = ({
                     </div>
                   </div>
                   <div className='ShoppingCartDelete'>
-                    <button>Add To Cart</button>
+                    <button onClick={() => addSingleWishlistItem(item)}>Add To Cart</button>
                     <button onClick={() => removeSingleWishlistItem(item)}>Delete Item</button>
                   </div>
                 </div>
