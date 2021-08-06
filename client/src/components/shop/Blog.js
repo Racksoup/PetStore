@@ -24,6 +24,7 @@ const Blog = ({ blogs, setBlog, getThreeBlogs }) => {
           </div>
           <div className='AllBlogsContainer'>
             {blogs.map((blog) => {
+              let currentDate = new Date(blog.date);
               return (
                 <Link to='/blog'>
                   <div className='BlogContainer' onClick={() => setBlog(blog)}>
@@ -34,7 +35,7 @@ const Blog = ({ blogs, setBlog, getThreeBlogs }) => {
                         alt={blog.title}
                       />
                     </div>
-                    <h6 className='BlogDate'>{blog.date}</h6>
+                    <h6 className='BlogDate'>{currentDate.toDateString()}</h6>
                     <h4 className='BlogTitle'>{blog.title}</h4>
                   </div>
                 </Link>
