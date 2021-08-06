@@ -140,7 +140,13 @@ const Cart = ({
   };
 
   const burger = () => {
-    return checkout.reduce((total, item) => total + item.price, 0);
+    const newCheckout = checkout;
+    newCheckout.map((item) => {
+      return (item.totalPrice = parseInt(item.price) * item.quantity);
+    });
+    console.log(newCheckout);
+    const price = newCheckout.reduce((total, item) => total + item.totalPrice, 0);
+    return price;
   };
 
   if (!isAuthenticated) return <Redirect to='/login' />;
