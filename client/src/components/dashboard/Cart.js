@@ -38,6 +38,7 @@ const Cart = ({
   const [checkout, setCheckout] = useState([]);
   useEffect(() => {
     getAllCartItems();
+    getCurrentProfile();
   }, []);
 
   useEffect(() => {
@@ -105,7 +106,31 @@ const Cart = ({
         return checkedItem;
       }
     });
+    setCheckedItems(newCheckedItems);
+    removeCartItem(newProfile, newItems);
+  };
 
+  const removeSingleCartItem = (oldItem) => {
+    let newProfile = {};
+    let newItems = items;
+    newProfile._id = profile._id;
+    newProfile.cart = profile.cart;
+    newProfile.cart = newProfile.cart.filter((item) => {
+      if (oldItem._id !== item._id) {
+        return item;
+      }
+    });
+    newItems = newItems.filter((item) => {
+      if (oldItem._id !== item._id) {
+        return item;
+      }
+    });
+
+    const newCheckedItems = checkedItems.filter((checkedItem) => {
+      if (checkedItem._id !== oldItem.id) {
+        return checkedItem;
+      }
+    });
     setCheckedItems(newCheckedItems);
     removeCartItem(newProfile, newItems);
   };
@@ -150,34 +175,40 @@ const Cart = ({
             if (checkedItemIsPresent) {
               return (
                 <div className='ShoppingCartItem'>
-                  <input
-                    className='ShoppingCartItemCheckBox'
-                    type='checkbox'
-                    checked={currCheckedItem.checked}
-                    onClick={() => onCheck(item)}
-                  />
-                  <div className='ShoppingCartImage' onClick={() => imageClicked(item)}>
-                    <Link to='/item'>
-                      <img
-                        className='Image'
-                        alt={item.name}
-                        src={`api/inventory/image/${item.image_filename}`}
-                      />
-                    </Link>
-                  </div>
-                  <div className='ShoppingCartItemInfo'>
-                    <h5>{item.name}</h5>
-                    <h6>${item.price}</h6>
-                    <h6>{item.name}</h6>
-                    <h6>{item.stock}</h6>
-                    <h6>{currCartItem.quantity}</h6>
+                  <div className='ShoppingButtonSeperator'>
                     <input
-                      type='number'
-                      id={item._id}
-                      value={currCartItem.quantity}
-                      onChange={(e) => updateQuantity(e, item)}
+                      className='ShoppingCartItemCheckBox'
+                      type='checkbox'
+                      checked={currCheckedItem.checked}
+                      onClick={() => onCheck(item)}
                     />
+                    <div className='ShoppingCartImage' onClick={() => imageClicked(item)}>
+                      <Link to='/item'>
+                        <img
+                          className='Image'
+                          alt={item.name}
+                          src={`api/inventory/image/${item.image_filename}`}
+                        />
+                      </Link>
+                    </div>
+                    <div className='ShoppingCartItemInfo'>
+                      <h5>{item.name}</h5>
+                      <h6>${item.price}</h6>
+                      <h6>{item.name}</h6>
+                      <h6>{item.stock}</h6>
+                      <h6>{currCartItem.quantity}</h6>
+
+                      <input
+                        type='number'
+                        id={item._id}
+                        value={currCartItem.quantity}
+                        onChange={(e) => updateQuantity(e, item)}
+                      />
+                    </div>
                   </div>
+                  <button className='ShoppingCartDelete' onClick={() => removeSingleCartItem(item)}>
+                    Delete Item
+                  </button>
                 </div>
               );
             }
