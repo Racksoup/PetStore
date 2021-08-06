@@ -4,6 +4,7 @@ import { createBlogPost } from '../../actions/blogs';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/alert';
 
 const CreateBlog = ({ createBlogPost }) => {
   const [newBlog, setNewBlog] = useState({
@@ -13,6 +14,7 @@ const CreateBlog = ({ createBlogPost }) => {
   });
   const [newFile, setNewFile] = useState('');
   const [tagsHolder, setTagsHolder] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
   const { title, tags, text } = newBlog;
 
@@ -39,11 +41,26 @@ const CreateBlog = ({ createBlogPost }) => {
 
     if (title !== '' && text !== '' && newFile !== '' && tags) {
       createBlogPost(newBlog, newFile);
+    } else {
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2000);
     }
   };
 
   return (
     <Fragment>
+      {showAlert && (
+        <Alert
+          variant='secondary'
+          style={{ position: 'fixed', width: '600px', left: '35%' }}
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          Please fill out all fields
+        </Alert>
+      )}
       <div className='CreateBlogPost'>
         <h1 className='CreateBlogTitle'>Create Blog Post</h1>
         <form className='CreateBlogForm' onSubmit={(e) => onSubmit(e)}>
