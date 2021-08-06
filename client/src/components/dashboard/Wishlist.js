@@ -97,6 +97,39 @@ const Cart = ({
     removeCartItem(newProfile, newItems);
   };
 
+  const addWishlistItems = () => {
+    let newProfile = {};
+    let newItems = items;
+    newProfile._id = profile._id;
+    newProfile.wishlist = profile.wishlist;
+    newProfile.cart = profile.cart;
+
+    checkedItems.map((checkedItem) => {
+      if (checkedItem.checked) {
+        newProfile.cart.push({ _id: checkedItem._id, quantity: 1 });
+        newProfile.wishlist = newProfile.wishlist.filter((item) => {
+          if (checkedItem._id !== item._id) {
+            return item;
+          }
+        });
+        newItems = newItems.filter((item) => {
+          if (checkedItem._id !== item._id) {
+            return item;
+          }
+        });
+      }
+    });
+
+    const newCheckedItems = checkedItems.filter((checkedItem) => {
+      if (checkedItem.checked !== true) {
+        return checkedItem;
+      }
+    });
+
+    setCheckedItems(newCheckedItems);
+    removeCartItem(newProfile, newItems);
+  };
+
   const removeSingleWishlistItem = (oldItem) => {
     let newProfile = {};
     let newItems = items;
@@ -163,7 +196,10 @@ const Cart = ({
       <div className='Wishlist'>
         <div className='ShoppingCartTitle'>
           <h2>Wishlist</h2>
-          <button onClick={() => removeWishlistItems()}>Remove Selected</button>
+          <div>
+            <button onClick={() => addWishlistItems()}>Add Selected To Cart</button>
+            <button onClick={() => removeWishlistItems()}>Remove Selected</button>
+          </div>
         </div>
         {profile &&
           checkedItems &&
