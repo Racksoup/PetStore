@@ -15,6 +15,22 @@ import {
 
 import axios from 'axios';
 
+export const getAllItems = () => async (dispatch) => {
+  console.log('hit');
+  try {
+    const items = await axios.get('/api/inventory');
+    dispatch({
+      type: SHOP_GOT_ITEMS,
+      payload: items.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: SHOP_INVENTORY_ERROR,
+    });
+  }
+};
+
 export const getPetLists = () => async (dispatch) => {
   try {
     const pets = ['Dog', 'Cat', 'Bird', 'Aquarium', 'Small', 'Reptile'];
@@ -206,5 +222,12 @@ export const setItem = (item) => (dispatch) => {
   dispatch({
     type: SET_ITEM,
     payload: item,
+  });
+};
+
+export const setItems = (items) => (dispatch) => {
+  dispatch({
+    type: SHOP_GOT_ITEMS,
+    payload: items,
   });
 };

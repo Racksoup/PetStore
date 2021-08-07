@@ -145,6 +145,16 @@ router.delete('/:_id', auth, async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const items = await Inventory.find();
+    res.json(items);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   GET api/inventory/name
 // @desc    Get one by Name
 // @access  Public

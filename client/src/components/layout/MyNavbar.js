@@ -5,30 +5,56 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import { getCategories } from '../../actions/inventory';
-import { getItems } from '../../actions/shop';
+import { getItems, getAllItems, setItems } from '../../actions/shop';
 
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
+const MyNavbar = ({
+  logout,
+  getItems,
+  getCategories,
+  categories,
+  user,
+  getAllItems,
+  items,
+  setItems,
+}) => {
   useEffect(() => {
     getCategories();
-  }, [getCategories]);
+    getAllItems();
+  }, [getCategories, getAllItems]);
   const [search, setSearch] = useState('');
   const [hamburgerClick, setHamburgerClick] = useState(false);
+  const [searchList, setSearchList] = useState();
 
   const onSearchChange = (e) => {
+    const filtered = items.filter((item) => {
+      return item.name.toLowerCase().includes(search.toLowerCase());
+    });
     setSearch(e.target.value);
+    setSearchList(filtered);
+    console.log(searchList);
   };
 
   const onSearchClick = () => {
+    let isCategory = false;
     categories.map((category) => {
+      if (category.toLowerCase() === search.toLowerCase()) {
+        const caps = search.charAt(0).toUpperCase() + search.slice(1);
+        getItems(caps);
+        isCategory = true;
+      }
       if (category === search) {
         getItems(search);
+        isCategory = true;
       }
     });
+    if (!isCategory) {
+      setItems(searchList);
+    }
   };
 
   const onDropdownClick = (e, category) => {
@@ -95,8 +121,10 @@ const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
             autoComplete='off'
             onChange={(e) => onSearchChange(e)}
           />
-          <button className='SearchButton' type='submit' onClick={() => onSearchClick()}>
-            <FontAwesomeIcon icon={faSearch} />
+          <button className='SearchButton' onClick={() => onSearchClick()}>
+            <Link to='/browse'>
+              <FontAwesomeIcon icon={faSearch} />
+            </Link>
           </button>
         </div>
         <div className='SideElementContainer'>
@@ -145,14 +173,20 @@ const MyNavbar = ({ logout, getItems, getCategories, categories, user }) => {
 MyNavbar.propTypes = {
   categories: PropTypes.array,
   user: PropTypes.bool,
+  items: PropTypes.array,
   logout: PropTypes.func.isRequired,
   getItems: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
+  getAllItems: PropTypes.func.isRequired,
+  setItems: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   categories: state.inventory.categories,
   user: state.auth.user,
+  items: state.shop.items,
 });
 
-export default connect(mapStateToProps, { logout, getItems, getCategories })(MyNavbar);
+export default connect(mapStateToProps, { logout, getItems, getCategories, getAllItems, setItems })(
+  MyNavbar
+);

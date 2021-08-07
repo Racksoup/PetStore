@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 
 const BrowseItems = ({ items, setItem }) => {
   if (items.length === 0) {
-    return <img src={spinner} className='center' alt='loading' />;
+    return <h5>No items found</h5>;
+    //return <img src={spinner} className='center' alt='loading' />;
   }
   return (
     <div className='BrowseItemsContainer'>
