@@ -15,6 +15,9 @@ import {
   UPDATE_USER_FAILED,
   USER_UPDATED,
   SET_LOADING,
+  ADMIN_LOADED,
+  ADMIN_AUTH_ERROR,
+  ADMIN_LOGIN_SUCCESS,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -37,6 +40,26 @@ export const loadUser = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,
+    });
+  }
+};
+
+// Load Admin
+export const loadAdmin = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.get('/api/auth/admin');
+
+    dispatch({
+      type: ADMIN_LOADED,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ADMIN_AUTH_ERROR,
     });
   }
 };
@@ -97,6 +120,40 @@ export const login = (username, password) => async (dispatch) => {
     });
 
     dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({ type: LOGIN_FAIL });
+  }
+};
+
+// Admin Login
+export const adminLogin = (username, password) => async (dispatch) => {
+  dispatch({
+    type: SET_LOADING,
+    payload: true,
+  });
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ username, password });
+
+  try {
+    const res = await axios.post('/api/auth/admin', body, config);
+
+    dispatch({
+      type: ADMIN_LOGIN_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(loadAdmin());
   } catch (err) {
     const errors = err.response.data.errors;
 

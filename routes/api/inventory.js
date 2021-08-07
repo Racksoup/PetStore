@@ -1,5 +1,5 @@
 const Inventory = require('../../models/Inventory');
-const auth = require('../../middleware/auth');
+const adminAuth = require('../../middleware/adminAuth');
 
 const express = require('express');
 const router = express.Router();
@@ -55,7 +55,7 @@ const upload = multer({ storage });
 // @route   POST api/inventory
 // @desc    Create Inventory item
 // @access  Private
-router.post('/', [auth, upload.single('file')], async (req, res) => {
+router.post('/', [adminAuth, upload.single('file')], async (req, res) => {
   const { category, pet, price, name, stock, sale } = req.body;
 
   const postItem = {};
@@ -82,7 +82,7 @@ router.post('/', [auth, upload.single('file')], async (req, res) => {
 // @route   PUT api/inventory/item
 // @desc    Update Inventory Item by Name
 // @access  Private
-router.put('/item', auth, async (req, res) => {
+router.put('/item', adminAuth, async (req, res) => {
   const { category, pet, price, name, stock, sale, image_filename } = req.body;
   const postItem = {};
   if (category) postItem.category = category;
@@ -106,7 +106,7 @@ router.put('/item', auth, async (req, res) => {
 // @route   PUT api/inventory/:_id
 // @desc    Update Inventory Item by _id
 // @access  Private
-router.put('/:_id', auth, async (req, res) => {
+router.put('/:_id', adminAuth, async (req, res) => {
   const { category, pet, price, name, stock, sale, image_filename } = req.body;
   const postItem = {};
   if (category) postItem.category = category;
@@ -130,7 +130,7 @@ router.put('/:_id', auth, async (req, res) => {
 // @route   DELETE api/inventory/:_id
 // @desc    Delete Inventory Item
 // @access  Private
-router.delete('/:_id', auth, async (req, res) => {
+router.delete('/:_id', adminAuth, async (req, res) => {
   try {
     await Inventory.findOneAndRemove({ _id: req.params._id });
     gfs.remove({ _id: req.params._id, root: 'merchandise' }, (err, GridFSBucket) => {
@@ -266,7 +266,7 @@ router.get('/image/:filename', async (req, res) => {
 
 // @route DELETE /delete-image/:filename
 // @desc  Delete image
-router.delete('/deleteimage/:filename', async (req, res) => {
+router.delete('/deleteimage/:filename', adminAuth, async (req, res) => {
   const x = await gfs.remove(
     { filename: req.params.filename, root: 'merchandise' },
     (err, GridFSBucket) => {
@@ -280,7 +280,7 @@ router.delete('/deleteimage/:filename', async (req, res) => {
 
 // @route POST /upload-image
 // @desc  Uploads file to DB
-router.post('/uploadimage', upload.single('file'), (req, res) => {
+router.post('/uploadimage', adminAuth, upload.single('file'), (req, res) => {
   res.json({ file: req.file });
 });
 

@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import '../App.css';
+import { loadUser, loadAdmin } from '../actions/auth';
 import MyNavbar from './layout/MyNavbar';
 import Footer from './layout/Footer';
 import Login from './auth/Login';
@@ -25,6 +26,8 @@ import CreateBlog from './dashboard/CreateBlog';
 import SingleBlog from './layout/SingleBlog';
 import EditBlogs from './dashboard/EditBlogs';
 import EditBlog from './dashboard/EditBlog';
+import AdminDashboard from './dashboard/AdminDashboard';
+import AdminLogin from './auth/AdminLogin';
 import spinner from '../images/Spinner.gif';
 
 import PropTypes from 'prop-types';
@@ -33,7 +36,15 @@ import { Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/container';
 
-const Base = ({ loading }) => {
+const Base = ({ loading, user, isUser, loadUser, loadAdmin }) => {
+  useEffect(() => {
+    if (isUser) loadUser();
+  }, []);
+
+  useEffect(() => {
+    if (!isUser) loadAdmin();
+  }, []);
+
   if (loading) {
     return <img src={spinner} className='center' alt='loading' />;
   }
@@ -48,6 +59,7 @@ const Base = ({ loading }) => {
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/admin-dashboard' component={AdminDashboard} />
             <Route exact path='/inventory' component={Inventory} />
             <Route exact path='/create-item' component={CreateItem} />
             <Route exact path='/update-header-images' component={UpdateHeaderImages} />
@@ -67,6 +79,7 @@ const Base = ({ loading }) => {
             <Route exact path='/blog' component={SingleBlog} />
             <Route exact path='/edit-blogs' component={EditBlogs} />
             <Route exact path='/edit-blog' component={EditBlog} />
+            <Route exact path='/admin-login' component={AdminLogin} />
           </Switch>
         </Container>
       </section>
@@ -77,10 +90,16 @@ const Base = ({ loading }) => {
 
 Base.propTypes = {
   loading: PropTypes.bool,
+  user: PropTypes.object,
+  isUser: PropTypes.bool,
+  loadUser: PropTypes.func.isRequired,
+  loadAdmin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   loading: state.auth.loading,
+  user: state.auth.user,
+  isUser: state.auth.user,
 });
 
-export default connect(mapStateToProps, {})(Base);
+export default connect(mapStateToProps, { loadUser, loadAdmin })(Base);

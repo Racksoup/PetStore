@@ -8,12 +8,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
-const Dashboard = ({ profileLoading, isAuthenticated, profile, getCurrentProfile }) => {
+const Dashboard = ({ user, profileLoading, isAuthenticated, getCurrentProfile }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  if (!isAuthenticated) {
+  if (user) {
+    if ('master' in user) {
+      if (user.master) {
+        return <Redirect to='/admin-dashboard' />;
+      }
+    }
+  }
+
+  if (!user && !isAuthenticated) {
     return <Redirect to='/' />;
   }
 
@@ -40,22 +48,6 @@ const Dashboard = ({ profileLoading, isAuthenticated, profile, getCurrentProfile
           <button className='ProfileButton'>Cart</button>
         </Link>
       </div>
-      <div className='AdminGrid'>
-        <Link to='/inventory'>
-          <button className='AdminButton'>Update Inventory</button>
-        </Link>
-        <div />
-        <Link to='/update-header-images'>
-          <button className='AdminButton'>Update Header Images</button>
-        </Link>
-        <Link to='/create-blog'>
-          <button className='AdminButton'>Create Blog Post</button>
-        </Link>
-        <div />
-        <Link to='/edit-blogs'>
-          <button className='AdminButton'>Edit Blog Posts</button>
-        </Link>
-      </div>
     </Fragment>
   );
 };
@@ -64,7 +56,6 @@ Dashboard.propTypes = {
   profileLoading: PropTypes.bool,
   deleteAccount: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  profile: PropTypes.object,
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
 };
@@ -72,7 +63,7 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
   profileLoading: state.profile.profileLoading,
   isAuthenticated: state.auth.isAuthenticated,
-  profile: state.profile.profile,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { deleteAccount, createProfile, getCurrentProfile })(

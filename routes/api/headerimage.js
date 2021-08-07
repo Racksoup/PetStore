@@ -1,4 +1,5 @@
 const HeaderImage = require('../../models/HeaderImage');
+const adminAuth = require('../../middleware/adminAuth');
 
 const express = require('express');
 const router = express.Router();
@@ -52,7 +53,7 @@ const upload = multer({ storage });
 
 // @route POST /upload
 // @desc  Uploads file to DB
-router.post('/upload', upload.single('file'), (req, res) => {
+router.post('/upload', adminAuth, upload.single('file'), (req, res) => {
   res.json({ file: req.file });
   //res.redirect('/');
 });
@@ -99,7 +100,7 @@ router.get('/image/:filename', (req, res) => {
 
 // @route DELETE /files/:filename
 // @desc  Delete file
-router.delete('/files/:filename', (req, res) => {
+router.delete('/files/:filename', adminAuth, (req, res) => {
   gfs.remove({ filename: req.params.filename, root: 'uploads' }, (err, gridStore) => {
     if (err) {
       return res.status(404).json({ err: err });

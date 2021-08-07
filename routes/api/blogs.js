@@ -1,5 +1,5 @@
 const Blogs = require('../../models/Blogs');
-const auth = require('../../middleware/auth');
+const adminAuth = require('../../middleware/adminAuth');
 
 const express = require('express');
 const router = express.Router();
@@ -55,7 +55,7 @@ const upload = multer({ storage });
 // DATABASE STORAGE METHOD
 // ========================
 
-router.post('/', [auth, upload.single('file')], async (req, res) => {
+router.post('/', [adminAuth, upload.single('file')], async (req, res) => {
   const { title, tags, text } = req.body;
 
   const postItem = {};
@@ -76,7 +76,7 @@ router.post('/', [auth, upload.single('file')], async (req, res) => {
   }
 });
 
-router.put('/:_id', auth, async (req, res) => {
+router.put('/:_id', adminAuth, async (req, res) => {
   console.log('hit');
   const { title, tags, text, image_filename } = req.body;
   const postItem = {};
@@ -95,7 +95,7 @@ router.put('/:_id', auth, async (req, res) => {
   }
 });
 
-router.delete('/:_id', auth, async (req, res) => {
+router.delete('/:_id', adminAuth, async (req, res) => {
   try {
     await Blogs.findOneAndRemove({ _id: req.params._id });
     gfs.remove({ _id: req.params._id, root: 'blogImages' }, (err, GridFSBucket) => {
@@ -167,7 +167,7 @@ router.get('/image/:filename', async (req, res) => {
 
 // @route DELETE /delete-image/:filename
 // @desc  Delete image
-router.delete('/deleteimage/:filename', async (req, res) => {
+router.delete('/deleteimage/:filename', adminAuth, async (req, res) => {
   const x = await gfs.remove(
     { filename: req.params.filename, root: 'blogImages' },
     (err, GridFSBucket) => {
@@ -179,7 +179,7 @@ router.delete('/deleteimage/:filename', async (req, res) => {
   res.json(x);
 });
 
-router.delete('/deleteimage/id/:files_id', async (req, res) => {
+router.delete('/deleteimage/id/:files_id', adminAuth, async (req, res) => {
   const x = await gfs.remove(
     { files_id: req.params.files_id, root: 'blogImages' },
     (err, GridFSBucket) => {
@@ -191,7 +191,7 @@ router.delete('/deleteimage/id/:files_id', async (req, res) => {
   res.json(x);
 });
 
-router.post('/uploadimage', upload.single('file'), (req, res) => {
+router.post('/uploadimage', [adminAuth, upload.single('file')], (req, res) => {
   res.json({ file: req.file });
 });
 

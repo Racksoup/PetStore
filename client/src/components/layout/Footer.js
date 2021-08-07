@@ -52,6 +52,9 @@ const Footer = (props) => {
           <Link to='/blogs' className='FooterLink'>
             <p>Blog</p>
           </Link>
+          <Link to='/admin-login' className='FooterLink'>
+            <p>Admin</p>
+          </Link>
         </div>
       </div>
     </Fragment>

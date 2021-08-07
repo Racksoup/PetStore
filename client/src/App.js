@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import setAuthToken from './utils/setAuthToken';
 import store from './store';
-import { loadUser } from './actions/auth';
 import Base from './components/Base';
 
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -13,10 +11,6 @@ if (localStorage.token) {
 }
 
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
-
   return (
     <Provider store={store}>
       <Router>

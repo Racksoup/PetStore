@@ -13,6 +13,9 @@ import {
   USER_UPDATED,
   UPDATE_USER_FAILED,
   SET_LOADING,
+  ADMIN_LOADED,
+  ADMIN_AUTH_ERROR,
+  ADMIN_LOGIN_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -24,6 +27,7 @@ const initialState = {
   toggleUpdateUserLogin: false,
   toggleUserModal: false,
   loadingFailed: false,
+  isUser: true,
 };
 
 export default function auth(state = initialState, action) {
@@ -53,9 +57,19 @@ export default function auth(state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         user: payload,
+        isUser: true,
+      };
+    case ADMIN_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
+        isUser: false,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
+      console.log(payload);
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -64,6 +78,19 @@ export default function auth(state = initialState, action) {
         loading: false,
         loadingAuth: false,
         loadingFailed: false,
+        isUser: true,
+      };
+    case ADMIN_LOGIN_SUCCESS:
+      console.log(payload);
+      localStorage.setItem('token', payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false,
+        loadingAuth: false,
+        loadingFailed: false,
+        isUser: false,
       };
     case LOGIN_FAIL:
       localStorage.removeItem('token');
@@ -75,7 +102,7 @@ export default function auth(state = initialState, action) {
         loadingAuth: false,
         loadingFailed: true,
       };
-    case AUTH_ERROR:
+    case ADMIN_AUTH_ERROR:
     case REGISTER_FAIL:
     case LOGOUT:
     case ACCOUNT_DELETED:
@@ -87,6 +114,13 @@ export default function auth(state = initialState, action) {
         loading: false,
         loadingAuth: false,
       };
+    case AUTH_ERROR:
+      return {
+        ...state,
+        loading: false,
+        loadingAuth: false,
+      };
+
     case UPDATE_USER_FAILED:
     case DELETE_FAIL:
     default:
