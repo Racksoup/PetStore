@@ -49,7 +49,6 @@ export const updateBlog = (item, file, id) => async (dispatch) => {
       'Content-Type': 'application/json',
     },
   };
-  console.log('hit');
   try {
     const oldItem = await axios.get(`/api/blogs/${id}`);
     if (file !== '' && file !== null && file !== undefined) {

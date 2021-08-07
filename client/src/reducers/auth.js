@@ -65,9 +65,18 @@ export default function auth(state = initialState, action) {
         loadingAuth: false,
         loadingFailed: false,
       };
+    case LOGIN_FAIL:
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        loadingAuth: false,
+        loadingFailed: true,
+      };
     case AUTH_ERROR:
     case REGISTER_FAIL:
-    case LOGIN_FAIL:
     case LOGOUT:
     case ACCOUNT_DELETED:
       localStorage.removeItem('token');
@@ -77,7 +86,6 @@ export default function auth(state = initialState, action) {
         isAuthenticated: false,
         loading: false,
         loadingAuth: false,
-        loadingFailed: true,
       };
     case UPDATE_USER_FAILED:
     case DELETE_FAIL:

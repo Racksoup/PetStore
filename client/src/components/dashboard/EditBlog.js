@@ -4,6 +4,7 @@ import { updateBlog, deleteBlog } from '../../actions/blogs';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 
 const EditBlog = ({ blog, updateBlog, deleteBlog }) => {
   const [newBlog, setNewBlog] = useState({
@@ -14,6 +15,7 @@ const EditBlog = ({ blog, updateBlog, deleteBlog }) => {
   });
   const [newFile, setNewFile] = useState('');
   const [tagsHolder, setTagsHolder] = useState(blog.tags.join(' '));
+  const [showAlert, setShowAlert] = useState(false);
 
   const { title, tags, text } = newBlog;
 
@@ -34,10 +36,24 @@ const EditBlog = ({ blog, updateBlog, deleteBlog }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     updateBlog(newBlog, newFile, blog._id);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 1500);
   };
 
   return (
     <Fragment>
+      {showAlert && (
+        <Alert
+          variant='secondary'
+          style={{ position: 'absolute', width: '400px', left: '40%' }}
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          BLOG UPDATED
+        </Alert>
+      )}
       {blog && (
         <div className='UpdateSingleBlog'>
           <div className='UpdateSingleHeader'>
