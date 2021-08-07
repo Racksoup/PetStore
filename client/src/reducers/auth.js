@@ -23,6 +23,7 @@ const initialState = {
   user: null,
   toggleUpdateUserLogin: false,
   toggleUserModal: false,
+  loadingFailed: false,
 };
 
 export default function auth(state = initialState, action) {
@@ -33,6 +34,7 @@ export default function auth(state = initialState, action) {
       return {
         ...state,
         loadingAuth: payload,
+        loadingFailed: false,
       };
     case TOGGLE_USER_MODAL:
       return {
@@ -61,6 +63,7 @@ export default function auth(state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         loadingAuth: false,
+        loadingFailed: false,
       };
     case AUTH_ERROR:
     case REGISTER_FAIL:
@@ -74,6 +77,7 @@ export default function auth(state = initialState, action) {
         isAuthenticated: false,
         loading: false,
         loadingAuth: false,
+        loadingFailed: true,
       };
     case UPDATE_USER_FAILED:
     case DELETE_FAIL:

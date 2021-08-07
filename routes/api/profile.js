@@ -32,7 +32,6 @@ module.exports = router;
 // @access  Private
 router.post('/', auth, async (req, res) => {
   const { name, email, address } = req.body;
-  console.log(req.user);
   const profileFields = {};
   profileFields.user = req.user.id;
   if (name) profileFields.name = name;
