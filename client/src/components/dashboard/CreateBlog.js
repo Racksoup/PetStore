@@ -3,6 +3,7 @@ import './Dashboard';
 import { createBlogPost } from '../../actions/blogs';
 
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/alert';
 
@@ -15,6 +16,7 @@ const CreateBlog = ({ createBlogPost }) => {
   const [newFile, setNewFile] = useState('');
   const [tagsHolder, setTagsHolder] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const { title, tags, text } = newBlog;
 
@@ -41,6 +43,7 @@ const CreateBlog = ({ createBlogPost }) => {
 
     if (title !== '' && text !== '' && newFile !== '' && tags) {
       createBlogPost(newBlog, newFile);
+      setRedirect(true);
     } else {
       setShowAlert(true);
       setTimeout(() => {
@@ -48,6 +51,10 @@ const CreateBlog = ({ createBlogPost }) => {
       }, 2000);
     }
   };
+
+  if (redirect) {
+    return <Redirect to='/edit-blogs' />;
+  }
 
   return (
     <Fragment>

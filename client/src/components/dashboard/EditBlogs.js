@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 const EditBlogs = ({ blogs, getAllBlogs, setBlog }) => {
   useEffect(() => {
     getAllBlogs();
-  }, [getAllBlogs]);
+  }, []);
 
   return (
     <Fragment>

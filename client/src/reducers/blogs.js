@@ -30,7 +30,7 @@ export default function blogs(state = initialState, action) {
     case CREATE_BLOG:
       return {
         ...state,
-        blogs: [...state.blogs, payload],
+        blogs: [...state.blogs, payload.item],
       };
     case GOT_THREE_BLOGS:
     case GOT_ALL_BLOGS:

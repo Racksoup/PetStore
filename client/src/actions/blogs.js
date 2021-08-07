@@ -32,7 +32,7 @@ export const createBlogPost = (item, file) => async (dispatch) => {
         'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
       },
     };
-    const res = axios.post('/api/blogs', data, config);
+    const res = await axios.post('/api/blogs', data, config);
     console.log(res);
     dispatch({
       type: CREATE_BLOG,

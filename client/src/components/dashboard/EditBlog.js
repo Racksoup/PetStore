@@ -58,7 +58,7 @@ const EditBlog = ({ blog, updateBlog, deleteBlog }) => {
         <div className='UpdateSingleBlog'>
           <div className='UpdateSingleHeader'>
             <button onClick={() => deleteBlog(blog)}>
-              <Link to='/edit-blog'>Delete Blog</Link>
+              <Link to='/edit-blogs'>Delete Blog</Link>
             </button>
           </div>
           <form className='UpdateBlogForm' onSubmit={(e) => onSubmit(e)}>
