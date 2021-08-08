@@ -69,7 +69,6 @@ export default function auth(state = initialState, action) {
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      console.log(payload);
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -81,7 +80,6 @@ export default function auth(state = initialState, action) {
         isUser: true,
       };
     case ADMIN_LOGIN_SUCCESS:
-      console.log(payload);
       localStorage.setItem('token', payload.token);
       return {
         ...state,
