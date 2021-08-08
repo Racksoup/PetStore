@@ -31,10 +31,8 @@ const Dashboard = ({ user, profileLoading, isAuthenticated, getCurrentProfile })
 
   return (
     <Fragment>
+      <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>Dashboard</h1>
       <div className='ProfileGrid'>
-        <Link to='/orders'>
-          <button className='ProfileButton'>Your Orders</button>
-        </Link>
         <Link to='/update-user'>
           <button className='ProfileButton'>Login {'&'} Security</button>
         </Link>

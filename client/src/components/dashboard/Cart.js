@@ -148,6 +148,14 @@ const Cart = ({
     return price;
   };
 
+  const clickUpdateQuantity = (e, item) => {
+    const newCheck = checkedItems.map((item) => (item.checked = false));
+    setCheckedItems(newCheck);
+
+    setCheckout([]);
+    updateQuantity(e, item);
+  };
+
   if (!isAuthenticated) return <Redirect to='/login' />;
 
   if (!items && !profile) {
@@ -207,7 +215,7 @@ const Cart = ({
                         type='number'
                         id={item._id}
                         value={currCartItem.quantity}
-                        onChange={(e) => updateQuantity(e, item)}
+                        onChange={(e) => clickUpdateQuantity(e, item)}
                       />
                     </div>
                   </div>

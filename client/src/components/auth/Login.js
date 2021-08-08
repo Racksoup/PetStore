@@ -57,6 +57,7 @@ const Login = ({ login, isAuthenticated, loadingFailed }) => {
               className='LoginInput'
               type='text'
               name='username'
+              autoComplete='off'
               value={username}
               onChange={(e) => onChange(e)}
               require='true'

@@ -24,13 +24,15 @@ const Subscribe = (props) => {
         <h2 className='SubscribeTitle'>Subscribe for Coupon-Codes and our Newsletter</h2>
         <div className='SubscribeInputContainer'>
           <form onSubmit={sendEmail}>
-            <input type='hidden' name='contact_number' />
-            <input type='hidden' name='my_email' value='MonarchPenguin@outlook.com' />
-            <label>Name</label>
-            <input type='text' name='user_name' />
-            <label>Email</label>
-            <input type='email' name='user_email' />
-            <input type='submit' value='Send' />
+            <div style={{ display: 'flex' }}>
+              <input type='hidden' name='contact_number' />
+              <input type='hidden' name='my_email' value='MonarchPenguin@outlook.com' />
+              <p style={{ margin: '6px' }}>Name:</p>
+              <input autoComplete='off' type='text' name='user_name' />
+              <p style={{ margin: '6px' }}>Email:</p>
+              <input autoComplete='off' type='email' name='user_email' />
+              <input type='submit' value='Send' />
+            </div>
           </form>
         </div>
       </div>

@@ -4,7 +4,13 @@ const About = (props) => {
   return (
     <Fragment>
       <div className='AboutContainer'>
-        <div className='AboutInfoContainer'>About</div>
+        <div className='AboutInfoContainer'>
+          <h1>Pet Store</h1>
+          <p>
+            Our Pet Store is dedicated to offering you the finest quality goods for you and your
+            best friend!
+          </p>
+        </div>
       </div>
     </Fragment>
   );

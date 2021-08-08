@@ -27,7 +27,7 @@ const EditBlogs = ({ blogs, getAllBlogs, setBlog }) => {
                   <p>{currentDate.toDateString()}</p>
                   <div className='TagsBox'>
                     {blog.tags.map((tag) => {
-                      return <p>{tag} </p>;
+                      return <p style={{ padding: '2px' }}>{tag}</p>;
                     })}
                   </div>
                   <h3>{blog.title}</h3>

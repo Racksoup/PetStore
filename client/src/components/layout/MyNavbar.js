@@ -81,7 +81,7 @@ const MyNavbar = ({
         }}
       >
         <div className='SideElementContainer'>
-          <Link to='/' style={{ color: 'white', fontSize: '20px' }}>
+          <Link to='/' className='LinkFormat' style={{ fontSize: '20px', marginLeft: '40px' }}>
             {'Pets&Paws'}
           </Link>
         </div>
@@ -116,13 +116,12 @@ const MyNavbar = ({
 
           <input
             className='SearchInput'
-            type='text'
             name='search'
             autoComplete='off'
             onChange={(e) => onSearchChange(e)}
           />
           <button className='SearchButton' onClick={() => onSearchClick()}>
-            <Link to='/browse'>
+            <Link to='/browse' className='GreenLinkFormat'>
               <FontAwesomeIcon icon={faSearch} />
             </Link>
           </button>
@@ -131,7 +130,7 @@ const MyNavbar = ({
           <Nav className='align-items-center'>
             {user ? (
               <div>
-                <Link to='/cart' style={{ marginRight: '5px' }}>
+                <Link to='/cart' className='GreenLinkFormat' style={{ marginRight: '5px' }}>
                   <FontAwesomeIcon icon={faShoppingCart} />
                 </Link>
                 <Navbar.Text>
@@ -152,12 +151,20 @@ const MyNavbar = ({
             ) : (
               <div>
                 <Navbar.Text style={{ marginRight: '10px' }}>
-                  <Link to='/register' style={{ color: 'white', margin: '5px', fontSize: '20px' }}>
+                  <Link
+                    to='/register'
+                    className='LinkFormat'
+                    style={{ color: 'white', margin: '5px', fontSize: '20px' }}
+                  >
                     Register
                   </Link>
                 </Navbar.Text>
                 <Navbar.Text>
-                  <Link to='/login' style={{ color: 'white', margin: '5px', fontSize: '20px' }}>
+                  <Link
+                    to='/login'
+                    className='LinkFormat'
+                    style={{ color: 'white', margin: '5px', fontSize: '20px' }}
+                  >
                     Login
                   </Link>
                 </Navbar.Text>

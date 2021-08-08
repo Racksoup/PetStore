@@ -17,6 +17,7 @@ body,
   --darkBlack: rgb(24, 24, 24);
   --lightBlack: rgb(27, 27, 27);
   --brown: #38281c;
+  --darkBrown: #301d0f;
 }
 
 .Background {
@@ -43,12 +44,86 @@ body,
   margin: auto;
 }
 
-.Button {
+button {
   border-style: solid;
   border-width: 2px;
   border-color: var(--darkGreen);
   border-radius: 4px;
   background-color: var(--green);
+  color: white;
+}
+
+input[type='submit'] {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--darkGreen);
+  border-radius: 4px;
+  background-color: var(--green);
+  color: white;
+}
+
+input[type='text'] {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--darkGreen);
+  border-radius: 4px;
+  background-color: var(--darkBrown);
+  color: white;
+}
+
+input[type='email'] {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--darkGreen);
+  border-radius: 4px;
+  background-color: var(--darkBrown);
+  color: white;
+}
+
+input[type='password'] {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--darkGreen);
+  border-radius: 4px;
+  background-color: var(--darkBrown);
+  color: white;
+}
+
+input[type='submit']:focus {
+  outline: none;
+}
+
+input[type='text']:focus {
+  outline: none;
+}
+
+input[type='email']:focus {
+  outline: none;
+}
+
+input[type='password']:focus {
+  outline: none;
+}
+
+div {
+  border-color: var(--darkGreen);
+}
+
+.GreenLinkFormat {
+  border-color: var(--green);
+  color: var(--green);
+}
+.GreenLinkFormat:hover {
+  text-decoration: var(--green);
+  color: var(--green);
+}
+
+.LinkFormat {
+  border-color: var(--green);
+  color: white;
+}
+.LinkFormat:hover {
+  text-decoration: white;
   color: white;
 }
 
@@ -125,6 +200,7 @@ input[type='number']::-webkit-outer-spin-button {
   border-style: solid;
   border-width: 1px;
   border-color: #007c1b;
+  border-radius: 6px;
 }
 
 .SearchInput:focus {

@@ -26,12 +26,14 @@ const LoginUpdateUser = ({ setToggleUserModal, setToggleUpdateUserLogin, login }
   return (
     <Fragment>
       <div className='UpdateProfileBox'>
-        <h3 className='UpdateProfileTitle'>Update Profile</h3>
+        <h3 className='UpdateProfileTitle'>Login</h3>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className='UpdateProfileItem'>
             <p className='UpdateProfileItemTag'>Username:</p>
             <input
               className='UpdateProfileInput'
+              type='text'
+              autoComplete='off'
               name='username'
               value={username}
               onChange={(e) => onChange(e)}

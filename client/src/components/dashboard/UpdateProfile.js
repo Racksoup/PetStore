@@ -38,6 +38,8 @@ const UpdateProfile = ({ updateProfile, profile, setToggleProfileModal }) => {
             <p className='UpdateProfileItemTag'>Name:</p>
             <input
               className='UpdateProfileInput'
+              autoComplete='off'
+              type='text'
               name='name'
               value={name}
               onChange={(e) => onChange(e)}
@@ -47,6 +49,8 @@ const UpdateProfile = ({ updateProfile, profile, setToggleProfileModal }) => {
             <p className='UpdateProfileItemTag'>Email:</p>
             <input
               className='UpdateProfileInput'
+              autoComplete='off'
+              type='email'
               name='email'
               value={email}
               onChange={(e) => onChange(e)}
@@ -56,6 +60,8 @@ const UpdateProfile = ({ updateProfile, profile, setToggleProfileModal }) => {
             <p className='UpdateProfileItemTag'>Address:</p>
             <input
               className='UpdateProfileInput'
+              autoComplete='off'
+              type='text'
               name='address'
               value={address}
               onChange={(e) => onChange(e)}

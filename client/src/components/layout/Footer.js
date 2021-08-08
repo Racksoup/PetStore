@@ -37,22 +37,22 @@ const Footer = (props) => {
           </div>
         </div>
         <div className='FooterLinks'>
-          <Link to='/tos' className='FooterLink'>
+          <Link to='/tos' className='FooterLink LinkFormat'>
             <p>Terms of Service</p>
           </Link>
-          <Link to='/privacy' className='FooterLink'>
+          <Link to='/privacy' className='FooterLink LinkFormat'>
             <p>Privacy</p>
           </Link>
-          <Link to='/shipping' className='FooterLink'>
+          <Link to='/shipping' className='FooterLink LinkFormat'>
             <p>Shipping</p>
           </Link>
-          <Link to='/returns' className='FooterLink'>
+          <Link to='/returns' className='FooterLink LinkFormat'>
             <p>Returns</p>
           </Link>
-          <Link to='/blogs' className='FooterLink'>
+          <Link to='/blogs' className='FooterLink LinkFormat'>
             <p>Blog</p>
           </Link>
-          <Link to='/admin-login' className='FooterLink'>
+          <Link to='/admin-login' className='FooterLink LinkFormat'>
             <p>Admin</p>
           </Link>
         </div>

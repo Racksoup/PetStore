@@ -12,6 +12,7 @@ const AdminDashboard = ({ user, isAuthenticated }) => {
 
   return (
     <Fragment>
+      <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>Dashboard</h1>
       <div className='AdminGrid'>
         <Link to='/inventory'>
           <button className='AdminButton'>Update Inventory</button>

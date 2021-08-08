@@ -30,7 +30,6 @@ const UpdateUser = ({ isAuthenticated, setToggleUserModal, user, updateUser }) =
       updateUser(username, password, id);
       setToggleUserModal(false);
     } else {
-      console.log('need alert');
       setToggleUserModal(false);
     }
   };
@@ -38,12 +37,14 @@ const UpdateUser = ({ isAuthenticated, setToggleUserModal, user, updateUser }) =
   return (
     <Fragment>
       <div className='UpdateProfileBox'>
-        <h3 className='UpdateProfileTitle'>Update Profile</h3>
+        <h3 className='UpdateProfileTitle'>Update User</h3>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className='UpdateProfileItem'>
             <p className='UpdateProfileItemTag'>Username:</p>
             <input
               className='UpdateProfileInput'
+              autoComplete='off'
+              type='text'
               name='username'
               value={username}
               onChange={(e) => onChange(e)}

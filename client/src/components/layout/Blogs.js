@@ -20,14 +20,14 @@ const Blogs = ({ blogs, getAllBlogs, setBlog }) => {
             let currentDate = new Date(blog.date);
             return (
               <div className='Blog' onClick={() => setBlog(blog)}>
-                <Link to='/blog'>
+                <Link className='LinkFormat' to='/blog'>
                   <div className='BlogImageContainer'>
                     <img className='Image' src={`api/blogs/image/${blog.image_filename}`} />
                   </div>
                   <p>{currentDate.toDateString()}</p>
                   <div className='TagsBox'>
                     {blog.tags.map((tag) => {
-                      return <p>{tag} </p>;
+                      return <p style={{ padding: '2px' }}>{tag}</p>;
                     })}
                   </div>
                   <h3>{blog.title}</h3>

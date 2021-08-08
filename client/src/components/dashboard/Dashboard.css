@@ -6,7 +6,7 @@
 
 .ProfileGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 100px 100px;
   grid-gap: 10px;
   margin-bottom: 10px;
@@ -15,7 +15,7 @@
 .ProfileButton {
   width: 100%;
   height: 100%;
-  background-color: aquamarine;
+  background-color: var(--green);
   border-style: none;
 }
 
@@ -29,7 +29,7 @@
 .AdminButton {
   width: 100%;
   height: 100%;
-  background-color: rgb(216, 255, 77);
+  background-color: #298686;
   border-style: none;
 }
 

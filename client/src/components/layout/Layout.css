@@ -30,13 +30,13 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  text-align: center;
 }
 
 .Blog {
   display: flex;
   flex-direction: column;
   border-style: solid;
-  align-items: center;
   margin-bottom: 10px;
 }
 
@@ -47,4 +47,5 @@
 
 .TagsBox {
   display: flex;
+  justify-content: center;
 }

@@ -26,7 +26,7 @@ const Blog = ({ blogs, setBlog, getThreeBlogs }) => {
             {blogs.map((blog) => {
               let currentDate = new Date(blog.date);
               return (
-                <Link to='/blog'>
+                <Link className='LinkFormat' to='/blog'>
                   <div className='BlogContainer' onClick={() => setBlog(blog)}>
                     <div className='BlogImageContainer'>
                       <img
