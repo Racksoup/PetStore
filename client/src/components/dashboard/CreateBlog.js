@@ -5,7 +5,7 @@ import { createBlogPost } from '../../actions/blogs';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Alert from 'react-bootstrap/alert';
+import Alert from 'react-bootstrap/Alert';
 
 const CreateBlog = ({ createBlogPost }) => {
   const [newBlog, setNewBlog] = useState({

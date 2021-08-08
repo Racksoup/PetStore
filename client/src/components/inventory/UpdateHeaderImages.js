@@ -6,7 +6,7 @@ import './Inventory.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Alert from 'react-bootstrap/alert';
+import Alert from 'react-bootstrap/Alert';
 
 const UpdateHeaderImages = ({
   submitFile,

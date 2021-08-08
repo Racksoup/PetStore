@@ -34,7 +34,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/container';
+import Container from 'react-bootstrap/Container';
 
 const Base = ({ loading, user, isUser, loadUser, loadAdmin }) => {
   useEffect(() => {

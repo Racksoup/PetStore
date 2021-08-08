@@ -3,7 +3,7 @@ import { createItem, setToggleItemModal } from '../../actions/inventory';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Alert from 'react-bootstrap/alert';
+import Alert from 'react-bootstrap/Alert';
 
 const CreateItem = ({ createItem, toggleItemModal, setToggleItemModal }) => {
   const [newItem, setNewItem] = useState({
