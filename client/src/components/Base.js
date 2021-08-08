@@ -6,7 +6,7 @@ import Footer from './layout/Footer';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import Dashboard from './dashboard/Dashboard';
-import Inventory from './inventory/Inventory';
+import Inventory from './inventory/Head';
 import Shop from './shop/Shop';
 import CreateItem from './inventory/CreateItem';
 import UpdateHeaderImages from './inventory/UpdateHeaderImages';
