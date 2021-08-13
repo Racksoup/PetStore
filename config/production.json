@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb+srv://rax:rax@cluster0.e58qb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://rax:Pony46Tah@cluster0.e58qb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "jwtSecret": "Hanger72Clip",
   "adminSecret": "BobButtKiss"
 }
