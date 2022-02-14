@@ -9,7 +9,7 @@ const UpdateUser = ({ isAuthenticated, setToggleUserModal, user, updateUser }) =
     if (!isAuthenticated) {
       setToggleUserModal(false);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, setToggleUserModal]);
 
   const [newAuth, setNewAuth] = useState({
     username: '',

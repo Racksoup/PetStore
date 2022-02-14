@@ -15,23 +15,23 @@ const Footer = (props) => {
           <h5 className='FooterFormInfo'>Subscribe for all the best pet news and deals!</h5>
           <div className='ShareLinks'>
             <div className='ShareLink'>
-              <a href='https://www.facebook.com' target='_blank'>
-                <img className='Image' src={FacebookIcon} />
+              <a href='https://www.facebook.com' target='_blank' rel='noopener noreferrer'>
+                <img className='Image' src={FacebookIcon} alt='' />
               </a>
             </div>
             <div className='ShareLink'>
-              <a href='https://www.instagram.com' target='_blank'>
-                <img className='Image' src={InstagramIcon} />
+              <a href='https://www.instagram.com' target='_blank' rel='noopener noreferrer'>
+                <img className='Image' src={InstagramIcon} alt='' />
               </a>
             </div>
             <div className='ShareLink'>
-              <a href='https://www.twitter.com' target='_blank'>
-                <img className='Image' src={TwitterIcon} />
+              <a href='https://www.twitter.com' target='_blank' rel='noopener noreferrer'>
+                <img className='Image' src={TwitterIcon} alt='' />
               </a>
             </div>
             <div className='ShareLink'>
-              <a href='https://www.pinterest.com' target='_blank'>
-                <img className='Image' src={PinterestIcon} />
+              <a href='https://www.pinterest.com' target='_blank' rel='noopener noreferrer'>
+                <img className='Image' src={PinterestIcon} alt='' />
               </a>
             </div>
           </div>

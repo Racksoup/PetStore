@@ -79,7 +79,6 @@ export const updateItem = (item, file, id) => async (dispatch) => {
       item.image_filename = newImage.data.file.filename;
     }
     if (item) {
-      const body = JSON.stringify(item);
       const res = await axios.put(`/api/inventory/${id}`, item, config);
       dispatch({
         type: UPDATE_ITEM,

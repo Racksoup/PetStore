@@ -63,7 +63,7 @@ router.post('/upload', adminAuth, upload.single('file'), (req, res) => {
 router.get('/', (req, res) => {
   gfs.files.find({ metadata: { category: 'headerImage' } }).toArray((err, files) => {
     // Check if files
-    if (!files || files.length === 0 || files === undefined) {
+    if (!files || files.length === 0 || files === undefined || files === null) {
       return res.status(404).json({
         err: 'No files exist',
       });

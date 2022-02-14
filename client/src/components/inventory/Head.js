@@ -101,6 +101,7 @@ const Inventory = ({
         setToggle(1);
         getItems(searchItem);
       }
+      return false;
     });
     if (searchItem.length === 24 && !/\s/.test(searchItem)) {
       isName = false;

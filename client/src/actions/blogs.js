@@ -1,6 +1,5 @@
 import FormData from 'form-data';
 import {
-  BLOGS_ERROR,
   CREATE_BLOG,
   GOT_ALL_BLOGS,
   GOT_THREE_BLOGS,
@@ -67,7 +66,6 @@ export const updateBlog = (item, file, id) => async (dispatch) => {
       item.image_filename = newImage.data.file.filename;
     }
     if (item) {
-      const body = JSON.stringify(item);
       const res = await axios.put(`/api/blogs/${id}`, item, config);
       dispatch({
         type: UPDATE_BLOG,

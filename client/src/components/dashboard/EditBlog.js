@@ -17,7 +17,7 @@ const EditBlog = ({ blog, updateBlog, deleteBlog }) => {
   const [tagsHolder, setTagsHolder] = useState(blog.tags.join(' '));
   const [showAlert, setShowAlert] = useState(false);
 
-  const { title, tags, text } = newBlog;
+  const { title, text } = newBlog;
 
   const onChange = (e) => {
     setNewBlog({ ...newBlog, [e.target.name]: e.target.value });

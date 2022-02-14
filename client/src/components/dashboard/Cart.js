@@ -23,7 +23,7 @@ const Cart = ({
   profile,
   isAuthenticated,
 }) => {
-  const initCheckedState = () => {
+  const initCheckedState = React.useCallback(() => {
     if (profile !== null && profile !== undefined) {
       const arr = profile.cart.map((cartItem) => {
         return {
@@ -33,17 +33,18 @@ const Cart = ({
       });
       return arr;
     }
-  };
+  }, [profile]);
+
   const [checkedItems, setCheckedItems] = useState(initCheckedState());
   const [checkout, setCheckout] = useState([]);
   useEffect(() => {
     getAllCartItems();
     getCurrentProfile();
-  }, []);
+  }, [getAllCartItems, getCurrentProfile]);
 
   useEffect(() => {
     setCheckedItems(initCheckedState());
-  }, [profile]);
+  }, [profile, initCheckedState]);
 
   const onCheck = (item) => {
     const newChecked = checkedItems.map((x) => {
@@ -64,6 +65,7 @@ const Cart = ({
       } else {
         removedItem = true;
       }
+      return false;
     });
     if (!removedItem) {
       newCheckout = [...checkout, item];
@@ -74,7 +76,9 @@ const Cart = ({
         if (cartItem._id === newCheckoutItem._id) {
           newCheckoutItem.quantity = cartItem.quantity;
         }
+        return false;
       });
+      return false;
     });
 
     setCheckout(newCheckout);
@@ -92,19 +96,23 @@ const Cart = ({
           if (checkedItem._id !== item._id) {
             return item;
           }
+          return false;
         });
         newItems = newItems.filter((item) => {
           if (checkedItem._id !== item._id) {
             return item;
           }
+          return false;
         });
       }
+      return false;
     });
 
     const newCheckedItems = checkedItems.filter((checkedItem) => {
       if (checkedItem.checked !== true) {
         return checkedItem;
       }
+      return false;
     });
     setCheckedItems(newCheckedItems);
     removeCartItem(newProfile, newItems);
@@ -119,17 +127,20 @@ const Cart = ({
       if (oldItem._id !== item._id) {
         return item;
       }
+      return false;
     });
     newItems = newItems.filter((item) => {
       if (oldItem._id !== item._id) {
         return item;
       }
+      return false;
     });
 
     const newCheckedItems = checkedItems.filter((checkedItem) => {
       if (checkedItem._id !== oldItem.id) {
         return checkedItem;
       }
+      return false;
     });
     setCheckedItems(newCheckedItems);
     removeCartItem(newProfile, newItems);
@@ -178,12 +189,14 @@ const Cart = ({
               if (cartItem._id === item._id) {
                 currCartItem = cartItem;
               }
+              return false;
             });
             checkedItems.map((checkedItem) => {
               if (checkedItem._id === item._id) {
                 currCheckedItem = checkedItem;
                 checkedItemIsPresent = true;
               }
+              return false;
             });
             if (checkedItemIsPresent) {
               return (
@@ -225,6 +238,7 @@ const Cart = ({
                 </div>
               );
             }
+            return false;
           })}
       </div>
       <div className='CheckoutBox'>

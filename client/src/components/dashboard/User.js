@@ -28,12 +28,12 @@ const User = ({
     if (isAuthenticated) {
       setToggleUserModal(true);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, setToggleUserModal]);
 
   useEffect(() => {
     setToggleUpdateUserLogin(false);
     setToggleUserModal(false);
-  }, []);
+  }, [setToggleUpdateUserLogin, setToggleUserModal]);
 
   const UpdateUserModal = () => {
     if (toggleUserModal) {

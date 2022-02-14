@@ -51,6 +51,7 @@ const MyNavbar = ({
         getItems(search);
         isCategory = true;
       }
+      return false;
     });
     if (!isCategory) {
       setItems(searchList);

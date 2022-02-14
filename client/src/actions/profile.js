@@ -181,6 +181,7 @@ export const updateQuantity = (e, item) => async (dispatch) => {
     if (cartItem._id === item._id) {
       return (cartItem.quantity = val);
     }
+    return false;
   });
 
   try {

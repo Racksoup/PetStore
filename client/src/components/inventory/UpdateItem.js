@@ -1,9 +1,8 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, Fragment } from 'react';
 import { updateItem, deleteInventoryItem, setToggle } from '../../actions/inventory';
 import './Inventory.css';
 
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const UpdateItem = ({ item, updateItem, deleteInventoryItem, setToggle }) => {

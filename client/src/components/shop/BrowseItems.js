@@ -1,6 +1,5 @@
 import React from 'react';
 import { setItem } from '../../actions/shop';
-import spinner from '../../images/Spinner.gif';
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';

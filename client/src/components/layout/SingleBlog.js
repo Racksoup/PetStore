@@ -19,7 +19,7 @@ const SingleBlog = ({ blog }) => {
           <h1>{blog.title}</h1>
           <h5>{currentDate.toDateString()}</h5>
           <div style={{ width: '400px', height: '200px' }}>
-            <img className='Image' src={`api/inventory/image/${blog.image_filename}`} />
+            <img className='Image' src={`api/inventory/image/${blog.image_filename}`} alt='' />
           </div>
           <div style={{ display: 'flex' }}>
             {blog.tags &&

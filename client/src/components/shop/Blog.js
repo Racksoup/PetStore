@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Blog = ({ blogs, setBlog, getThreeBlogs }) => {
   useEffect(() => {
     getThreeBlogs();
-  }, []);
+  }, [getThreeBlogs]);
 
   return (
     <Fragment>

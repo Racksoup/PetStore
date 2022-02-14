@@ -16,7 +16,7 @@ import Alert from 'react-bootstrap/Alert';
 const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCart }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
   const [quantity, setQuantity] = useState(1);
   const [showAlert, setShowAlert] = useState(false);
   const [alertText, setAlertText] = useState('');
@@ -28,10 +28,11 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
           if (cartItem._id === item._id) {
             setQuantity(cartItem.quantity);
           }
+          return false;
         });
       }
     }
-  }, []);
+  }, [item, profile]);
 
   const onChange = (e) => {
     setQuantity(e.target.value);
@@ -51,6 +52,7 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
           if (cartItem._id !== item._id) {
             return cartItem;
           }
+          return false;
         });
         newProfile.cart.push({ _id: item._id, quantity });
       } else {
@@ -75,6 +77,7 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
           if (wishlistItem._id !== item._id) {
             return wishlistItem;
           }
+          return false;
         });
         newProfile.wishlist.push({ _id: item._id });
       } else {
@@ -179,23 +182,23 @@ const SingleItem = ({ item, items, profile, getItems, getCurrentProfile, addToCa
           <div className='SingleItemShareLinks'>
             <div className='ShareLinks' style={{ marginLeft: 'auto', marginRight: '50px' }}>
               <div className='ShareLink'>
-                <a href='https://www.facebook.com' target='_blank'>
-                  <img className='Image' src={FacebookIcon} />
+                <a href='https://www.facebook.com' target='_blank' rel='noopener noreferrer'>
+                  <img className='Image' src={FacebookIcon} alt='' />
                 </a>
               </div>
               <div className='ShareLink'>
-                <a href='https://www.instagram.com' target='_blank'>
-                  <img className='Image' src={InstagramIcon} />
+                <a href='https://www.instagram.com' target='_blank' rel='noopener noreferrer'>
+                  <img className='Image' src={InstagramIcon} alt='' />
                 </a>
               </div>
               <div className='ShareLink'>
-                <a href='https://www.twitter.com' target='_blank'>
-                  <img className='Image' src={TwitterIcon} />
+                <a href='https://www.twitter.com' target='_blank' rel='noopener noreferrer'>
+                  <img className='Image' src={TwitterIcon} alt='' />
                 </a>
               </div>
               <div className='ShareLink'>
-                <a href='https://www.pinterest.com' target='_blank'>
-                  <img className='Image' src={PinterestIcon} />
+                <a href='https://www.pinterest.com' target='_blank' rel='noopener noreferrer'>
+                  <img className='Image' src={PinterestIcon} alt='' />
                 </a>
               </div>
             </div>

@@ -43,6 +43,7 @@ const Pets = ({ setItem, getPetLists, petLists }) => {
                         </div>
                       );
                     }
+                    return false;
                   })}
               </div>
               <div className='BottomPetContainer'>
@@ -64,6 +65,7 @@ const Pets = ({ setItem, getPetLists, petLists }) => {
                         </div>
                       );
                     }
+                    return false;
                   })}
               </div>
             </div>

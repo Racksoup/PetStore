@@ -22,7 +22,7 @@ const Blogs = ({ blogs, getAllBlogs, setBlog }) => {
               <div className='Blog' onClick={() => setBlog(blog)}>
                 <Link className='LinkFormat' to='/blog'>
                   <div className='BlogImageContainer'>
-                    <img className='Image' src={`api/blogs/image/${blog.image_filename}`} />
+                    <img className='Image' src={`api/blogs/image/${blog.image_filename}`} alt='' />
                   </div>
                   <p>{currentDate.toDateString()}</p>
                   <div className='TagsBox'>

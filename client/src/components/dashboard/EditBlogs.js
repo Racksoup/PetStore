@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 const EditBlogs = ({ blogs, getAllBlogs, setBlog }) => {
   useEffect(() => {
     getAllBlogs();
-  }, []);
+  }, [getAllBlogs]);
 
   return (
     <Fragment>
@@ -22,7 +22,7 @@ const EditBlogs = ({ blogs, getAllBlogs, setBlog }) => {
               <div className='Blog' onClick={() => setBlog(blog)}>
                 <Link to='/edit-blog'>
                   <div className='BlogImageContainer'>
-                    <img className='Image' src={`api/blogs/image/${blog.image_filename}`} />
+                    <img className='Image' src={`api/blogs/image/${blog.image_filename}`} alt='' />
                   </div>
                   <p>{currentDate.toDateString()}</p>
                   <div className='TagsBox'>
