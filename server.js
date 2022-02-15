@@ -31,8 +31,9 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // comments
-// renameing
 // gridstore -> gridfsbucket
+// re-organize front end
+// re-organize back end
 // seperate admin and user more
 // payment page and function
 // admin shouldn't be loging in from user login
