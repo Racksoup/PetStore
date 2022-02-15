@@ -105,7 +105,7 @@ router.get('/image/:filename', (req, res) => {
 // @desc    Delete file
 // @access  Private
 router.delete('/files/:filename', adminAuth, (req, res) => {
-  gfs.remove({ filename: req.params.filename, root: 'uploads' }, (err, gridStore) => {
+  gfs.remove({ filename: req.params.filename, root: 'uploads' }, (err, GridFSBucket) => {
     if (err) {
       return res.status(404).json({ err: err });
     }
