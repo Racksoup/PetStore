@@ -145,6 +145,9 @@ router.delete('/:_id', adminAuth, async (req, res) => {
   }
 });
 
+// @route   Get api/inventory
+// @desc    Get all inventory
+// @access  Public
 router.get('/', async (req, res) => {
   try {
     const items = await Inventory.find();

@@ -11,9 +11,7 @@ app.use(express.json({ extend: false }));
 // Todo Define Routes
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/cart', require('./routes/api/cart'));
 app.use('/api/inventory', require('./routes/api/inventory'));
-app.use('/api/wishlist', require('./routes/api/wishlist'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/headerimage', require('./routes/api/headerimage'));
 app.use('/api/blogs', require('./routes/api/blogs'));
@@ -34,6 +32,7 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // comments
 // renameing
+// seperate admin and user more
 // payment page and function
 // admin shouldn't be loging in from user login
 // remove get profile for admin

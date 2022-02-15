@@ -49,7 +49,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// @route   Get api/profile
+// @route   Get api/profile/user/:user_id
 // @desc    Get profile by user id
 // @access  Private
 router.get('/user/:user_id', auth, async (req, res) => {
@@ -68,6 +68,9 @@ router.get('/user/:user_id', auth, async (req, res) => {
   }
 });
 
+// @route   Update api/profile/user/:_id
+// @desc    Update removes from user cart and wishlist
+// @access  Private
 router.put('/user/:_id', auth, async (req, res) => {
   const { name, email, address, cart, wishlist } = req.body;
   const newItem = {};
@@ -93,6 +96,9 @@ router.put('/user/:_id', auth, async (req, res) => {
   }
 });
 
+// @route   Update api/profile/add-cart/:_id
+// @desc    Updates/Adds to user cart and wishlist
+// @access  Private
 router.put('/add-cart/:_id', auth, async (req, res) => {
   const { name, email, address, cart, wishlist } = req.body;
   const newItem = {};
@@ -101,6 +107,8 @@ router.put('/add-cart/:_id', auth, async (req, res) => {
   if (address) newItem.address = address;
   if (cart) newItem.cart = cart;
   if (wishlist) newItem.wishlist = wishlist;
+
+  console.log('xx');
 
   try {
     const profile = await Profile.findOneAndUpdate({ _id: req.params._id }, { $set: newItem });

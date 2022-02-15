@@ -51,15 +51,17 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-// @route POST /upload
-// @desc  Uploads file to DB
+// @route   POST /upload
+// @desc    Uploads file to DB
+// @access  Private
 router.post('/upload', adminAuth, upload.single('file'), (req, res) => {
   res.json({ file: req.file });
   //res.redirect('/');
 });
 
-// @route GET /
-// @desc  Get all HeaderImages
+// @route   GET /
+// @desc    Get all HeaderImages
+// @access  public
 router.get('/', (req, res) => {
   gfs.files.find({ metadata: { category: 'headerImage' } }).toArray((err, files) => {
     // Check if files
@@ -74,8 +76,9 @@ router.get('/', (req, res) => {
   });
 });
 
-// @route GET /image/:filename
-// @desc Display Image
+// @route   GET /image/:filename
+// @desc    Display Image
+// @access  Public
 router.get('/image/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
@@ -98,8 +101,9 @@ router.get('/image/:filename', (req, res) => {
   });
 });
 
-// @route DELETE /files/:filename
-// @desc  Delete file
+// @route   DELETE /files/:filename
+// @desc    Delete file
+// @access  Private
 router.delete('/files/:filename', adminAuth, (req, res) => {
   gfs.remove({ filename: req.params.filename, root: 'uploads' }, (err, gridStore) => {
     if (err) {

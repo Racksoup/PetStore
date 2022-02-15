@@ -22,8 +22,10 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route   GET api/auth/admin
+// @desc    Load admin
+// @access  Private
 router.get('/admin', adminAuth, async (req, res) => {
-  console.log('good');
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
@@ -80,6 +82,9 @@ router.post(
   }
 );
 
+// @route   POST api/auth/admin
+// @desc    Authenticate Admin
+// @access  Public
 router.post(
   '/admin',
   [
@@ -113,7 +118,6 @@ router.post(
         },
       };
 
-      console.log('adminToken');
       jwt.sign(payload, config.get('adminSecret'), { expiresIn: '1h' }, (err, token) => {
         if (err) throw err;
         res.json({ token });

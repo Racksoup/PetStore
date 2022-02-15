@@ -1,6 +1,5 @@
 const User = require('../../models/User');
 const auth = require('../../middleware/auth');
-const adminAuth = require('../../middleware/adminAuth');
 
 const express = require('express');
 const router = express.Router();
@@ -75,6 +74,9 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
+// @route   Get api/users/:_id
+// @desc    Update user
+// @access  Private
 router.put('/:_id', auth, async (req, res) => {
   const { name, password } = req.body;
   const newUser = {};

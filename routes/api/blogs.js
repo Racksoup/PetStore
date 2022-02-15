@@ -55,6 +55,9 @@ const upload = multer({ storage });
 // DATABASE STORAGE METHOD
 // ========================
 
+// @route   POST api/blogs
+// @desc    Post blog
+// @access  Private
 router.post('/', [adminAuth, upload.single('file')], async (req, res) => {
   const { title, tags, text } = req.body;
 
@@ -76,8 +79,10 @@ router.post('/', [adminAuth, upload.single('file')], async (req, res) => {
   }
 });
 
+// @route   PUT api/blogs/:_id
+// @desc    Update blog
+// @access  Private
 router.put('/:_id', adminAuth, async (req, res) => {
-  console.log('hit');
   const { title, tags, text, image_filename } = req.body;
   const postItem = {};
   if (title) postItem.title = title;
@@ -95,6 +100,9 @@ router.put('/:_id', adminAuth, async (req, res) => {
   }
 });
 
+// @route   DELETE api/blogs/:_id
+// @desc    Delete Blog
+// @access  Private
 router.delete('/:_id', adminAuth, async (req, res) => {
   try {
     await Blogs.findOneAndRemove({ _id: req.params._id });
@@ -110,6 +118,9 @@ router.delete('/:_id', adminAuth, async (req, res) => {
   }
 });
 
+// @route   GET api/blogs
+// @desc    Get all blogs
+// @access  public
 router.get('/', async (req, res) => {
   try {
     const items = await Blogs.find();
@@ -120,6 +131,9 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route   GET api/blogs/three
+// @desc    Get 3 blogs
+// @access  Public
 router.get('/three', async (req, res) => {
   try {
     const items = await Blogs.find().limit(3);
@@ -130,6 +144,9 @@ router.get('/three', async (req, res) => {
   }
 });
 
+// @route   GET api/blog/:_id
+// @desc    Get blog
+// @access  Public
 router.get('/:_id', async (req, res) => {
   try {
     const item = await Blogs.findById(req.params._id);
@@ -144,6 +161,9 @@ router.get('/:_id', async (req, res) => {
 // IMAGE ROUTES
 // ===========================
 
+// @route   GET api/blogs/image/:filename
+// @desc    Get blog image
+// @access  Public
 router.get('/image/:filename', async (req, res) => {
   await gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if files
@@ -165,8 +185,9 @@ router.get('/image/:filename', async (req, res) => {
   });
 });
 
-// @route DELETE /delete-image/:filename
-// @desc  Delete image
+// @route   DELETE api/blogs/delete-image/:filename
+// @desc    Delete image
+// @access  Private
 router.delete('/deleteimage/:filename', adminAuth, async (req, res) => {
   const x = await gfs.remove(
     { filename: req.params.filename, root: 'blogImages' },
@@ -179,6 +200,9 @@ router.delete('/deleteimage/:filename', adminAuth, async (req, res) => {
   res.json(x);
 });
 
+// @route   DELETE api/blogs/id/:files_id
+// @desc    Delete image
+// @access  Private
 router.delete('/deleteimage/id/:files_id', adminAuth, async (req, res) => {
   const x = await gfs.remove(
     { files_id: req.params.files_id, root: 'blogImages' },
@@ -191,6 +215,9 @@ router.delete('/deleteimage/id/:files_id', adminAuth, async (req, res) => {
   res.json(x);
 });
 
+// @route   POST api/blogs/uploadimage
+// @desc    Upload image
+// @access  Private
 router.post('/uploadimage', [adminAuth, upload.single('file')], (req, res) => {
   res.json({ file: req.file });
 });
