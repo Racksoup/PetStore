@@ -31,3 +31,11 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+// comments
+// renameing
+// payment page and function
+// admin shouldn't be loging in from user login
+// remove get profile for admin
+// restyling
+// build for different viewports
